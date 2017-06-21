@@ -33,7 +33,7 @@ $("#btnSignGoogle").on("click",function(event){
 		var currentUrl = window.location.href;
 		var newUrl = "";
 		var userID = "#eric"
-		newUrl = currentUrl + "/account" + userID;
+		newUrl = currentUrl + "account" + userID;
 		window.location.href = newUrl;
 
 	}).catch(function(error) {
