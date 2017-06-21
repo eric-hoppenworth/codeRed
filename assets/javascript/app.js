@@ -32,7 +32,8 @@ $("#btnSignGoogle").on("click",function(event){
 
 		var currentUrl = window.location.href;
 		var newUrl = "";
-		newUrl = currentUrl + "/account";
+		var userID = "#eric"
+		newUrl = currentUrl + "/account" + userID;
 		window.location.href = newUrl;
 
 	}).catch(function(error) {
@@ -49,13 +50,14 @@ $("#btnSignGoogle").on("click",function(event){
 			var currentUrl = window.location.href;
 			var newUrl = "";
 			var subIndex = 0;
+			var userID = "#eric"
 			for (var i = currentUrl.length; i > 0; i--){
 				if (currentUrl[i] === "/"){
 					subIndex = i;
 					break;
 				}
 			}
-			newUrl = currentUrl.substring(0,subIndex) + "/account.html";
+			newUrl = currentUrl.substring(0,subIndex) + "/account.html" + userID;
 			window.location.href = newUrl;
 		}
 		
@@ -66,6 +68,3 @@ $("#btnSignGoogle").on("click",function(event){
 	
 
 });
-$("#btnCheck").on("click",function(event){
-	console.log(firebase.auth());
-})
