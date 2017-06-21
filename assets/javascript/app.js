@@ -29,6 +29,12 @@ $("#btnSignGoogle").on("click",function(event){
 		}
 		// The signed-in user info.
 		var user = result.user;
+
+		var currentUrl = window.location.href;
+		var newUrl = "";
+		newUrl = currentUrl + "/account";
+		window.location.href = newUrl;
+
 	}).catch(function(error) {
 		// Handle Errors here.
 		var errorCode = error.code;
@@ -38,7 +44,26 @@ $("#btnSignGoogle").on("click",function(event){
 		// The firebase.auth.AuthCredential type that was used.
 		var credential = error.credential;
 		// ...
+
+		if (errorCode = "auth/operation-not-supported-in-this-environment"){
+			var currentUrl = window.location.href;
+			var newUrl = "";
+			var subIndex = 0;
+			for (var i = currentUrl.length; i > 0; i--){
+				if (currentUrl[i] === "/"){
+					subIndex = i;
+					break;
+				}
+			}
+			newUrl = currentUrl.substring(0,subIndex) + "/account.html";
+			window.location.href = newUrl;
+		}
+		
 	});
+
+	
+
+	
 
 });
 $("#btnCheck").on("click",function(event){
