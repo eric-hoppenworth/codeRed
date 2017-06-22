@@ -16,6 +16,13 @@ firebase.initializeApp(config);
 //   .catch(function(error) {
 //     console.log(error);
 //   });
+var myDbxId = "0ot1htkfrv9jzeg"
+
+$("#btnDropBox").on('click',function(event){
+	var dbx = new Dropbox({ clientId: myDbxId });
+	dbx.getAuthenticationUrl("https://codered-503c1.firebaseapp.com/__/auth/handler");
+});
+
 $("#btnSignGoogle").on("click",function(event){
 	var provider = new firebase.auth.GoogleAuthProvider();
 
