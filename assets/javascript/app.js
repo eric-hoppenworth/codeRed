@@ -17,7 +17,7 @@ firebase.initializeApp(config);
 //     console.log(error);
 //   });
 var myDbxId = "0ot1htkfrv9jzeg"
-
+"0ot1\u2026rv9jzeg"
 $("#btnDropBox").on('click',function(event){
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://codered-503c1.firebaseapp.com/__/auth/handler");
@@ -30,50 +30,52 @@ $("#btnSignGoogle").on("click",function(event){
 
 	firebase.auth().signInWithRedirect(provider);
 
-	firebase.auth().getRedirectResult().then(function(result) {
-		if (result.credential) {
-			// This gives you a Google Access Token. You can use it to access the Google API.
-			var token = result.credential.accessToken;
-			// ...
-		}
-		// The signed-in user info.
-		var user = result.user;
+	// firebase.auth().getRedirectResult().then(function(result) {
+	// 	if (result.credential) {
+	// 		// This gives you a Google Access Token. You can use it to access the Google API.
+	// 		var token = result.credential.accessToken;
+	// 		// ...
+	// 	}
+	// 	// The signed-in user info.
+	// 	var user = result.user;
 
-		var currentUrl = window.location.href;
-		var newUrl = "";
-		var userID = "#eric"
-		newUrl = currentUrl + "account" + userID;
-		window.location.href = newUrl;
+	// }).catch(function(error) {
+	// 	// Handle Errors here.
+	// 	var errorCode = error.code;
+	// 	var errorMessage = error.message;
+	// 	// The email of the user's account used.
+	// 	var email = error.email;
+	// 	// The firebase.auth.AuthCredential type that was used.
+	// 	var credential = error.credential;
+	// 	// ...
 
-	}).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		// The email of the user's account used.
-		var email = error.email;
-		// The firebase.auth.AuthCredential type that was used.
-		var credential = error.credential;
-		// ...
-
-		if (errorCode = "auth/operation-not-supported-in-this-environment"){
-			var currentUrl = window.location.href;
-			var newUrl = "";
-			var subIndex = 0;
-			var userID = "#eric"
-			for (var i = currentUrl.length; i > 0; i--){
-				if (currentUrl[i] === "/"){
-					subIndex = i;
-					break;
-				}
-			}
-			newUrl = currentUrl.substring(0,subIndex) + "/account.html" + userID;
-			window.location.href = newUrl;
-		}
+	// 	if (errorCode = "auth/operation-not-supported-in-this-environment"){
+	// 		var currentUrl = window.location.href;
+	// 		var newUrl = "";
+	// 		var subIndex = 0;
+	// 		var userID = "#eric"
+	// 		for (var i = currentUrl.length; i > 0; i--){
+	// 			if (currentUrl[i] === "/"){
+	// 				subIndex = i;
+	// 				break;
+	// 			}
+	// 		}
+	// 		newUrl = currentUrl.substring(0,subIndex) + "/account.html" + userID;
+	// 		window.location.href = newUrl;
+	// 	}
 		
-	});
+	// });
 
-	
+});
+var myUser;
 
-	
-
+firebase.auth().onAuthStateChanged(function(user){
+	myUser = user;
+	console.log('user',user);
+	var currentUrl = window.location.href;
+	var newUrl = "";
+	var userID = "#eric"
+	newUrl = currentUrl + "account" + userID;
+	//window.location.href = newUrl;
+	console.log(newUrl);
 });
