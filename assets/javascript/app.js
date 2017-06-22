@@ -47,3 +47,7 @@ firebase.auth().onAuthStateChanged(function(user){
 	window.location.href = newUrl;
 	console.log(newUrl);
 });
+
+function printProject(project){
+	$("#divName").text(project.name)
+}
