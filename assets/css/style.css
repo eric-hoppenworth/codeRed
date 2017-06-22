@@ -10,8 +10,7 @@ footer{
     left: 0;
     text-align: center;
     clear: both;
-    font-size: 12px;
-    background: black;
-    border-top: 1px solid yellow;
+    font-size: 15px;
+    border-top: 1px black;
     margin-top: 50px;
 }
