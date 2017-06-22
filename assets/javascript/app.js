@@ -17,10 +17,9 @@ firebase.initializeApp(config);
 //     console.log(error);
 //   });
 var myDbxId = "0ot1htkfrv9jzeg"
-"0ot1\u2026rv9jzeg"
 $("#btnDropBox").on('click',function(event){
 	var dbx = new Dropbox({ clientId: myDbxId });
-	var myURL = dbx.getAuthenticationUrl("https://codered-503c1.firebaseapp.com/__/auth/handler");
+	var myURL = dbx.getAuthenticationUrl(window.location.href);
 	window.location.href = myURL;
 	console.log(myURL);
 });
@@ -77,7 +76,7 @@ firebase.auth().onAuthStateChanged(function(user){
 	console.log('user',user);
 	var currentUrl = window.location.href;
 	var newUrl = "";
-	var userID = myUser.uid
+	var userID = "#" + myUser.uid
 	newUrl = currentUrl + "account" + userID;
 	//window.location.href = newUrl;
 	console.log(newUrl);
