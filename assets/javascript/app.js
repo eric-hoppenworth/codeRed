@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged(function(user){
 	console.log('user',user);
 	var currentUrl = window.location.href;
 	var newUrl = "";
-	var userID = "#eric"
+	var userID = myUser.uid
 	newUrl = currentUrl + "account" + userID;
 	//window.location.href = newUrl;
 	console.log(newUrl);
