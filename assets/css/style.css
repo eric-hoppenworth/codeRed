@@ -1,0 +1,17 @@
+.jumbotron{
+	text-align: center;
+    font-family: 'Trade Winds', cursive;
+
+}
+footer{
+	 position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    clear: both;
+    font-size: 12px;
+    background: black;
+    border-top: 1px solid yellow;
+    margin-top: 50px;
+}
