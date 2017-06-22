@@ -28,7 +28,10 @@ $("#btnDropBox").on('click',function(event){
 $("#btnSignGoogle").on("click",function(event){
 	var provider = new firebase.auth.GoogleAuthProvider();
 
-	firebase.auth().signInWithRedirect(provider);
+	firebase.auth().signInWithRedirect(provider)
+		.catch(function(error){
+			console.log("google sign in error", error);
+		});
 
 	// firebase.auth().getRedirectResult().then(function(result) {
 	// 	if (result.credential) {
