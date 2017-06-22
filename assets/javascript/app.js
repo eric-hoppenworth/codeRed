@@ -21,6 +21,7 @@ var myDbxId = "0ot1htkfrv9jzeg"
 $("#btnDropBox").on('click',function(event){
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://codered-503c1.firebaseapp.com/__/auth/handler");
+	window.location.href = myURL;
 	console.log(myURL);
 });
 
