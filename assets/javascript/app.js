@@ -32,52 +32,18 @@ $("#btnSignGoogle").on("click",function(event){
 			console.log("google sign in error", error);
 		});
 
-	// firebase.auth().getRedirectResult().then(function(result) {
-	// 	if (result.credential) {
-	// 		// This gives you a Google Access Token. You can use it to access the Google API.
-	// 		var token = result.credential.accessToken;
-	// 		// ...
-	// 	}
-	// 	// The signed-in user info.
-	// 	var user = result.user;
-
-	// }).catch(function(error) {
-	// 	// Handle Errors here.
-	// 	var errorCode = error.code;
-	// 	var errorMessage = error.message;
-	// 	// The email of the user's account used.
-	// 	var email = error.email;
-	// 	// The firebase.auth.AuthCredential type that was used.
-	// 	var credential = error.credential;
-	// 	// ...
-
-	// 	if (errorCode = "auth/operation-not-supported-in-this-environment"){
-	// 		var currentUrl = window.location.href;
-	// 		var newUrl = "";
-	// 		var subIndex = 0;
-	// 		var userID = "#eric"
-	// 		for (var i = currentUrl.length; i > 0; i--){
-	// 			if (currentUrl[i] === "/"){
-	// 				subIndex = i;
-	// 				break;
-	// 			}
-	// 		}
-	// 		newUrl = currentUrl.substring(0,subIndex) + "/account.html" + userID;
-	// 		window.location.href = newUrl;
-	// 	}
-		
-	// });
-
 });
 var myUser;
 
 firebase.auth().onAuthStateChanged(function(user){
 	myUser = user;
 	console.log('user',user);
+
+	//this code will be used to retrieve user information on redirect
 	var currentUrl = window.location.href;
 	var newUrl = "";
 	var userID = "#" + myUser.uid
 	newUrl = currentUrl + "account" + userID;
-	//window.location.href = newUrl;
+	window.location.href = newUrl;
 	console.log(newUrl);
 });
