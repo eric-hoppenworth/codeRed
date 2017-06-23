@@ -3,6 +3,12 @@
     font-family: 'Trade Winds', cursive;
 
 }
+.navbar-header{
+  font-family: 'Trade Winds', cursive;  
+}
+.panel{
+    font-family: 'Trade Winds', cursive;    
+}
 footer{
 	position: relative;
     right: 0;
@@ -13,4 +19,5 @@ footer{
     font-size: 15px;
     border-top: 1px black;
     margin-top: 50px;
+    font-family: 'Trade Winds', cursive;
 }
