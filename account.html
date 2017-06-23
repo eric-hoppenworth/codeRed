@@ -1,19 +1,108 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	</head>
-	<body>
-
-		<button id="btnCheck">Are you still signed in?</button>
-		<h1 id ="userName"></h1>
-		<p id = "userBio"></p>
-		
-		<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-		<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
-		<script type="text/javascript" src="assets/javascript/account.js"></script>
-	</body>
+<head>
+	<title>Account page</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">New MC Home</a>
+				<ul class="nav navbar-nav navbar-right">
+					<div id="nright"><li><a href="index.html">Welcome</a></li>
+						<li><a href="profile.html">Profile</a></li>
+						<li><a href="project.html">Project</a></li>
+						<li><a href="browse.html">Browse Projects</a></li></div>
+					</ul>
+				</div>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading" id="ph">
+						<h2 class="panel-title">My Account</h2>
+					</div>
+					<div class="panel-body">
+						<div id="title">
+						</div>
+						<div id="form">
+							<form id="account"> 
+								<label for="userName">Name:</label>
+								<input type="text" id="userName">
+								<br>
+								<label for="userEmail">Email:</label>
+								<input type="text" id="userEmail">
+								<br>
+								<label for="dropbox">Link to Dropbox:</label>
+								<button type="dropbox" id="dropbox">Dropbox</button>  
+								<br>
+								<label for="soundCloud">Link to Sound Cloud:</label>
+								<button type="soundCloud" id="soundCloud">Sound Cloud</button>
+								<br> 
+								<label for="userBio">Bio:</label>
+								<textarea name="userBio" cols="50" rows="5" id="userBio"></textarea>
+								<button type="submit" id="submit">Submit</button>  
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading" id="ph">
+						<h2 class="panel-title">Manage Audio Samples</h2>
+					</div>
+					<div class="panel-body">
+						<div id="title">
+						</div>
+						<div id="form2">
+							<form id="audioSample"> 
+								<button type="button" id="sample">Sample1</button> 
+								<hr>
+								<br>
+							</form>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading" id="ph">
+					<h2 class="panel-title">Manage Projects</h2>
+				</div>
+				<div class="panel-body">
+					<div id="title">
+					</div>
+					<div id="form2">
+						<form id="infoForm2">
+							<label for="newProject"></label>
+							<button type="button" id="newProject">New Project</button> 
+							<hr>
+							<div id="projectOne">Project 1</div>
+							<button type="button" id="edit">Edit</button>
+							<button type="button" id="close">Close</button>	
+							<textarea name="projectInfo" cols="50" rows="5" id="projectInfo"></textarea>	
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+<script type="text/javascript" src="assets/javascript/account.js"></script>
+<footer>
+	<div class="container">
+		<p>&#9400; Copyright 2017 Code Red</p>
+	</div>
+</footer>
+</body>
 </html>
