@@ -28,3 +28,12 @@ dbUsers.once("value",function(snapshot) {
 	$("#userName").text(result.name);
 	$("#userBio").text(result.bio);
 })
+
+function createUserObject() {
+	var name = $("#userName").val().trim();
+	var email = $("#userEmail").val().trim();
+	var bio = $("#userBio").val().trim();
+
+	var myUser = new User(name, email, bio);
+
+}
