@@ -28,8 +28,7 @@
 						<h2 class="panel-title">My Account</h2>
 					</div>
 					<div class="panel-body">
-						<div id="title">
-						</div>
+	
 						<div id="form">
 							<form id="account"> 
 								<label for="userName">Name:</label>
@@ -39,10 +38,10 @@
 								<input type="text" id="userEmail">
 								<br>
 								<label for="dropbox">Link to Dropbox:</label>
-								<button type="dropbox" id="dropbox">Dropbox</button>  
+								<button type="dropbox" id="userDropbox">Dropbox</button>  
 								<br>
 								<label for="soundCloud">Link to Sound Cloud:</label>
-								<button type="soundCloud" id="soundCloud">Sound Cloud</button>
+								<button type="soundCloud" id="userSoundCloud">Sound Cloud</button>
 								<br> 
 								<label for="userBio">Bio:</label>
 								<textarea name="userBio" cols="50" rows="5" id="userBio"></textarea>
@@ -58,15 +57,14 @@
 						<h2 class="panel-title">Manage Audio Samples</h2>
 					</div>
 					<div class="panel-body">
-						<div id="title">
-						</div>
+	
 						<div id="form2">
-							<form id="audioSample"> 
-								<button type="button" id="sample">Sample1</button> 
+							<form class="audioSample"> 
+								<button type="button" class="sample">Sample1</button> 
 								<hr>
 								<br>
 							</form>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -77,9 +75,8 @@
 					<h2 class="panel-title">Manage Projects</h2>
 				</div>
 				<div class="panel-body">
-					<div id="title">
-					</div>
-					<div id="form2">
+					<div id="form3">
+					<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
 						<form id="infoForm2">
 							<label for="newProject"></label>
 							<button type="button" id="newProject">New Project</button> 
