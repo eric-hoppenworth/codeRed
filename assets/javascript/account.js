@@ -71,6 +71,24 @@ function createUserObject() {
 
 }
 
+function createProject() {
+	var name = $("#projectName").val().trim();
+	var email = $("#projectEmail").val().trim();
+	var description = $("#projectDescription").val().trim();
+	var needs = [];
+	var wants = [];
+	$(".inputNewNeed").each(function(index) {
+		needs.push($(this).text());
+	})
+	$(".inputNewWant").each(function(index) {
+		wants.push($(this).text());
+	})
+}
+
+function addNeed() {
+}
+
+
 function Project(userKey,name ="default",email = "", desc = "Producer has not yet added a description.",needs,wants){
 	this.name = name;
 	this.email = email;
