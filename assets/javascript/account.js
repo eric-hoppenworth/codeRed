@@ -20,6 +20,19 @@ var projectsEndPoint = firebase.database().ref().child("Projects");
 // var database = firebase.database().ref();
 // var dbUsers = database.child("Users");
 
+dbUsers.once("value",function(snapshot) {
+	var result = snapshot.child(userID).val()
+	$("#userName").text(result.name);
+	$("#userBio").text(result.bio);
+})
+
+function createUserObject() {
+	var name = $("#userName").val().trim();
+	var email = $("#userEmail").val().trim();
+	var bio = $("#userBio").val().trim();
+
+	var myUser = new User(name, email, bio);
+
 // var subIndex = 0;
 // for (var i = currentUrl.length; i > 0; i--){
 // 	if (currentUrl[i] === "#"){
