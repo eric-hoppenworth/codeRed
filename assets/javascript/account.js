@@ -63,3 +63,12 @@ function User(name="", email="",bio=""){
 >>>>>>> 0b859830bd143981470d3524e7b0680ec6392c5b
 
 }
+
+function createUserObject() {
+	var name = $("#userName").val().trim();
+	var email = $("#userEmail").val().trim();
+	var bio = $("#userBio").val().trim();
+
+	var myUser = new User(name, email, bio);
+
+}
