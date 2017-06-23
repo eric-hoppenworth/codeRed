@@ -7,7 +7,9 @@ var config = {
     messagingSenderId: "335324790916"
   };
 firebase.initializeApp(config);
-
+var usersEndPoint = firebase.database().ref().child("Users");
+var projectsEndPoint = firebase.database().ref().child("Projects");
+var authUser;
 // var myToken = "8qOYWXTfAnAAAAAAAAAAiyNkOj-gphzbilLE3kgY58iLaipxfXAwPpz3xJCc5x4O";
 // var dbx = new Dropbox({ accessToken: myToken });
 // dbx.filesListFolder({path: ''})
@@ -17,13 +19,6 @@ firebase.initializeApp(config);
 //   .catch(function(error) {
 //     console.log(error);
 //   });
-var myDbxId = "0ot1htkfrv9jzeg"
-$("#btnDropBox").on('click',function(event){
-	var dbx = new Dropbox({ clientId: myDbxId });
-	var myURL = dbx.getAuthenticationUrl(window.location.href);
-	window.location.href = myURL;
-	console.log(myURL);
-});
 
 $("#btnSignGoogle").on("click",function(event){
 	var provider = new firebase.auth.GoogleAuthProvider();
@@ -34,22 +29,46 @@ $("#btnSignGoogle").on("click",function(event){
 		});
 
 });
-var myUser;
+
 
 firebase.auth().onAuthStateChanged(function(user){
-	myUser = user;
+	authUser = user;
 	console.log('user',user);
 
 	//this code will be used to retrieve user information on redirect
 	// var currentUrl = window.location.href;
 	// var newUrl = "";
-	// var userID = "#" + myUser.uid
+	// var userID = "#" + authUser.uid
 	// newUrl = currentUrl + "account" + userID;
 	// window.location.href = newUrl;
 	// console.log(newUrl);
 });
 
-function printProject(project){
-	$("#divName").text(project.name)
+function Project(name ="default",email = "", desc = "Producer has not yet added a description.",needs,wants,key =""){
+	this.name = name;
+	this.email = email;
+	this.description = desc;
+	this.userKey = authUser.uid;
+	this.needs= needs;
+	this.wants = wants;
+	this.completedList = [];
+	if (key = ""){
+		//this is a new project, generate a key
+		this.key = projectsEndPoint.push().key;
+	} else {
+		//this project already exists
+		this.key = key;
+	}
+	projectsEndPoint.child(this.key).update(this)
 }
 
+function User(name="default", email="",bio="User has not yet added a bio."){
+	this.name = name;
+	this.email = email;
+	this.bio = bio;
+	this.key = authUser.uid;
+	this.projectList = [];
+	this.contributersList = [];
+	this.dropBoxToken = "0";
+	usersEndPoint.child(this.key).update(this);
+}

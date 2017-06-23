@@ -1,76 +1,22 @@
-var config = {
-    apiKey: "AIzaSyAveFUvto0lPSpetwLo0xBXPjBUyv61MEU",
-    authDomain: "codered-503c1.firebaseapp.com",
-    databaseURL: "https://codered-503c1.firebaseio.com",
-    projectId: "codered-503c1",
-    storageBucket: "codered-503c1.appspot.com",
-    messagingSenderId: "335324790916"
-  };
-firebase.initializeApp(config);
-//get userID from addressbar
-var userID = "";
+var myDbxId = "0ot1htkfrv9jzeg"
+$("#btnDropBox").on('click',function(event){
+	var dbx = new Dropbox({ clientId: myDbxId });
+	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
+	window.location.href = myURL;
+	console.log(myURL);
+});
 
-if (userID === ""){
-	userID = "testUser";
-}
-var usersEndPoint = firebase.database().ref().child("Users");
-var projectsEndPoint = firebase.database().ref().child("Projects");
-//get userID from address bar
-// var currentUrl = window.location.href;
-// var database = firebase.database().ref();
-// var dbUsers = database.child("Users");
 
-dbUsers.once("value",function(snapshot) {
-	var result = snapshot.child(userID).val()
-	$("#userName").text(result.name);
-	$("#userBio").text(result.bio);
-})
 
-function createUserObject() {
+function updateUser() {
 	var name = $("#userName").val().trim();
 	var email = $("#userEmail").val().trim();
 	var bio = $("#userBio").val().trim();
 
 	var myUser = new User(name, email, bio);
-
-// var subIndex = 0;
-// for (var i = currentUrl.length; i > 0; i--){
-// 	if (currentUrl[i] === "#"){
-// 		subIndex = i;
-// 		break;
-// 	}
-// }
-// userID = currentUrl.substring(subIndex+1,currentUrl.length);
-// console.log(userID)
-
-// dbUsers.once("value",function(snapshot) {
-// 	var result = snapshot.child(userID).val()
-// 	$("#userName").text(result.name);
-// 	$("#userBio").text(result.bio);
-// })
-
-
-function User(name="default", email="",bio="User has not yet added a bio."){
-	this.name = name;
-	this.email = email;
-	this.bio = bio;
-	this.key = usersEndPoint.push().key;
-	this.projectList = [];
-	this.contributersList = [];
-	this.dropBoxToken = "0";
-	usersEndPoint.child(this.key).update(this);
-
 }
 
-function createUserObject() {
-	var name = $("#userName").val().trim();
-	var email = $("#userEmail").val().trim();
-	var bio = $("#userBio").val().trim();
-
-	var myUser = new User(name, email, bio);
-
-}
-
+//creates a new project from the create project modal
 function createProject() {
 	var name = $("#projectName").val().trim();
 	var email = $("#projectEmail").val().trim();
@@ -83,18 +29,32 @@ function createProject() {
 	$(".inputNewWant").each(function(index) {
 		wants.push($(this).text());
 	})
+
+	var newProject = new Project(name,email,description,needs,wants)
 }
 
-function addNeed() {
+//prints a short description of the project to go on the User's account page
+//On the account page, we will want to show buttons for 'edit' and 'delete'
+//On profile and browse pages, we do not want to have buttons
+//this should be moved to app.js
+function printProjectShort(key,showButtons = false){ 
+
 }
 
-
-function Project(userKey,name ="default",email = "", desc = "Producer has not yet added a description.",needs,wants){
-	this.name = name;
-	this.email = email;
-	this.description = desc;
-	this.userKey = userKey;
-	this.needs= needs;
-	this.wants = wants;
-	this.completedList = [];
+//edits an existing project
+//the project's key should be attached to its edit button.
+function editProject(key){
+	var name = $("#editProjectName").val().trim();
+	var email = $("#editProjectEmail").val().trim();
+	var description = $("#editProjectDescription").val().trim();
+	var needs = [];
+	var wants = [];
+	$(".editNewNeed").each(function(index) {
+		needs.push($(this).text());
+	})
+	$(".editNewWant").each(function(index) {
+		wants.push($(this).text());
+	})
+	var key = $("editProject").att("data-key");
+	var newProject = new Project(name,email,description,needs,wants,key)
 }
