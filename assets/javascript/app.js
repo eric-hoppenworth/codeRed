@@ -72,3 +72,11 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 	this.dropBoxToken = "0";
 	usersEndPoint.child(this.key).update(this);
 }
+
+//prints a short description of the project to go on the User's account page
+//On the account page, we will want to show buttons for 'edit' and 'delete'
+//On profile and browse pages, we do not want to have buttons
+//this should be in app.js
+function printProjectShort(key,showButtons = false){ 
+
+}
