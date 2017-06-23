@@ -50,7 +50,7 @@ function createUserObject() {
 // })
 
 
-function User(name="", email="",bio=""){
+function User(name="default", email="",bio="User has not yet added a bio."){
 	this.name = name;
 	this.email = email;
 	this.bio = bio;
@@ -86,6 +86,15 @@ function createProject() {
 }
 
 function addNeed() {
+}
 
 
+function Project(userKey,name ="default",email = "", desc = "Producer has not yet added a description.",needs,wants){
+	this.name = name;
+	this.email = email;
+	this.description = desc;
+	this.userKey = userKey;
+	this.needs= needs;
+	this.wants = wants;
+	this.completedList = [];
 }
