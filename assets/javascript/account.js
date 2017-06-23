@@ -70,3 +70,22 @@ function createUserObject() {
 	var myUser = new User(name, email, bio);
 
 }
+
+function createProject() {
+	var name = $("#projectName").val().trim();
+	var email = $("#projectEmail").val().trim();
+	var description = $("#projectDescription").val().trim();
+	var needs = [];
+	var wants = [];
+	$(".inputNewNeed").each(function(index) {
+		needs.push($(this).text());
+	})
+	$(".inputNewWant").each(function(index) {
+		wants.push($(this).text());
+	})
+}
+
+function addNeed() {
+
+
+}
