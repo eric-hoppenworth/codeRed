@@ -48,3 +48,12 @@ function User(name="", email="",bio=""){
 	usersEndPoint.child(this.key).update(this);
 
 }
+
+function createUserObject() {
+	var name = $("#userName").val().trim();
+	var email = $("#userEmail").val().trim();
+	var bio = $("#userBio").val().trim();
+
+	var myUser = new User(name, email, bio);
+
+}
