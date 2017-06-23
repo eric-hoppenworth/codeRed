@@ -7,7 +7,7 @@ $("#btnDropBox").on('click',function(event){
 });
 
 
-
+//users are created on login with default values
 function updateUser() {
 	var name = $("#userName").val().trim();
 	var email = $("#userEmail").val().trim();
@@ -33,13 +33,7 @@ function createProject() {
 	var newProject = new Project(name,email,description,needs,wants)
 }
 
-//prints a short description of the project to go on the User's account page
-//On the account page, we will want to show buttons for 'edit' and 'delete'
-//On profile and browse pages, we do not want to have buttons
-//this should be moved to app.js
-function printProjectShort(key,showButtons = false){ 
 
-}
 
 //edits an existing project
 //the project's key should be attached to its edit button.
@@ -56,5 +50,38 @@ function editProject(key){
 		wants.push($(this).text());
 	})
 	var key = $("editProject").att("data-key");
-	var newProject = new Project(name,email,description,needs,wants,key)
+	var newProject = new Project(name,email,description,needs,wants,key);
+}
+
+
+////////////////////////////////
+////  Modals  //////////////////
+////////////////////////////////
+
+////  Project Modal ////////////
+
+//will make the project modal appear on page
+//(this might already be built in to bootstrap, idk)
+function showProjectModal(){
+
+}
+
+//add a need(along with a remove button) to the needs list on the modal, and add clear the need input
+function addNeed(){
+
+}
+
+//remove a need from the needs list on the modal
+function removeNeed(){
+
+}
+
+//add a want(along with a remove button) to the wants list on the modal, and add clear the need input
+function addWant(){
+
+}
+
+//remove a want from the wants list on the modal
+function removeWant(){
+
 }
