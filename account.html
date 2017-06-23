@@ -28,7 +28,7 @@
 						<h2 class="panel-title">My Account</h2>
 					</div>
 					<div class="panel-body">
-	
+
 						<div id="form">
 							<form id="account"> 
 								<label for="userName">Name:</label>
@@ -59,6 +59,7 @@
 					<div class="panel-body">
 					<div id = "addAudio"></div>
 					<hr>
+
 						<div id="form2">
 							<form class="audioSample"> 
 								<button type="button" class="sample">Sample1</button> 
@@ -77,21 +78,79 @@
 				</div>
 				<div class="panel-body">
 					<div id="form3">
-					<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
+						<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
 						<form id="infoForm2">
 							<label for="newProject"></label>
-							<button type="button" id="newProject">New Project</button> 
-							<hr>
-							<div id="projectOne">Project 1</div>
-							<button type="button" id="edit">Edit</button>
-							<button type="button" id="close">Close</button>	
-							<textarea name="projectInfo" cols="50" rows="5" id="projectInfo"></textarea>	
-						</form>
+							<div class="container">
+								<h2>Projects</h2>
+								<!-- Trigger the modal with a button -->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
+								<!-- Modal -->
+								<div class="modal fade" id="newProject" role="dialog">
+									<div class="modal-dialog">
+										<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Create New Project</h4>
+											</div>
+											<div class="modal-body">
+												<hr>
+												<div class="form-group">
+													<label for="newProjectTitle" class="form-control-label">Project Name:</label>
+													<input type="text" class="form-control" id="newProjectTitle">
+													<label for="newProjectInfo" class="form-control-label">Project Details:</label>
+													<input type="text" class="form-control" id="newProjectInfo">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary" id="modalSave">Save</button>
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+								<br>
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectA">
+									Project A Details
+								</button>
+								<!-- Modal -->
+								<div class="modal fade" id="projectA" tabindex="-1" role="dialog" aria-labelledby="projectA" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="projectA">Project A Details</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mi justo, cursus sit amet gravida vestibulum, imperdiet non orci. Curabitur nec purus ut ipsum dignissim dapibus. Nam ut dictum nisi. Suspendisse a nibh eros. Proin convallis nunc a sapien porta, ut ornare magna accumsan. Nam at nibh mi. Aenean consectetur, augue id ultricies condimentum, nisl purus euismod mauris, at pretium massa ipsum vitae elit.</p>
+
+												<p>Sed non lacus elit. In pulvinar felis eu aliquam commodo. Cras semper nulla pharetra dui rutrum, non accumsan velit consectetur. In volutpat ipsum a tempus cursus. Nunc felis est, varius sit amet iaculis semper, cursus non purus. Pellentesque vitae nunc dapibus lorem congue varius. Curabitur ut magna placerat, ullamcorper diam vitae, mollis dui.</p>
+
+												<p>Aliquam purus lectus, congue sed feugiat quis, maximus nec sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque rutrum quam vitae neque tincidunt euismod. Suspendisse vulputate blandit lacinia. Aliquam in gravida tortor. Proin consectetur interdum dolor in vestibulum. In eget purus nulla. Aliquam non nulla eu arcu accumsan tempor finibus ac nisl. Curabitur congue elementum ligula, in ultricies metus sodales finibus. Nulla accumsan sodales fringilla. Ut malesuada eu lacus at egestas. Nunc ultrices feugiat neque, sed blandit sapien commodo vel.</p>
+
+												<p>Sed venenatis nulla eu feugiat pellentesque. Cras est nulla, finibus a lacus vitae, dignissim semper mauris. Donec vestibulum, enim viverra sodales rutrum, mi arcu gravida nulla, eu mattis dui ligula aliquam elit. Aliquam erat volutpat. Morbi fermentum magna sit amet lacinia posuere. Mauris viverra neque nec sapien tincidunt faucibus. Nam laoreet blandit nibh et ornare. Nam quis neque et ante aliquam facilisis. Morbi faucibus ac nibh nec auctor. Vivamus sit amet tortor ac mauris bibendum eleifend ac et est.</p>
+
+												<p>Fusce purus leo, sagittis quis lacus vel, tempus gravida diam. Pellentesque et faucibus ipsum. Maecenas euismod orci at nibh ullamcorper egestas. Praesent hendrerit tortor eu neque condimentum vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc in ante urna. Sed vestibulum justo id auctor posuere. Curabitur faucibus, arcu ut vehicula cursus, tellus nulla suscipit erat, a venenatis erat nibh a quam. Phasellus ut leo ex. Suspendisse at tempus dui. Nullam faucibus porttitor tortor, et aliquet erat condimentum in. Phasellus ultrices nulla nec vehicula semper. Integer aliquam felis non tortor venenatis rutrum. Nulla facilisi.</p>
+
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
 
 	<footer>
 		<div class="container">
@@ -106,5 +165,6 @@
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	<script type="text/javascript" src="assets/javascript/account.js"></script>
 
-</body>
-</html>
+
+	</body>
+	</html>
