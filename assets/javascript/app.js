@@ -7,6 +7,7 @@ var config = {
     messagingSenderId: "335324790916"
   };
 firebase.initializeApp(config);
+
 // var myToken = "8qOYWXTfAnAAAAAAAAAAiyNkOj-gphzbilLE3kgY58iLaipxfXAwPpz3xJCc5x4O";
 // var dbx = new Dropbox({ accessToken: myToken });
 // dbx.filesListFolder({path: ''})
@@ -40,14 +41,15 @@ firebase.auth().onAuthStateChanged(function(user){
 	console.log('user',user);
 
 	//this code will be used to retrieve user information on redirect
-	var currentUrl = window.location.href;
-	var newUrl = "";
-	var userID = "#" + myUser.uid
-	newUrl = currentUrl + "account" + userID;
-	window.location.href = newUrl;
-	console.log(newUrl);
+	// var currentUrl = window.location.href;
+	// var newUrl = "";
+	// var userID = "#" + myUser.uid
+	// newUrl = currentUrl + "account" + userID;
+	// window.location.href = newUrl;
+	// console.log(newUrl);
 });
 
 function printProject(project){
 	$("#divName").text(project.name)
 }
+
