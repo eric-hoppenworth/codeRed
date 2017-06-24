@@ -83,7 +83,7 @@ function storeInServer(user,link){
 			var fileURL = endPoint.getDownloadURL().then(function(url){
 				//store that shit
 				currentUser.audioURLs.push(url);
-				usersEndPoint.child(currentUser.key).update();
+				usersEndPoint.child(currentUser.key).update(currentUser);
 			});
 		});
 
