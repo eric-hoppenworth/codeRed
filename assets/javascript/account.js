@@ -11,7 +11,10 @@ $("#userDropbox").on('click',function(event){
 });
 //add the dropbox chooser button, only if drobBox is authenticated for this user
 firebase.auth().onAuthStateChanged(function(user){
-	var myToken = currentUser.dropBoxToken;
+	var myToken;
+	usersEndPoint.once("value",function	(snapshot){
+		myToken = snapshot.child(user.uid).val();
+	})
 	if(myToken === "0"){
 		//I do not have a token, do not show db button
 	} else {
