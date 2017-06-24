@@ -16,7 +16,7 @@ var options = {
     success: function(files) {
     	downloadLink = files[0].link;
         console.log(files[0].link);
-	storeInServer(authUser,downloadLink);
+		storeInServer(authUser,downloadLink);
 	
     },
     cancel: function() {
@@ -30,7 +30,7 @@ var button = Dropbox.createChooseButton(options);
 $("#addAudio").append(button);
 
 function storeInServer(user,link){
-	myBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
+	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
 		console.log(data.fileBlob);
 		var endPoint = firebase.ref("music/"+data.name);
 		// var downloadUrl = URL.createObjectURL(data.fileBlob);
