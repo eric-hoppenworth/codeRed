@@ -4,11 +4,12 @@ $("#userDropbox").on('click',function(event){
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
 	window.location.href = myURL;
-	authUser.drobBoxToken = getAccessTokenFromUrl();
+	currentUser.drobBoxToken = getAccessTokenFromUrl();
+	window.location.hash = "";
 	
 });
 //add the dropbox chooser button, only if drobBox is authenticated for this user
-var myToken = authUser.dropBoxToken;
+var myToken = currentUser.dropBoxToken;
 if(myToken === "0"){
 	//I do not have a token, do not show db button
 } else {
