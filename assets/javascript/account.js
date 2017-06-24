@@ -5,9 +5,9 @@ $("#userDropbox").on('click',function(event){
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
 	
 });
+var myToken;
 //add the dropbox chooser button, only if drobBox is authenticated for this user
 firebase.auth().onAuthStateChanged(function(user){
-	var myToken;
 	usersEndPoint.once("value",function	(snapshot){
 		myToken = snapshot.child(user.uid).val().dropBoxToken;
 	})
@@ -38,9 +38,9 @@ firebase.auth().onAuthStateChanged(function(user){
 
 if (isAuthenticated()){
 	//already authenticated, show
-	currentUser.dropBoxToken = getAccessTokenFromUrl();
-	usersEndPoint.child(currentUser.key).update(currentUser)
-	window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
+	myToken = getAccessTokenFromUrl();
+	//usersEndPoint.child(currentUser.key).update(currentUser)
+	//window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
 }
 
 function storeInServer(user,link){
