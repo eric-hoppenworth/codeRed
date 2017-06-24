@@ -109,7 +109,9 @@ function showProjectModal(){
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
 function addNeed(){
-
+	var userNeed = $("#userInput").val().trim();
+	
+	$("#userInput").val("");
 }
 
 //remove a need from the needs list on the modal
