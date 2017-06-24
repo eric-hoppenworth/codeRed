@@ -4,7 +4,7 @@ $("#userDropbox").on('click',function(event){
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
 	window.location.href = myURL;
-	currentUser.drobBoxToken = getAccessTokenFromUrl();
+	currentUser.dropBoxToken = getAccessTokenFromUrl();
 	usersEndPoint.child(currentUser.key).update(currentUser)
 	window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
 	
