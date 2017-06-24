@@ -47,6 +47,10 @@ body {
 .panel{
     font-family: 'Trade Winds', cursive;    
 }
+
+video ::-internal-media-controls-download-button {
+    display:none;
+}
 footer{
     position: relative;
     right: 0;
