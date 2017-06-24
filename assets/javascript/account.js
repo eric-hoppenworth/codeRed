@@ -9,7 +9,7 @@ $("#userDropbox").on('click',function(event){
 
 function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
-		var endPoint = firebase.storage().ref(authUser.uid + "/music/" + data.name);
+		var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
 		endPoint.put(data.fileBlob);
 
     }).catch(function(error) {
