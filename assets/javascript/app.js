@@ -24,7 +24,54 @@ firebase.auth().onAuthStateChanged(function(user){
 			currentUser = new User();  //create a user using default values
 		}
 	})
-	
+	//check to see if I just got sent here from dropbox auth
+	if(currentUser.dropBoxToken === "0"){
+		if (isAuthenticated()){
+			//already authenticated, show
+			currentUser.dropBoxToken = getAccessTokenFromUrl();
+			usersEndPoint.child(currentUser.key).update(currentUser)
+			//window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
+			var userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+			var downloadLink;
+
+			var options = {
+			    // Required. Called when a user selects an item in the Chooser.
+			    success: function(files) {
+			    	downloadLink = files[0].link;
+					storeInServer(authUser,downloadLink);
+				
+			    },
+			    cancel: function() {
+
+			    },
+			    linkType: "preview",
+			    // Optional. This is a list of file extensions.
+			    extensions: ["audio"],
+			};
+			var button = Dropbox.createChooseButton(options);
+			$("#addAudio").append(button);
+		}	
+	}else{
+		var userBox = new Dropbox({accessToken: myToken});
+		var downloadLink;
+
+		var options = {
+		    // Required. Called when a user selects an item in the Chooser.
+		    success: function(files) {
+		    	downloadLink = files[0].link;
+				storeInServer(authUser,downloadLink);
+			
+		    },
+		    cancel: function() {
+
+		    },
+		    linkType: "preview",
+		    // Optional. This is a list of file extensions.
+		    extensions: ["audio"],
+		};
+		var button = Dropbox.createChooseButton(options);
+		$("#addAudio").append(button);
+	}
 	//this code will be used to retrieve user information on redirect
 	// var currentUrl = window.location.href;
 	// var newUrl = "";
@@ -33,6 +80,13 @@ firebase.auth().onAuthStateChanged(function(user){
 	// window.location.href = newUrl;
 	// console.log(newUrl);
 });
+function isAuthenticated() {
+	return !!getAccessTokenFromUrl();
+}
+
+function getAccessTokenFromUrl() {
+	return utils.parseQueryString(window.location.hash).access_token;
+}
 
 //this function allows me to split up the url
 (function(window){
