@@ -9,7 +9,23 @@ body {
 .navmod {
     background-color: black;
     border:2px solid #0000cc;
+    border-bottom:2px solid #000099;
+
 }
+
+.panel-body {
+    background-color: #b1b1cd;
+    border-bottom:2px solid #d260d4;
+}
+
+.row {
+    width: auto;
+}
+#ph {
+    background-color: #000099;
+
+}
+
 .jumbotron{
 	text-align: center;
     font-family: 'Trade Winds', cursive;
@@ -17,7 +33,7 @@ body {
     background-image: url(../images/waveMeterRs.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  border-bottom:2px solid #0000cc;
+  border-bottom:2px solid #d260d4;
 }
 
 .jumbotron .container {
@@ -30,6 +46,10 @@ body {
 }
 .panel{
     font-family: 'Trade Winds', cursive;    
+}
+
+video ::-internal-media-controls-download-button {
+    display:none;
 }
 footer{
     position: relative;
