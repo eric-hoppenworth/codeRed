@@ -15,19 +15,15 @@ function printUser(user){
 
 //printProjectShort(key,false)
 //This function will be living in the app.js file, since many pages will be using it
-var storageRef = firebase.storage().ref("Users/"+userID +"/music/"+"Attitude.mp3");
-storageRef.getDownloadURL().then(function(url) {
-    console.log(url);
-});
 
 //will print audio samples retrieved from storage
 //eric is building this one
 function printAudio(user){
-	for(var i= 0; i < myUser.audioURLs.length; i++){
+	for(var i= 0; i < user.audioURLs.length; i++){
 		var audio = $("<audio>");
 		audio.attr("controls","");
 		var source = $("<source>");
-		source.attr("src", myUser.audioURLs[i])
+		source.attr("src", user.audioURLs[i])
 		source.attr("type","audio/mp4");
 		audio.append(source);
 		$("#audioHolder").append(audio);
