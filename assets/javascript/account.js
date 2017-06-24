@@ -35,7 +35,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		var button = Dropbox.createChooseButton(options);
 		$("#addAudio").append(button);
 	}
-}
+})
 
 
 function storeInServer(user,link){
