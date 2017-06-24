@@ -15,7 +15,9 @@ var options = {
     // Required. Called when a user selects an item in the Chooser.
     success: function(files) {
     	downloadLink = files[0].link;
-        console.log(files[0].link)
+        console.log(files[0].link);
+	storeInServer(authUser,downloadLink);
+	
     },
     cancel: function() {
 
