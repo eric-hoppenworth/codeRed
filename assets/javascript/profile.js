@@ -20,7 +20,7 @@ function printUser(user){
 //eric is building this one
 function printAudio(user){
 	for(var i= 0; i < user.audioURLs.length; i++){
-		if (user.audioURLs[i]=== null || user.audioURLs[i]=== ""){
+		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
 			//do nothing
 		}else {
 			var audio = $("<audio>");
