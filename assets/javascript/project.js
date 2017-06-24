@@ -15,9 +15,19 @@ function printProject(project){
 	$("#projectDescription").text(project.description);
 	$(".projectNeedsHolder").text("");
 	$(".projectWantsHolder").text("");
-	for (var i = 0; i < project.needs.length; i++) {
+	if (typeof project.needs === "string"){
 		$(".projectNeedsHolder").append("<li>" + project.needs[i] + "</li>");
+	} else if (typeof project.needs === "object") {
+		for (var i = 0; i < project.needs.length; i++) {
+			$(".projectNeedsHolder").append("<li>" + project.needs[i] + "</li>");
+		}
+	}
+	if (typeof project.wants === "string"){
 		$(".projectWantsHolder").append("<li>" + project.wants[i] + "</li>");
+	} else if (typeof project.wants === "object") {
+		for (var i = 0; i < project.wants.length; i++) {
+			$(".projectWantsHolder").append("<li>" + project.wants[i] + "</li>");
+		}
 	}
 }
 
