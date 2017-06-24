@@ -20,13 +20,18 @@ function printUser(user){
 //eric is building this one
 function printAudio(user){
 	for(var i= 0; i < user.audioURLs.length; i++){
-		var audio = $("<audio>");
-		audio.attr("controls","");
-		var source = $("<source>");
-		source.attr("src", user.audioURLs[i])
-		source.attr("type","audio/mp4");
-		audio.append(source);
-		$("#audioHolder").append(audio);
+		if (user.audioURLs[i]=== null || user.audioURLs[i]=== ""){
+			//do nothing
+		}else {
+			var audio = $("<audio>");
+			audio.attr("controls","");
+			var source = $("<source>");
+			source.attr("src", user.audioURLs[i])
+			source.attr("type","audio/mp4");
+			audio.append(source);
+			$("#audioHolder").append(audio);
+		}
+		
 	}
 }
 
