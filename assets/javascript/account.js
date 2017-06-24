@@ -14,7 +14,7 @@ var downloadLink;
 var options = {
     // Required. Called when a user selects an item in the Chooser.
     success: function(files) {
-        console.log(file.link)
+        console.log(files[0].link)
     },
     cancel: function() {
 
