@@ -5,14 +5,15 @@ $("#userDropbox").on('click',function(event){
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
 	window.location.href = myURL;
 	currentUser.drobBoxToken = getAccessTokenFromUrl();
-	window.location.hash = "";
+	usersEndPoint.child(currentUser.key).update(currentUser)
+	window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
 	
 });
 //add the dropbox chooser button, only if drobBox is authenticated for this user
-var myToken = currentUser.dropBoxToken;
-if(myToken === "0"){
-	//I do not have a token, do not show db button
-} else {
+// var myToken = currentUser.dropBoxToken;
+// if(myToken === "0"){
+// 	//I do not have a token, do not show db button
+// } else {
 	var userBox = new Dropbox({accessToken: myToken});
 	var downloadLink;
 
@@ -32,7 +33,7 @@ if(myToken === "0"){
 	};
 	var button = Dropbox.createChooseButton(options);
 	$("#addAudio").append(button);
-}
+//}
 
 
 function storeInServer(user,link){
