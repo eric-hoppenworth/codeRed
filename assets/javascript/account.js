@@ -3,17 +3,13 @@ $("#userDropbox").on('click',function(event){
 	event.preventDefault();
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
-	window.location.href = myURL;
-	currentUser.dropBoxToken = getAccessTokenFromUrl();
-	usersEndPoint.child(currentUser.key).update(currentUser)
-	window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
 	
 });
 //add the dropbox chooser button, only if drobBox is authenticated for this user
 firebase.auth().onAuthStateChanged(function(user){
 	var myToken;
 	usersEndPoint.once("value",function	(snapshot){
-		myToken = snapshot.child(user.uid).val();
+		myToken = snapshot.child(user.uid).val().dropBoxToken;
 	})
 	if(myToken === "0"){
 		//I do not have a token, do not show db button
@@ -40,6 +36,12 @@ firebase.auth().onAuthStateChanged(function(user){
 	}
 })
 
+if (isAuthenticated()){
+	//already authenticated, show
+	currentUser.dropBoxToken = getAccessTokenFromUrl();
+	usersEndPoint.child(currentUser.key).update(currentUser)
+	window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
+}
 
 function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
@@ -54,7 +56,9 @@ function storeInServer(user,link){
 function getAccessTokenFromUrl() {
 	return utils.parseQueryString(window.location.hash).access_token;
 }
-
+function isAuthenticated() {
+	return !!getAccessTokenFromUrl();
+}
 
 //users are created on login with default values
 function updateUser() {
