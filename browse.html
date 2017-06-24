@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>MC Profile</title>
+	<title>Browse Projects</title>
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds" rel="stylesheet">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -42,21 +42,13 @@
 			<br><br>
 			<!-- Adding train Info Panel -->
 			<div class="col-lg-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading" id="ph">
-						<h3 class="panel-title">"The Producer Name"</h3>
-											</div>
-					<div class="panel-body">
-						<div class="col-xs-6">
-						<img src="" alt="The Producer's Picture">
-						<p>About The Producer - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-						</div>
-						<div class="col-xs-6">
-						<h5>Audio Samples</h5>
-						<setion id="audioHolder" class="audioPlayer">
-						</div>
-					</div>
-				</div>
+				  <div class="carousel">
+                        <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
+                        <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+                        <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+                        <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+                        <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+                  </div>
 			</div>
 			<div class="col-lg-12">
 				<div class="panel panel-primary">
@@ -114,6 +106,11 @@
 	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	<script type="text/javascript" src="assets/javascript/profile.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+      $('.carousel').carousel();
+    });
+    </script>
 
 	<footer>
 		<div class="container">
