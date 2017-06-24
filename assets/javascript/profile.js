@@ -1,8 +1,9 @@
 //retrieve userID from address bar
-var userID = "-KnHJLV1YK9E-GPNDBK1"
+var userID = "x18M5K7AvZh1dBlkfIJ6GwFOsoH3"
+var myUser;
 
 usersEndPoint.once("value",function(snapshot) {
-	var myUser = snapshot.child(userID).val()
+	myUser = snapshot.child(userID).val()
 	printUser(myUser);
 })
 
@@ -17,8 +18,16 @@ function printUser(user){
 
 
 //will print audio samples retrieved from storage
-//we will not do this yet
-// function printAudio(){
-
-// }
+//eric is building this one
+function printAudio(user){
+	for(var i= 0; i < myUser.audioURLs.length; i++){
+		var audio = $("<audio>");
+		audio.attr("controls","");
+		var source = $("<source>");
+		source.attr("src", myUser.audioURLs[i])
+		source.attr("type","audio/mp4");
+		audio.append(source);
+		$("#audioHolder").append(audio);
+	}
+}
 

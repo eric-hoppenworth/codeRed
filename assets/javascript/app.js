@@ -52,7 +52,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.needs= needs;
 	this.wants = wants;
 	this.completedList = [];
-	if (key = ""){
+	if (key === ""){
 		//this is a new project, generate a key
 		this.key = projectsEndPoint.push().key;
 	} else {
@@ -70,6 +70,8 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 	this.projectList = [];
 	this.contributersList = [];
 	this.dropBoxToken = "0";
+	this.audioURLs = [];
+	this.imageURL = "";
 	usersEndPoint.child(this.key).update(this);
 }
 

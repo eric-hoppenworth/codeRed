@@ -1,5 +1,5 @@
 //retrieve projectID from address bar
-var projectID = "testProject1";
+var projectID = "-KnMvn4lKj-V7wyciCUl";
 
 projectsEndPoint.once("value",function(snapshot) {
 	var myProject = snapshot.child(projectID).val()
