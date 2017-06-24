@@ -38,14 +38,14 @@
 								<input type="text" id="userEmail">
 								<br>
 								<label for="dropbox">Link to Dropbox:</label>
-								<button type="dropbox" id="userDropbox">Dropbox</button>  
+								<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>  
 								<br>
 								<label for="soundCloud">Link to Sound Cloud:</label>
-								<button type="soundCloud" id="userSoundCloud">Sound Cloud</button>
+								<button type="soundCloud" id="userSoundCloud" class="btn btn-primary">Sound Cloud</button>
 								<br> 
 								<label for="userBio">Bio:</label>
 								<textarea name="userBio" cols="50" rows="5" id="userBio"></textarea>
-								<button type="submit" id="submitUserEdit">Submit</button>  
+								<button type="submit" id="submitUserEdit" class="btn btn-primary">Submit</button>  
 							</form>
 						</div>
 					</div>
@@ -62,7 +62,7 @@
 
 						<div id="form2">
 							<form class="audioSample"> 
-								<button type="button" class="sample">Sample1</button> 
+								<button type="button" class="btn btn-primary">Sample1</button> 
 								<hr>
 								<br>
 							</form>
@@ -81,8 +81,7 @@
 						<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
 						<form id="infoForm2">
 							<label for="newProject"></label>
-							<div class="container">
-								<h2>Projects</h2>
+							<h2>Projects</h2>
 								<!-- Trigger the modal with a button -->
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
 								<!-- Modal -->
@@ -99,8 +98,25 @@
 												<div class="form-group">
 													<label for="newProjectTitle" class="form-control-label">Project Name:</label>
 													<input type="text" class="form-control" id="newProjectTitle">
-													<label for="newProjectInfo" class="form-control-label">Project Details:</label>
-													<input type="text" class="form-control" id="newProjectInfo">
+													<br>
+													<label for="newProjectInfo" class="form-control-label">Project Description:</label>
+													<textarea class="form-control" id="newProjectInfo">
+													</textarea>
+													<br>
+													<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
+													<input type="text" class="form-control" id="newProjectEmail">
+													<br>
+													<label for="newProjectNeeds" class="form-control-label">Needs:</label>
+													<input type="text" class="form-control" id="newProjectNeeds"> 
+													<button type="button" class="btn btn-primary" id="needsAdd">Add
+													</button>
+													<br>
+													<br>
+													<label for="newProjectWants" class="form-control-label">Wants:</label>
+													<input type="text" class="form-control" id="newProjectWants"> 
+													<button type="button" class="btn btn-primary" id="wantsAdd">Add
+													</button>																																							
+
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-primary" id="modalSave">Save</button>
@@ -110,8 +126,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<br>
+							
 							<br>
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectA">
