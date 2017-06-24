@@ -51,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				$("#addAudio").append(button);
 			}	
 		}else{
-			var userBox = new Dropbox({accessToken: myToken});
+			var userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 			var downloadLink;
 
 			var options = {
