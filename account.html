@@ -3,14 +3,17 @@
 <head>
 	<title>Account page</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
+			<!--Navigation-->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand">New MC Home</a>
 				<ul class="nav navbar-nav navbar-right">
+							<!--Links to pages-->
 					<div id="nright"><li><a href="index.html">Welcome</a></li>
 						<li><a href="profile.html">Profile</a></li>
 						<li><a href="project.html">Project</a></li>
@@ -22,140 +25,62 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-xs-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading" id="ph">
 						<h2 class="panel-title">My Account</h2>
 					</div>
 					<div class="panel-body">
-
+								<!--Account Form-->
 						<div id="form">
 							<form id="account"> 
-								<label for="userName">Name:</label>
-								<input type="text" id="userName">
+								<label for="myAccountEdit">Name:</label> 
+								<input type="text" id="userName" value="Your Name">
+								<br>								
+								<label for="myAccountEdit">Email:</label> 
+								<input type="email" id="userEmail" value="youremail@email.com">								
 								<br>
-								<label for="userEmail">Email:</label>
-								<input type="text" id="userEmail">
+								<label for="userBio">Bio:</label>
+								<textarea name="userBio" cols="50" rows="5" id="userBio"></textarea>
+								<br>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
+								<br>
 								<br>
 								<label for="dropbox">Link to Dropbox:</label>
 								<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>  
 								<br>
-								<label for="soundCloud">Link to Sound Cloud:</label>
-								<button type="soundCloud" id="userSoundCloud" class="btn btn-primary">Sound Cloud</button>
-								<br> 
-								<label for="userBio">Bio:</label>
-								<textarea name="userBio" cols="50" rows="5" id="userBio"></textarea>
-								<button type="submit" id="submitUserEdit" class="btn btn-primary">Submit</button>  
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading" id="ph">
-						<h2 class="panel-title">Manage Audio Samples</h2>
-					</div>
-					<div class="panel-body">
-						<div id = "addAudio"></div>
-						<hr>
-
-						<div id="form2">
-							<form class="audioSample"> 
-								<button type="button" class="btn btn-primary">Sample1</button> 
-								<hr>
 								<br>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading" id="ph">
-					<h2 class="panel-title">Manage Projects</h2>
-				</div>
-				<div class="panel-body">
-					<div id="form3">
-						<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
-						<form id="infoForm2">
-							<label for="newProject"></label>
-							<h2>Projects</h2>
-								<!-- Trigger the modal with a button -->
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
+								<label for="soundCloud">Link to Sound Cloud:</label>
+								<button type="soundCloud" id="userSoundCloud" class="btn btn-primary">Sound Cloud</button>							
 								<!-- Modal -->
-								<div class="modal fade" id="newProject" role="dialog">
+								<div class="modal fade" id="myAccountEdit" role="dialog">
 									<div class="modal-dialog">
 										<!-- Modal content-->
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="modal-title">Create New Project</h4>
+												<h4 class="modal-title">My Account</h4>
 											</div>
 											<div class="modal-body">
 												<hr>
 												<div class="form-group">
-													<label for="newProjectTitle" class="form-control-label">Project Name:</label>
-													<input type="text" class="form-control" id="newProjectTitle">
+													<label for="nameEdit" class="form-control-label">Name:</label>
+													<input type="text" class="form-control" id="nameEdit">
 													<br>
-													<label for="newProjectInfo" class="form-control-label">Project Description:</label>
-													<textarea class="form-control" id="newProjectInfo">
+													<label for="EmailEdit" class="form-control-label">Contact Email:</label>
+													<input type="email" class="form-control" id="EmailEdit">
+													<br>
+													<label for="userBio" class="form-control-label">Bio:</label>
+													<textarea class="form-control" id="userBio">
 													</textarea>
-													<br>
-													<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
-													<input type="text" class="form-control" id="newProjectEmail">
-													<br>
-													<label for="newProjectNeeds" class="form-control-label">Needs:</label>
-													<input type="text" class="form-control" id="newProjectNeeds"> 
-													<button type="button" class="btn btn-primary" id="needsAdd">Add
-													</button>
-													<br>
-													<br>
-													<label for="newProjectWants" class="form-control-label">Wants:</label>
-													<input type="text" class="form-control" id="newProjectWants"> 
-													<button type="button" class="btn btn-primary" id="wantsAdd">Add
-													</button>																																							
-
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-primary" id="modalSave">Save</button>
-													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												</div>
+												</button>
+												<br>
+												<br>
 											</div>
-										</div>
-									</div>
-								</div>
-							
-							<br>
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectA">
-								Project A Details
-							</button>
-							<!-- Modal -->
-							<div class="modal fade" id="projectA" tabindex="-1" role="dialog" aria-labelledby="projectA" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="projectA">Project A Details</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mi justo, cursus sit amet gravida vestibulum, imperdiet non orci. Curabitur nec purus ut ipsum dignissim dapibus. Nam ut dictum nisi. Suspendisse a nibh eros. Proin convallis nunc a sapien porta, ut ornare magna accumsan. Nam at nibh mi. Aenean consectetur, augue id ultricies condimentum, nisl purus euismod mauris, at pretium massa ipsum vitae elit.</p>
-
-											<p>Sed non lacus elit. In pulvinar felis eu aliquam commodo. Cras semper nulla pharetra dui rutrum, non accumsan velit consectetur. In volutpat ipsum a tempus cursus. Nunc felis est, varius sit amet iaculis semper, cursus non purus. Pellentesque vitae nunc dapibus lorem congue varius. Curabitur ut magna placerat, ullamcorper diam vitae, mollis dui.</p>
-
-											<p>Aliquam purus lectus, congue sed feugiat quis, maximus nec sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque rutrum quam vitae neque tincidunt euismod. Suspendisse vulputate blandit lacinia. Aliquam in gravida tortor. Proin consectetur interdum dolor in vestibulum. In eget purus nulla. Aliquam non nulla eu arcu accumsan tempor finibus ac nisl. Curabitur congue elementum ligula, in ultricies metus sodales finibus. Nulla accumsan sodales fringilla. Ut malesuada eu lacus at egestas. Nunc ultrices feugiat neque, sed blandit sapien commodo vel.</p>
-
-											<p>Sed venenatis nulla eu feugiat pellentesque. Cras est nulla, finibus a lacus vitae, dignissim semper mauris. Donec vestibulum, enim viverra sodales rutrum, mi arcu gravida nulla, eu mattis dui ligula aliquam elit. Aliquam erat volutpat. Morbi fermentum magna sit amet lacinia posuere. Mauris viverra neque nec sapien tincidunt faucibus. Nam laoreet blandit nibh et ornare. Nam quis neque et ante aliquam facilisis. Morbi faucibus ac nibh nec auctor. Vivamus sit amet tortor ac mauris bibendum eleifend ac et est.</p>
-
-											<p>Fusce purus leo, sagittis quis lacus vel, tempus gravida diam. Pellentesque et faucibus ipsum. Maecenas euismod orci at nibh ullamcorper egestas. Praesent hendrerit tortor eu neque condimentum vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc in ante urna. Sed vestibulum justo id auctor posuere. Curabitur faucibus, arcu ut vehicula cursus, tellus nulla suscipit erat, a venenatis erat nibh a quam. Phasellus ut leo ex. Suspendisse at tempus dui. Nullam faucibus porttitor tortor, et aliquet erat condimentum in. Phasellus ultrices nulla nec vehicula semper. Integer aliquam felis non tortor venenatis rutrum. Nulla facilisi.</p>
-
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" id="userAccountSave">Save</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -165,20 +90,133 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<footer>
-		<div class="container">
-			<p>&#9400; Copyright 2017 Code Red</p>
+		<div class="col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading" id="ph">
+					<h2 class="panel-title">Manage Audio Samples</h2>
+				</div>
+				<div class="panel-body">
+					<div id = "addAudio"></div>
+					<hr>
+					<div id="form2">
+						<form class="audioSample"> 
+							<button type="button" class="btn btn-primary">Sample1</button> 
+							<hr>
+							<br>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-	</footer>
-	
-	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
-	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="0ot1htkfrv9jzeg"></script>
-	<script type="text/javascript" src="assets/javascript/app.js"></script>
-	<script type="text/javascript" src="assets/javascript/account.js"></script>
+	</div>
+	<div class="col-xs-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading" id="ph">
+				<h2 class="panel-title">Manage Projects</h2>
+			</div>
+			<div class="panel-body">
+				<div id="form3">
+					<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
+					<form id="infoForm2">
+						<label for="newProject"></label>
+						<h2>Projects</h2>
+						<br>
+						<!-- Trigger the modal with a button -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
+						<!-- Modal -->
+						<div class="modal fade" id="newProject" role="dialog">
+							<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Create New Project</h4>
+									</div>
+									<div class="modal-body">
+										<hr>
+										<div class="form-group">
+											<label for="newProjectTitle" class="form-control-label">Project Name:</label>
+											<input type="text" class="form-control" id="newProjectTitle">
+											<br>
+											<label for="newProjectInfo" class="form-control-label">Project Description:</label>
+											<textarea class="form-control" id="newProjectInfo">
+											</textarea>
+											<br>
+											<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
+											<input type="email" class="form-control" id="newProjectEmail">
+											<br>
+											<label for="newProjectNeeds" class="form-control-label">Needs:</label>
+											<input type="text" class="form-control" id="newProjectNeeds"> 
+											<button type="button" class="btn btn-primary" id="needsAdd">Add
+											</button>
+											<br>
+											<br>
+											<label for="newProjectWants" class="form-control-label">Wants:</label>
+											<input type="text" class="form-control" id="newProjectWants"> 
+											<button type="button" class="btn btn-primary" id="wantsAdd">Add
+											</button>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary" id="modalSave">Save</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						<br>
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectA">
+							Project A Details
+						</button>
+						<!-- Modal -->
+						<div class="modal fade" id="projectA" tabindex="-1" role="dialog" aria-labelledby="projectA" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="projectA">Project A Details</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mi justo, cursus sit amet gravida vestibulum, imperdiet non orci. Curabitur nec purus ut ipsum dignissim dapibus. Nam ut dictum nisi. Suspendisse a nibh eros. Proin convallis nunc a sapien porta, ut ornare magna accumsan. Nam at nibh mi. Aenean consectetur, augue id ultricies condimentum, nisl purus euismod mauris, at pretium massa ipsum vitae elit.</p>
+
+										<p>Sed non lacus elit. In pulvinar felis eu aliquam commodo. Cras semper nulla pharetra dui rutrum, non accumsan velit consectetur. In volutpat ipsum a tempus cursus. Nunc felis est, varius sit amet iaculis semper, cursus non purus. Pellentesque vitae nunc dapibus lorem congue varius. Curabitur ut magna placerat, ullamcorper diam vitae, mollis dui.</p>
+
+										<p>Aliquam purus lectus, congue sed feugiat quis, maximus nec sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque rutrum quam vitae neque tincidunt euismod. Suspendisse vulputate blandit lacinia. Aliquam in gravida tortor. Proin consectetur interdum dolor in vestibulum. In eget purus nulla. Aliquam non nulla eu arcu accumsan tempor finibus ac nisl. Curabitur congue elementum ligula, in ultricies metus sodales finibus. Nulla accumsan sodales fringilla. Ut malesuada eu lacus at egestas. Nunc ultrices feugiat neque, sed blandit sapien commodo vel.</p>
+
+										<p>Sed venenatis nulla eu feugiat pellentesque. Cras est nulla, finibus a lacus vitae, dignissim semper mauris. Donec vestibulum, enim viverra sodales rutrum, mi arcu gravida nulla, eu mattis dui ligula aliquam elit. Aliquam erat volutpat. Morbi fermentum magna sit amet lacinia posuere. Mauris viverra neque nec sapien tincidunt faucibus. Nam laoreet blandit nibh et ornare. Nam quis neque et ante aliquam facilisis. Morbi faucibus ac nibh nec auctor. Vivamus sit amet tortor ac mauris bibendum eleifend ac et est.</p>
+
+										<p>Fusce purus leo, sagittis quis lacus vel, tempus gravida diam. Pellentesque et faucibus ipsum. Maecenas euismod orci at nibh ullamcorper egestas. Praesent hendrerit tortor eu neque condimentum vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc in ante urna. Sed vestibulum justo id auctor posuere. Curabitur faucibus, arcu ut vehicula cursus, tellus nulla suscipit erat, a venenatis erat nibh a quam. Phasellus ut leo ex. Suspendisse at tempus dui. Nullam faucibus porttitor tortor, et aliquet erat condimentum in. Phasellus ultrices nulla nec vehicula semper. Integer aliquam felis non tortor venenatis rutrum. Nulla facilisi.</p>
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<p>&#9400; Copyright 2017 Code Red</p>
+	</div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="0ot1htkfrv9jzeg"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+<script type="text/javascript" src="assets/javascript/account.js"></script>
 </body>
 </html>
