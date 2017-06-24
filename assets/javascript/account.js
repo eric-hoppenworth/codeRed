@@ -22,15 +22,14 @@ firebase.auth().onAuthStateChanged(function(user){
 				//already authenticated, show
 				currentUser.dropBoxToken = getAccessTokenFromUrl();
 				usersEndPoint.child(currentUser.key).update(currentUser)
-				//window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
 				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 				var downloadLink;
-
+				//audio dropbox button
 				var options = {
 				    // Required. Called when a user selects an item in the Chooser.
 				    success: function(files) {
 				    	downloadLink = files[0].link;
-						storeInServer(authUser,downloadLink);
+						storeInServer(authUser,downloadLink,"audio");
 					
 				    },
 				    cancel: function() {
@@ -42,16 +41,32 @@ firebase.auth().onAuthStateChanged(function(user){
 				};
 				var button = Dropbox.createChooseButton(options);
 				$("#addAudio").append(button);
+
+				options = {
+				    // Required. Called when a user selects an item in the Chooser.
+				    success: function(files) {
+				    	downloadLink = files[0].link;
+						storeInServer(authUser,downloadLink,"image");
+					
+				    },
+				    cancel: function() {
+
+				    },
+				    linkType: "preview",
+				    // Optional. This is a list of file extensions.
+				    extensions: ["images"],
+				};
+				var button = Dropbox.createChooseButton(options);
+				$("#account").append(button);
 			}	
 		}else{
 			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 			var downloadLink;
-
 			var options = {
 			    // Required. Called when a user selects an item in the Chooser.
 			    success: function(files) {
 			    	downloadLink = files[0].link;
-					storeInServer(authUser,downloadLink);
+					storeInServer(authUser,downloadLink,"audio");
 				
 			    },
 			    cancel: function() {
@@ -76,19 +91,25 @@ firebase.auth().onAuthStateChanged(function(user){
 });
 
 
-function storeInServer(user,link){
+function storeInServer(user,link, type){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
-		var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
+		if (type === "audio"){
+			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
+		}else if (type === "image"){
+			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/profile.png");
+		}
+		
 		endPoint.put(data.fileBlob).then(function(snapshot){
 			var fileURL = endPoint.getDownloadURL().then(function(url){
 				//store that shit
-				currentUser.audioURLs.push(url);
+				if (type === "audio"){
+					currentUser.audioURLs.push(url);
+				} else if (type === "image"){
+					currentUser.imageURL = url;
+				}
 				usersEndPoint.child(currentUser.key).update(currentUser);
 			});
 		});
-
-		
-
     }).catch(function(error) {
   		console.error(error);
     });
