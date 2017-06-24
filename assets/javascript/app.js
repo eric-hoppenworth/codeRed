@@ -19,9 +19,9 @@ firebase.auth().onAuthStateChanged(function(user){
 	usersEndPoint.once("value",function(snapshot){
 		if (snapshot.hasChild(user.uid)){
 		//if the user already exists
-			myUser = snapshot.child(user.uid).val();
+			currentUser = snapshot.child(user.uid).val();
 		} else {
-			myUser = new User();  //create a user using default values
+			currentUser = new User();  //create a user using default values
 		}
 	})
 	
