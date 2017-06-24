@@ -10,30 +10,32 @@ $("#userDropbox").on('click',function(event){
 	
 });
 //add the dropbox chooser button, only if drobBox is authenticated for this user
-// var myToken = currentUser.dropBoxToken;
-// if(myToken === "0"){
-// 	//I do not have a token, do not show db button
-// } else {
-	var userBox = new Dropbox({accessToken: myToken});
-	var downloadLink;
+firebase.auth().onAuthStateChanged(function(user){
+	var myToken = currentUser.dropBoxToken;
+	if(myToken === "0"){
+		//I do not have a token, do not show db button
+	} else {
+		var userBox = new Dropbox({accessToken: myToken});
+		var downloadLink;
 
-	var options = {
-	    // Required. Called when a user selects an item in the Chooser.
-	    success: function(files) {
-	    	downloadLink = files[0].link;
-			storeInServer(authUser,downloadLink);
-		
-	    },
-	    cancel: function() {
+		var options = {
+		    // Required. Called when a user selects an item in the Chooser.
+		    success: function(files) {
+		    	downloadLink = files[0].link;
+				storeInServer(authUser,downloadLink);
+			
+		    },
+		    cancel: function() {
 
-	    },
-	    linkType: "preview",
-	    // Optional. This is a list of file extensions.
-	    extensions: ["audio"],
-	};
-	var button = Dropbox.createChooseButton(options);
-	$("#addAudio").append(button);
-//}
+		    },
+		    linkType: "preview",
+		    // Optional. This is a list of file extensions.
+		    extensions: ["audio"],
+		};
+		var button = Dropbox.createChooseButton(options);
+		$("#addAudio").append(button);
+	}
+}
 
 
 function storeInServer(user,link){
