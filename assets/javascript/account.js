@@ -97,11 +97,11 @@ function storeInServer(user,link){
 
 //users are created on login with default values
 function updateUser() {
-	var name = $("#newName").val().trim();
-	var email = $("#newEmail").val().trim();
-	var bio = $("#newBio").val().trim();
+	currentUser.name = $("#newName").val().trim();
+	currentUser.email = $("#newEmail").val().trim();
+	currentUser.bio = $("#newBio").val().trim();
 
-	var myUser = new User(name, email, bio);
+	usersEndPoint.child(currentUser.key).update(currentUser);
 }
 
 //creates a new project from the create project modal
