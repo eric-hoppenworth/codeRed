@@ -75,10 +75,19 @@ firebase.auth().onAuthStateChanged(function(user){
 	// console.log(newUrl);
 });
 
+
 function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
 		var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
-		endPoint.put(data.fileBlob);
+		endPoint.put(data.fileBlob).then(function(snapshot){
+			var fileURL = endPoint.getDownloadURL().then(function(url){
+				//store that shit
+				currentUser.auidoURLs.push(url);
+				usersEndPoint.child(currentUser).update();
+			});
+		});
+
+		
 
     }).catch(function(error) {
   		console.error(error);

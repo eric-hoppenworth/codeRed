@@ -92,6 +92,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.needs= needs;
 	this.wants = wants;
 	this.completedList = [];
+	this.imgURL = "";
 	if (key === ""){
 		//this is a new project, generate a key
 		this.key = projectsEndPoint.push().key;
@@ -99,7 +100,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 		//this project already exists
 		this.key = key;
 	}
-	projectsEndPoint.child(this.key).update(this)
+	projectsEndPoint.child(this.key).update(this);
 }
 
 function User(name="default", email="",bio="User has not yet added a bio."){
