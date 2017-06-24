@@ -1,7 +1,10 @@
 .jumbotron{
 	text-align: center;
     font-family: 'Trade Winds', cursive;
-
+}
+nav form{
+    float: right;
+    font-family: 'Trade Winds', cursive; 
 }
 .navbar-header{
   font-family: 'Trade Winds', cursive;  
