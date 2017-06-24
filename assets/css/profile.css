@@ -1,4 +1,5 @@
 body { 
+  background-color: #000000;
   background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -16,6 +17,13 @@ body {
 .panel-body {
     background-color: #b1b1cd;
     border-bottom:2px solid #d260d4;
+}
+
+.audioPlayer {
+  width: auto;
+}
+.row {
+    width: auto;
 }
 #ph {
     background-color: #000099;
@@ -42,6 +50,10 @@ body {
 }
 .panel{
     font-family: 'Trade Winds', cursive;    
+}
+
+video ::-internal-media-controls-download-button {
+    display:none;
 }
 footer{
     position: relative;
