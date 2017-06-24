@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		} else {
 			currentUser = new User();  //create a user using default values
 		}
-	}
+	})
 
 	//this code will be used to retrieve user information on redirect
 	// var currentUrl = window.location.href;
