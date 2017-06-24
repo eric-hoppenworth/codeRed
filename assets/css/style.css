@@ -1,6 +1,14 @@
 .jumbotron{
-	text-align: center;
+    text-align: center;
     font-family: 'Trade Winds', cursive;
+    height: 300px;
+   background-image: url(../images/waveMeterRs.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom:2px solid #d260d4;
+}
+#welcomeText{
+    color: green;
 }
 nav form{
     float: right;
@@ -11,6 +19,18 @@ nav form{
 }
 .panel{
     font-family: 'Trade Winds', cursive;    
+}
+.panel-body {
+    background-color: #b1b1cd;
+    border-bottom:2px solid #d260d4;
+}
+body { 
+  background-color: #000000;
+  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 footer{
 	position: relative;
@@ -23,4 +43,6 @@ footer{
     border-top: 1px black;
     margin-top: 50px;
     font-family: 'Trade Winds', cursive;
+    background: black;
+    font-color: green;
 }
