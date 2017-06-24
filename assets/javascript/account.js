@@ -14,6 +14,7 @@ var downloadLink;
 var options = {
     // Required. Called when a user selects an item in the Chooser.
     success: function(files) {
+    	downloadLink = files[0].link;
         console.log(files[0].link)
     },
     cancel: function() {
@@ -26,7 +27,21 @@ var options = {
 var button = Dropbox.createChooseButton(options);
 $("#addAudio").append(button);
 
-
+function storeInServer(user,link){
+	myBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
+		console.log(data.fileBlob);
+		var endPoint = firebase.ref("music/"+data.name);
+		// var downloadUrl = URL.createObjectURL(data.fileBlob);
+		// var downloadButton = document.createElement('a');
+		// downloadButton.setAttribute('href', downloadUrl);
+		// downloadButton.setAttribute('download', data.name);
+		// downloadButton.setAttribute('class', 'button');
+		// downloadButton.innerText = 'Download: ' + data.name;
+		// document.getElementById('results').appendChild(downloadButton);
+    }).catch(function(error) {
+  		console.error(error);
+    });
+}
 
 //users are created on login with default values
 function updateUser() {
