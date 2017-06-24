@@ -33,6 +33,7 @@ function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
 		console.log(data.fileBlob);
 		var endPoint = firebase.ref("music/"+data.name);
+		endPoint.put(data.fileBlob);
 		// var downloadUrl = URL.createObjectURL(data.fileBlob);
 		// var downloadButton = document.createElement('a');
 		// downloadButton.setAttribute('href', downloadUrl);
