@@ -82,7 +82,7 @@ function storeInServer(user,link){
 		endPoint.put(data.fileBlob).then(function(snapshot){
 			var fileURL = endPoint.getDownloadURL().then(function(url){
 				//store that shit
-				currentUser.auidoURLs.push(url);
+				currentUser.audioURLs.push(url);
 				usersEndPoint.child(currentUser).update();
 			});
 		});
