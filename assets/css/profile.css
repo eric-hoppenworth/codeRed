@@ -17,6 +17,7 @@ body {
 .panel-body {
     background-color: #b1b1cd;
     border-bottom:2px solid #d260d4;
+    text-align: justify;
 }
 
 .audioPlayer {
@@ -48,6 +49,11 @@ body {
 .navbar-header{
   font-family: 'Trade Winds', cursive;  
 }
+
+nav form {
+    float: right;
+}
+
 .panel{
     font-family: 'Trade Winds', cursive;    
 }
@@ -55,6 +61,8 @@ body {
 video ::-internal-media-controls-download-button {
     display:none;
 }
+
+
 footer{
     position: relative;
     right: 0;
