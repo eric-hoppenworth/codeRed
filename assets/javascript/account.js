@@ -22,7 +22,7 @@ var options = {
     cancel: function() {
 
     },
-    linkType: "direct",
+    linkType: "preview",
     // Optional. This is a list of file extensions.
     extensions: [],
 };
