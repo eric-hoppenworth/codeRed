@@ -110,32 +110,69 @@ function editProject(key){
 ////////////////////////////////
 
 ////  Project Modal ////////////
+$("#needsAdd").on("click", function() {
+	addNeed();
+})
 
-//will make the project modal appear on page
-//(this might already be built in to bootstrap, idk)
-function showProjectModal(){
+$("#wantsAdd").on("click", function() {
+	addWant();
+})
 
-}
+$("#modalSave").on("click", function() {
+	storeNeeds();
+})
+
+$("#modalSave").on("click", function() {
+	storeWants();
+})
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
 function addNeed(){
-	var userNeed = $("#userInput").val().trim();
-	
-	$("#userInput").val("");
+	var userNeed = $("#newProjectNeeds").val().trim();
+	var needDiv = $("<div>").addClass("needHolder");
+
+	$("#needList").append(needDiv).append("<li class='inputNewNeed'>" + userNeed + " <button class='removeMe'>Remove</button></li>");
+
+	$("#newProjectNeeds").val("");
 }
 
 //remove a need from the needs list on the modal
-function removeNeed(){
+/*function removeNeed(){
+	$(".removeMe").parent().remove();
+}*/
 
+//enables the reomve button on each need/want to remove selected list item on create project modal
+$("body").on("click", ".removeMe", function() {
+	$(this).parent().remove();
+})
+//stores the needs from the create project modal into the "needs" array
+var needs = [];
+function storeNeeds() {
+	$(".inputNewNeed").each(function(){
+		needs.push($(this).text());
+	})
 }
 
 //add a want(along with a remove button) to the wants list on the modal, and add clear the need input
 function addWant(){
+	var userWant = $("#newProjectWants").val().trim();
+	var wantDiv = $("<div>").addClass("wantHolder");
 
+	$("#wantList").append(wantDiv).append("<li class='inputNewWant'>" + userWant + " <button class='removeMe'>Remove</button></li>");
+
+	$("#newProjectWants").val("");
+}
+
+//stores the wants from the create project modal into the "wants" array
+var wants = [];
+function storeWants() {
+	$(".inputNewWant").each(function(){
+		wants.push($(this).text());
+	})
 }
 
 //remove a want from the wants list on the modal
-function removeWant(){
+/*function removeWant(){
 
-}
+}*/
 

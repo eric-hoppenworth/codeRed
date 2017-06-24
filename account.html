@@ -70,22 +70,36 @@
 											<div class="modal-body">
 												<hr>
 												<div class="form-group">
-													<label for="nameEdit" class="form-control-label">Name:</label>
-													<input type="text" class="form-control" id="nameEdit">
+
+													<label for="newProjectTitle" class="form-control-label">Project Name:</label>
+													<input type="text" class="form-control" id="newProjectTitle">
+													<br>
+													<label for="newProjectInfo" class="form-control-label">Project Description:</label>
+													<textarea class="form-control" id="newProjectInfo">
+													</textarea>
+													<br>
+													<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
+													<input type="text" class="form-control" id="newProjectEmail">
+													<br>
+													<label for="newProjectNeeds" id="needList" class="form-control-label">Needs:</label>
+													<input type="text" class="form-control" id="newProjectNeeds"> 
+													<button type="button" class="btn btn-primary" id="needsAdd">Add
+													</button>
 													<br>
 													<label for="EmailEdit" class="form-control-label">Contact Email:</label>
 													<input type="email" class="form-control" id="EmailEdit">
 													<br>
-													<label for="userBio" class="form-control-label">Bio:</label>
-													<textarea class="form-control" id="userBio">
-													</textarea>
-												</button>
-												<br>
-												<br>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-primary" id="userAccountSave">Save</button>
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+													<label for="newProjectWants" id="wantList" class="form-control-label">Wants:</label>
+													<input type="text" class="form-control" id="newProjectWants"> 
+													<button type="button" class="btn btn-primary" id="wantsAdd">Add
+													</button>																																							
+
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary" id="modalSave">Save</button>
+													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												</div>
 											</div>
 										</div>
 									</div>
