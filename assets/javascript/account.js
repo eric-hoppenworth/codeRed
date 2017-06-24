@@ -36,7 +36,7 @@ if(myToken === "0"){
 
 function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
-		var endPoint = firebase.ref("music/"+data.name);
+		var endPoint = firebase.ref(authUser.uid + "/music/" + data.name);
 		endPoint.put(data.fileBlob);
 
     }).catch(function(error) {

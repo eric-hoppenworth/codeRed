@@ -9,32 +9,22 @@ var config = {
 firebase.initializeApp(config);
 var usersEndPoint = firebase.database().ref().child("Users");
 var projectsEndPoint = firebase.database().ref().child("Projects");
-var authUser;
-// var myToken = "8qOYWXTfAnAAAAAAAAAAiyNkOj-gphzbilLE3kgY58iLaipxfXAwPpz3xJCc5x4O";
-// var dbx = new Dropbox({ accessToken: myToken });
-// dbx.filesListFolder({path: ''})
-//   .then(function(response) {
-//     console.log(response);
-//   })
-//   .catch(function(error) {
-//     console.log(error);
-//   });
-
-$("#btnSignGoogle").on("click",function(event){
-	var provider = new firebase.auth.GoogleAuthProvider();
-
-	firebase.auth().signInWithRedirect(provider)
-		.catch(function(error){
-			console.log("google sign in error", error);
-		});
-
-});
+var authUser; //auth user is the user from firebase
+var currentUser; //User Object from our code
 
 
 firebase.auth().onAuthStateChanged(function(user){
 	authUser = user;
 	console.log('user',user);
-
+	usersEndPoint.once("value",function(snapshot){
+		if (snapshot.hasChild(user.uid)){
+		//if the user already exists
+			myUser = snapshot.child(user.uid).val();
+		} else {
+			myUser = new User();  //create a user using default values
+		}
+	})
+	
 	//this code will be used to retrieve user information on redirect
 	// var currentUrl = window.location.href;
 	// var newUrl = "";
@@ -43,6 +33,49 @@ firebase.auth().onAuthStateChanged(function(user){
 	// window.location.href = newUrl;
 	// console.log(newUrl);
 });
+
+//this function allows me to split up the url
+(function(window){
+  window.utils = {
+    parseQueryString: function(str) {
+      var ret = Object.create(null);
+
+      if (typeof str !== 'string') {
+        return ret;
+      }
+
+      str = str.trim().replace(/^(\?|#|&)/, '');
+
+      if (!str) {
+        return ret;
+      }
+
+      str.split('&').forEach(function (param) {
+        var parts = param.replace(/\+/g, ' ').split('=');
+        // Firefox (pre 40) decodes `%3D` to `=`
+        // https://github.com/sindresorhus/query-string/pull/37
+        var key = parts.shift();
+        var val = parts.length > 0 ? parts.join('=') : undefined;
+
+        key = decodeURIComponent(key);
+
+        // missing `=` should be `null`:
+        // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+        val = val === undefined ? null : decodeURIComponent(val);
+
+        if (ret[key] === undefined) {
+          ret[key] = val;
+        } else if (Array.isArray(ret[key])) {
+          ret[key].push(val);
+        } else {
+          ret[key] = [ret[key], val];
+        }
+      });
+
+      return ret;
+    }
+  };
+})(window);
 
 function Project(name ="default",email = "", desc = "Producer has not yet added a description.",needs,wants,key =""){
 	this.name = name;
