@@ -17,8 +17,8 @@ function printUser(user){
 
 
 //will print audio samples retrieved from storage
-//we will not do this yet
-// function printAudio(){
 
-// }
+function printAudio(){
+
+}
 

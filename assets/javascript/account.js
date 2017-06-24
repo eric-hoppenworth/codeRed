@@ -72,7 +72,9 @@ function createProject() {
 	var newProject = new Project(name,email,description,needs,wants)
 }
 
-
+$("#submitUserEdit").on("click",function(){
+	updateUser();
+})
 
 //edits an existing project
 //the project's key should be attached to its edit button.
