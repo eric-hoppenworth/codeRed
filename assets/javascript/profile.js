@@ -24,7 +24,7 @@ function printAudio(user){
 	audio.attr("controls","");
 	var source = $("source");
 	source.attr("src", myUser.audioURLs[0])
-	source.arrt("type","audio/mp4");
+	source.attr("type","audio/mp4");
 	audio.append(source);
 	$("#audioHolder").append(audio);
 }
