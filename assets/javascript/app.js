@@ -11,7 +11,7 @@ var usersEndPoint = firebase.database().ref().child("Users");
 var projectsEndPoint = firebase.database().ref().child("Projects");
 var authUser; //auth user is the user from firebase
 var currentUser; //User Object from our code
-
+var userBox;
 
 firebase.auth().onAuthStateChanged(function(user){
 	authUser = user;
@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				currentUser.dropBoxToken = getAccessTokenFromUrl();
 				usersEndPoint.child(currentUser.key).update(currentUser)
 				//window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
-				var userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 				var downloadLink;
 
 				var options = {
@@ -51,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				$("#addAudio").append(button);
 			}	
 		}else{
-			var userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 			var downloadLink;
 
 			var options = {
