@@ -6,6 +6,74 @@ $("#userDropbox").on('click',function(event){
 	window.location = myURL;
 });
 
+firebase.auth().onAuthStateChanged(function(user){
+	authUser = user;
+	console.log('user',user);
+	usersEndPoint.once("value",function(snapshot){
+		if (snapshot.hasChild(user.uid)){
+		//if the user already exists
+			currentUser = snapshot.child(user.uid).val();
+		} else {
+			currentUser = new User();  //create a user using default values
+		}
+		//check to see if I just got sent here from dropbox auth
+		if(currentUser.dropBoxToken === "0"){
+			if (isAuthenticated()){
+				//already authenticated, show
+				currentUser.dropBoxToken = getAccessTokenFromUrl();
+				usersEndPoint.child(currentUser.key).update(currentUser)
+				//window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
+				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+				var downloadLink;
+
+				var options = {
+				    // Required. Called when a user selects an item in the Chooser.
+				    success: function(files) {
+				    	downloadLink = files[0].link;
+						storeInServer(authUser,downloadLink);
+					
+				    },
+				    cancel: function() {
+
+				    },
+				    linkType: "preview",
+				    // Optional. This is a list of file extensions.
+				    extensions: ["audio"],
+				};
+				var button = Dropbox.createChooseButton(options);
+				$("#addAudio").append(button);
+			}	
+		}else{
+			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+			var downloadLink;
+
+			var options = {
+			    // Required. Called when a user selects an item in the Chooser.
+			    success: function(files) {
+			    	downloadLink = files[0].link;
+					storeInServer(authUser,downloadLink);
+				
+			    },
+			    cancel: function() {
+
+			    },
+			    linkType: "preview",
+			    // Optional. This is a list of file extensions.
+			    extensions: ["audio"],
+			};
+			var button = Dropbox.createChooseButton(options);
+			$("#addAudio").append(button);
+		}
+	})
+
+	//this code will be used to retrieve user information on redirect
+	// var currentUrl = window.location.href;
+	// var newUrl = "";
+	// var userID = "#" + authUser.uid
+	// newUrl = currentUrl + "account" + userID;
+	// window.location.href = newUrl;
+	// console.log(newUrl);
+});
 
 function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
