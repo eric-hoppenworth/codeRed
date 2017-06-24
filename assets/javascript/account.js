@@ -1,21 +1,21 @@
 var myDbxId = "0ot1htkfrv9jzeg"
-$("#btnDropBox").on('click',function(event){
+$("#userDropbox").on('click',function(event){
+	event.preventDefault();
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
 	window.location.href = myURL;
-	console.log(myURL);
+	authUser.drobBoxToken = getAccessTokenFromUrl();
+	
 });
 //add the dropbox chooser button, only if drobBox is authenticated for this user
-var myToken = "8qOYWXTfAnAAAAAAAAAAuTzpCfsqxz7PwySqCRDyyTFloL2vqgzX7phhwhNsb798"
+var myToken = authUser.dropBoxToken;
 var userBox = new Dropbox({accessToken: myToken});
 var downloadLink;
-
 
 var options = {
     // Required. Called when a user selects an item in the Chooser.
     success: function(files) {
     	downloadLink = files[0].link;
-        console.log(files[0].link);
 		storeInServer(authUser,downloadLink);
 	
     },
@@ -24,27 +24,25 @@ var options = {
     },
     linkType: "preview",
     // Optional. This is a list of file extensions.
-    extensions: [],
+    extensions: ["audio"],
 };
 var button = Dropbox.createChooseButton(options);
 $("#addAudio").append(button);
 
 function storeInServer(user,link){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
-		console.log(data.fileBlob);
 		var endPoint = firebase.ref("music/"+data.name);
 		endPoint.put(data.fileBlob);
-		// var downloadUrl = URL.createObjectURL(data.fileBlob);
-		// var downloadButton = document.createElement('a');
-		// downloadButton.setAttribute('href', downloadUrl);
-		// downloadButton.setAttribute('download', data.name);
-		// downloadButton.setAttribute('class', 'button');
-		// downloadButton.innerText = 'Download: ' + data.name;
-		// document.getElementById('results').appendChild(downloadButton);
+
     }).catch(function(error) {
   		console.error(error);
     });
 }
+
+function getAccessTokenFromUrl() {
+	return utils.parseQueryString(window.location.hash).access_token;
+}
+
 
 //users are created on login with default values
 function updateUser() {
