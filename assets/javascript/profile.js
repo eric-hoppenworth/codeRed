@@ -20,8 +20,8 @@ function printUser(user){
 //will print audio samples retrieved from storage
 //eric is building this one
 function printAudio(user){
-	for(var i= 0; i < myUser.audioURLs.length; i++)
-		var audio = $("<audio>")
+	for(var i= 0; i < myUser.audioURLs.length; i++){
+		var audio = $("<audio>");
 		audio.attr("controls","");
 		var source = $("<source>");
 		source.attr("src", myUser.audioURLs[i])
