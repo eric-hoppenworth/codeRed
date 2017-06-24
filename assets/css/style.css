@@ -6,19 +6,25 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom:2px solid #d260d4;
+
 }
 #welcomeText{
-    color: green;
+    color: black;
+    text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
 }
 nav form{
     float: right;
     font-family: 'Trade Winds', cursive; 
 }
 .navbar-header{
-  font-family: 'Trade Winds', cursive;  
+  font-family: 'Trade Winds', cursive; 
+  color: black; 
 }
 .panel{
     font-family: 'Trade Winds', cursive;    
+}
+#ph{
+    background-color: #0000ff;
 }
 .panel-body {
     background-color: #b1b1cd;
@@ -33,7 +39,7 @@ body {
   background-size: cover;
 }
 footer{
-	position: relative;
+	position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
@@ -43,6 +49,7 @@ footer{
     border-top: 1px black;
     margin-top: 50px;
     font-family: 'Trade Winds', cursive;
-    background: black;
+    text-decoration-color: #fff;
     font-color: green;
+    background-color: black;
 }
