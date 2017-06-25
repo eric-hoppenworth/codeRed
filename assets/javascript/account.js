@@ -220,15 +220,10 @@ $("#wantsAdd").on("click", function() {
 	}
 })
 
-<<<<<<< HEAD
-$("#modalSave").on("click", function() {
-	storeNewProject()
-	storeNeeds();
-	storeWants();
-=======
+
 $("#submitProject").on("click", function() {
 	createProject();
->>>>>>> master
+
 })
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
@@ -241,28 +236,7 @@ function addNeed(){
 	$("#newProjectNeeds").val("");
 }
 
-<<<<<<< HEAD
-//enables the reomve button on each need/want to remove selected list item on create project modal
-$("body").on("click", ".removeMe", function() {
-	$(this).parent().remove();
-})
 
-//stores the new project information
-function storeNewProject() {
-	var title = $("#newProjectTitle").val().trim();
-	var info = $("#newProjectInfo").val().trim();
-	var email = $("#newProjectEmail").val().trim();
-}
-//stores the needs from the create project modal into the "needs" array
-var needs = [];
-function storeNeeds() {
-	$(".inputNewNeed").each(function(){
-		needs.push($(this).text());
-	})
-}
-
-=======
->>>>>>> master
 //add a want(along with a remove button) to the wants list on the modal, and add clear the need input
 function addWant(){
 	var userWant = $("#newProjectWants").val().trim();
@@ -273,19 +247,8 @@ function addWant(){
 	$("#newProjectWants").val("");
 }
 
-<<<<<<< HEAD
-//stores the wants from the create project modal into the "wants" array
-var wants = [];
-function storeWants() {
-	$(".inputNewWant").each(function(){
-		wants.push($(this).text());
-	})
-}
 
-
-=======
 //enables the reomve button on each need/want to remove selected list item on create project modal
 $("body").on("click", ".removeMe", function() {
 	$(this).parent().remove();
 })
->>>>>>> master
