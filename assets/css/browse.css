@@ -24,6 +24,9 @@ body {
     border-bottom:2px solid #000099;
 
 }
+#mcNavbar{
+  font-family: 'Trade Winds', cursive; 
+}
 
 .panel-body {
     background-color: #b1b1cd;
@@ -78,18 +81,20 @@ video ::-internal-media-controls-download-button {
     display:none;
 }
 
-
 footer{
-    position: relative;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    clear: both;
-    font-size: 15px;
-    border-top: 1px black;
-    margin-top: 50px;
-    font-family: 'Trade Winds', cursive;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  clear: both;
+  font-size: 15px;
+  border-top: 1px black;
+  margin-top: 50px;
+  font-family: 'Trade Winds', cursive;
+  text-decoration-color: #fff;
+  font-color: green;
+  background-color: black;
 }
 
       #menu {
