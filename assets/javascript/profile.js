@@ -16,22 +16,3 @@ function printUser(user){
 //printProjectShort(key,false)
 //This function will be living in the app.js file, since many pages will be using it
 
-//will print audio samples retrieved from storage
-//eric is building this one
-function printAudio(user){
-	for(var i= 0; i < user.audioURLs.length; i++){
-		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
-			//do nothing
-		}else {
-			var audio = $("<audio>");
-			audio.attr("controls","");
-			var source = $("<source>");
-			source.attr("src", user.audioURLs[i])
-			source.attr("type","audio/mp4");
-			audio.append(source);
-			$("#audioHolder").append(audio);
-		}
-		
-	}
-}
-

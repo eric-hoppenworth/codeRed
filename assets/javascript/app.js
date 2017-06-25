@@ -130,6 +130,7 @@ function printProjectShort(key,showButtons = false){
 		bigDiv.append($("<img src ='" + myProject.imgURL + "' alt = 'Project Image'>"))
 		bigDiv.append($("<br>"));
 		//attach the audio
+		//not there yet
 		var details = $("<details><summary> Genre: " + myProject.genre +"</summary><p>"+ myProject.desctiption +"</p></details>")
 		bigDiv.append(details);
 		//in progress....EH
