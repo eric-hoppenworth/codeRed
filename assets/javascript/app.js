@@ -132,7 +132,7 @@ function printAudio(user,showButtons = false){
 			//do nothing
 		}else {
 			var audioDiv = $("<div>");
-			var audioDiv.addClass("audioHolder");
+			audioDiv.addClass("audioHolder");
 			var audio = $("<audio>");
 			audio.attr("controls","");
 			var source = $("<source>");
