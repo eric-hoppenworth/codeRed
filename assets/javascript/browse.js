@@ -4,7 +4,8 @@ searchTerm = "guitar";
 
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
-$("#submitSearch").on("click",function(){
+$("#submitSearch").on("click",function(event){
+	event.preventDefault();
 	var index = 0;
 	projectsEndPoint.once("child_added",function(dataProject){
 		var myProject = dataProject.val();
