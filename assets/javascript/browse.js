@@ -16,7 +16,7 @@ $("#submitSearch").on("click",function(event){
 				index ++;
 			}
 		} else {
-			for (var i = 0, i < myProject.needs.length, i++){
+			for (var i = 0; i < myProject.needs.length; i++){
 				if (myProject.needs[i].toLowerCase() === searchTerm.toLowerCase()){
 					console.log(index + ": "+myProject.key);
 					index ++;
