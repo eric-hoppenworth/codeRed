@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			    extensions: ["audio"],
 			};
 			var button = Dropbox.createChooseButton(options);
-			$("#audioList").oreoend(button);
+			$("#audioList").prepend(button);
 			options = {
 			    // Required. Called when a user selects an item in the Chooser.
 			    success: function(files) {
