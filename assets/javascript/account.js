@@ -223,6 +223,11 @@ $("#wantsAdd").on("click", function() {
 
 $("#submitProject").on("click", function() {
 	createProject();
+	$(".projectInput").val("");
+	$(".inputNewNeed").remove();
+	$(".inputNewWant").remove();
+	$("#newProject").modal("hide");
+
 
 })
 
