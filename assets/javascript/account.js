@@ -112,7 +112,7 @@ function storeInServer(user,link, type){
 		if (type === "audio"){
 			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
 		}else if (type === "image"){
-			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/profile.png");
+			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/" + data.name);
 		}
 		
 		endPoint.put(data.fileBlob).then(function(snapshot){
