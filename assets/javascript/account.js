@@ -142,21 +142,23 @@ $("body").on("click",".removeAudio",function(){
 })
 
 //users are created on login with default values
-function updateUser() {
+function updateUser(user) {
 	var name = $("#newName").val().trim();
 	var email = $("#newEmail").val().trim();
 	var bio = $("#newBio").val().trim();
 	if (name != ""){
-		currentUser.name = name;
+		user.name = name;
 	}
 	if (email != ""){
-		currentUser.email = email;
+		user.email = email;
 	}
 	if (bio != ""){
-		currentUser.bio = bio;
+		user.bio = bio;
 	}
-
-	usersEndPoint.child(currentUser.key).update(currentUser);
+	$("#userName").text(user.name);
+	$("#userBio").text(user.bio);
+	$("#userEmail").text(user.email);
+	usersEndPoint.child(user.key).update(user);
 }
 
 //creates a new project from the create project modal
@@ -177,7 +179,7 @@ function createProject() {
 }
 
 $("#submitAccount").on("click",function(){
-	updateUser();
+	updateUser(currentUser);
 	$("#newName").val("");
 	$("#newEmail").val("");
 	$("#newBio").val("");
