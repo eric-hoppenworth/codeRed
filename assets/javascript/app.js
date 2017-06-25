@@ -24,14 +24,6 @@ firebase.auth().onAuthStateChanged(function(user){
 			currentUser = new User();  //create a user using default values
 		}
 	})
-
-	//this code will be used to retrieve user information on redirect
-	// var currentUrl = window.location.href;
-	// var newUrl = "";
-	// var userID = "#" + authUser.uid
-	// newUrl = currentUrl + "account" + userID;
-	// window.location.href = newUrl;
-	// console.log(newUrl);
 });
 function isAuthenticated() {
 	return !!getAccessTokenFromUrl();
@@ -84,7 +76,7 @@ function getAccessTokenFromUrl() {
   };
 })(window);
 
-function Project(name ="default",email = "", desc = "Producer has not yet added a description.",needs,wants,key =""){
+function Project(name ="default",email = "", desc = "Producer has not yet added a description.",needs= [""],wants = [""],key =""){
 	this.name = name;
 	this.email = email;
 	this.description = desc;
@@ -121,20 +113,71 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //On the account page, we will want to show buttons for 'edit' and 'delete'
 //On profile and browse pages, we do not want to have buttons
 //this should be in app.js
-function printProjectShort(key,showButtons = false){ 
+function printProjectSnippet(key,showButtons = false){ 
 	projectsEndPoint.once("value",function(snapshot){
 		var myProject = snapshot.child(key).val();
-		var bigDiv = $("<div>");
-		bigDiv.addClass("col-xs-6 projectSample");
-		bigDiv.append($("<h2>").text(myProject.name));
-		bigDiv.append($("<img src ='" + myProject.imgURL + "' alt = 'Project Image'>"))
-		bigDiv.append($("<br>"));
-		//attach the audio
-		//not there yet
-		var details = $("<details><summary> Genre: " + myProject.genre +"</summary><p>"+ myProject.desctiption +"</p></details>")
-		bigDiv.append(details);
-		//in progress....EH
-	})
+		var bigCol = $("<div>");
+		//projects will be wider if they have edit buttons attached
+		if (showButtons){
+			bigCol.addClass("col-xs-12");
+		} else {
+			bigCol.addClass("col-xs-6");
+		}
+		var bigRow = $("<div>");
+		bigRow.addClass("row projectSample");
+		var leftDiv = $("<div>");
+		if (showButtons){
+			leftDiv.addClass("col-xs-3");
+		} else{
+			leftDiv.addClass("col-xs-6");
+		}
+		leftDiv.append($("<a href='project.html#"+ myProject.key +"'><h2>"+ myProject.name +"</h2></a>"))
+		leftDiv.append($("<p>").text(myProject.description));
+		leftDiv.append($("<p>").text("Contact: "+myProject.email));
+		leftDiv.append($("<p>").text("Genre: "+myProject.genre));
+		bigRow.append(leftDiv);
+		//needs and wants div
+		var rightDiv = $("<div>");
+		if (showButtons){
+			rightDiv.addClass("col-xs-3");
+		} else{
+			rightDiv.addClass("col-xs-6");
+		}
+		var needList = $("<ul><h3>Needs:</h3></ul>");
+		if(typeof myProject.needs === "string"){
+			needList.append($("<li>").text(myProject.needs));
+		} else{
+			for(var i = 0; i<myProject.needs.length;i++){
+				if (myProject.needs[i] != undefined && myProject.needs[i] != ""){
+					needList.append($("<li>").text(myProject.needs[i]));
+				}
+			}
+		}
+		rightDiv.append(needList);
+		var wantList = $("<ul><h3>Wants:</h3></ul>");
+		if(typeof myProject.wants === "string"){
+			wantList.append($("<li>").text(myProject.wants));
+		} else{
+			for(var i = 0; i<myProject.wants.length;i++){
+				if (myProject.wants[i] != undefined && myProject.wants[i] != ""){
+					wantList.append($("<li>").text(myProject.wants[i]));
+				}
+			}
+		}
+		rightDiv.append(wantList);
+		bigRow.append(rightDiv);
+		//button div
+		if(showButtons){
+			var buttonDiv = $("<div>");
+			buttonDiv.addClass("col-xs-6");
+			buttonDiv.append($("<button>").text("edit Details"));
+			buttonDiv.append($("<button>").text("add Picture"));
+			buttonDiv.append($("<button>").text("add Audio"));
+			bigRow.append(buttonDiv);
+		}
+		bigCol.append(bigRow);
+		$("#projectSampleHolder").append(bigCol);
+	});
 }
 
 //will print audio samples retrieved from storage
