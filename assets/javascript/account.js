@@ -222,20 +222,3 @@ function addWant(){
 $("body").on("click", ".removeMe", function() {
 	$(this).parent().remove();
 })
-//stores the needs from the create project modal into the "needs" array
-
-
-// var needs = [];
-// function storeNeeds() {
-// 	$(".inputNewNeed").each(function(){
-// 		needs.push($(this).text());
-// 	})
-// }
-
-// //stores the wants from the create project modal into the "wants" array
-// var wants = [];
-// function storeWants() {
-// 	$(".inputNewWant").each(function(){
-// 		wants.push($(this).text());
-// 	})
-// }
