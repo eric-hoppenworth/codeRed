@@ -11,7 +11,7 @@ var usersEndPoint = firebase.database().ref().child("Users");
 var projectsEndPoint = firebase.database().ref().child("Projects");
 var authUser; //auth user is the user from firebase
 var currentUser; //User Object from our code
-
+var userBox;
 
 firebase.auth().onAuthStateChanged(function(user){
 	authUser = user;
@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			currentUser = new User();  //create a user using default values
 		}
 	})
-	
+
 	//this code will be used to retrieve user information on redirect
 	// var currentUrl = window.location.href;
 	// var newUrl = "";
@@ -33,6 +33,13 @@ firebase.auth().onAuthStateChanged(function(user){
 	// window.location.href = newUrl;
 	// console.log(newUrl);
 });
+function isAuthenticated() {
+	return !!getAccessTokenFromUrl();
+}
+
+function getAccessTokenFromUrl() {
+	return utils.parseQueryString(window.location.hash).access_token;
+}
 
 //this function allows me to split up the url
 (function(window){
@@ -81,10 +88,12 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.name = name;
 	this.email = email;
 	this.description = desc;
+	this.genre = "Rap";
 	this.userKey = authUser.uid;
 	this.needs= needs;
 	this.wants = wants;
 	this.completedList = [];
+	this.imgURL = "";
 	if (key === ""){
 		//this is a new project, generate a key
 		this.key = projectsEndPoint.push().key;
@@ -92,7 +101,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 		//this project already exists
 		this.key = key;
 	}
-	projectsEndPoint.child(this.key).update(this)
+	projectsEndPoint.child(this.key).update(this);
 }
 
 function User(name="default", email="",bio="User has not yet added a bio."){
@@ -103,7 +112,7 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 	this.projectList = [];
 	this.contributersList = [];
 	this.dropBoxToken = "0";
-	this.audioURLs = [];
+	this.audioURLs = [""];
 	this.imageURL = "";
 	usersEndPoint.child(this.key).update(this);
 }
@@ -113,6 +122,49 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //On profile and browse pages, we do not want to have buttons
 //this should be in app.js
 function printProjectShort(key,showButtons = false){ 
-	$(".projectName").text(project.name);
-	$(".projectImage").attr("src", project.imgURL);
+	projectsEndPoint.once("value",function(snapshot){
+		var myProject = snapshot.child(key).val();
+		var bigDiv = $("<div>");
+		bigDiv.addClass("col-xs-6 projectSample");
+		bigDiv.append($("<h2>").text(myProject.name));
+		bigDiv.append($("<img src ='" + myProject.imgURL + "' alt = 'Project Image'>"))
+		bigDiv.append($("<br>"));
+		//attach the audio
+		//not there yet
+		var details = $("<details><summary> Genre: " + myProject.genre +"</summary><p>"+ myProject.desctiption +"</p></details>")
+		bigDiv.append(details);
+		//in progress....EH
+	})
+}
+
+//will print audio samples retrieved from storage
+//eric is building this one
+function printAllAudio(user,showButtons = false){
+	for(var i= 0; i < user.audioURLs.length; i++){
+		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
+			//do nothing
+		}else {
+			printAudio(user,i,showButtons);
+		}
+		
+	}
+}
+function printAudio(user,index,showButtons = false){
+	var audioDiv = $("<div>");
+	audioDiv.addClass("audioHolder");
+	var audio = $("<audio>");
+	audio.attr("controls","");
+	var source = $("<source>");
+	source.attr("src", user.audioURLs[index]);
+	source.attr("type","audio/mp4");
+	audio.append(source);
+	audioDiv.append(audio);
+	if(showButtons){
+		var button = $("<button>");
+		button.addClass("removeAudio");
+		button.text("remove");
+		button.attr("data-index",index);
+		audioDiv.append(button);
+	}
+	$("#audioList").append(audioDiv);
 }

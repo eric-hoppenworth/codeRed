@@ -1,10 +1,40 @@
 //retrieve projectID from address bar
 var projectID = "-KnMvn4lKj-V7wyciCUl";
 
-projectsEndPoint.once("value",function(snapshot) {
-	var myProject = snapshot.child(projectID).val()
-	printProject(myProject);
-})
+firebase.auth().onAuthStateChanged(function(user){
+	authUser = user;
+	console.log('user',user);
+	usersEndPoint.once("value",function(snapshot){
+		if (snapshot.hasChild(user.uid)){
+		//if the user already exists
+			currentUser = snapshot.child(user.uid).val();
+		} else {
+			currentUser = new User();  //create a user using default values
+		}
+	})
+
+	//this code will be used to retrieve user information on redirect
+	projectID = window.location.hash;
+	if (projectID=== ""){
+		//there is no project to display
+	} else {
+		//remove the "#"
+		projectID = projectID.substring(1);
+		projectsEndPoint.once("value",function(snapshot) {
+			var myProject = snapshot.child(projectID).val()
+			printProject(myProject);
+		})
+	}
+
+	// var currentUrl = window.location.href;
+	// var newUrl = "";
+	// var userID = "#" + authUser.uid
+	// newUrl = currentUrl + "account" + userID;
+	// window.location.href = newUrl;
+	// console.log(newUrl);
+});
+
+
 
 //this function will print the project info for the current project page
 //argument is coming in as a Project Object

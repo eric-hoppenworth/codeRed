@@ -3,77 +3,161 @@ $("#userDropbox").on('click',function(event){
 	event.preventDefault();
 	var dbx = new Dropbox({ clientId: myDbxId });
 	var myURL = dbx.getAuthenticationUrl("https://eric-hoppenworth.github.io/codeRed/account.html");
-	
+	window.location = myURL;
 });
-var myToken;
-//add the dropbox chooser button, only if drobBox is authenticated for this user
+
 firebase.auth().onAuthStateChanged(function(user){
-	usersEndPoint.once("value",function	(snapshot){
-		myToken = snapshot.child(user.uid).val().dropBoxToken;
+	authUser = user;
+	console.log('user',user);
+	usersEndPoint.once("value",function(snapshot){
+		if (snapshot.hasChild(user.uid)){
+		//if the user already exists
+			currentUser = snapshot.child(user.uid).val();
+		} else {
+			currentUser = new User();  //create a user using default values
+		}
+		//check to see if I just got sent here from dropbox auth
+		printAccountInfo(currentUser);
+		if(currentUser.dropBoxToken === "0"){
+			if (isAuthenticated()){
+				//already authenticated, show
+				currentUser.dropBoxToken = getAccessTokenFromUrl();
+				usersEndPoint.child(currentUser.key).update(currentUser)
+				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+				var downloadLink;
+				//audio dropbox button
+				var options = {
+				    // Required. Called when a user selects an item in the Chooser.
+				    success: function(files) {
+				    	downloadLink = files[0].link;
+						storeInServer(authUser,downloadLink,"audio");
+					
+				    },
+				    cancel: function() {
+
+				    },
+				    linkType: "preview",
+				    // Optional. This is a list of file extensions.
+				    extensions: ["audio"],
+				};
+				var button = Dropbox.createChooseButton(options);
+				$("#audioList").prepend(button);
+
+				options = {
+				    // Required. Called when a user selects an item in the Chooser.
+				    success: function(files) {
+				    	downloadLink = files[0].link;
+						storeInServer(authUser,downloadLink,"image");
+					
+				    },
+				    cancel: function() {
+
+				    },
+				    linkType: "preview",
+				    // Optional. This is a list of file extensions.
+				    extensions: ["images"],
+				};
+				var button = Dropbox.createChooseButton(options);
+				$("#photoHolder").append(button);
+			}	
+		}else{
+			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
+			var downloadLink;
+			var options = {
+			    // Required. Called when a user selects an item in the Chooser.
+			    success: function(files) {
+			    	downloadLink = files[0].link;
+					storeInServer(authUser,downloadLink,"audio");
+				
+			    },
+			    cancel: function() {
+
+			    },
+			    linkType: "preview",
+			    // Optional. This is a list of file extensions.
+			    extensions: ["audio"],
+			};
+			var button = Dropbox.createChooseButton(options);
+			$("#audioList").prepend(button);
+			options = {
+			    // Required. Called when a user selects an item in the Chooser.
+			    success: function(files) {
+			    	downloadLink = files[0].link;
+					storeInServer(authUser,downloadLink,"image");
+				
+			    },
+			    cancel: function() {
+
+			    },
+			    linkType: "preview",
+			    // Optional. This is a list of file extensions.
+			    extensions: ["images"],
+			};
+			var button = Dropbox.createChooseButton(options);
+			$("#photoHolder").append(button);
+		}
 	})
-	if(myToken === "0"){
-		//I do not have a token, do not show db button
-	} else {
-		var userBox = new Dropbox({accessToken: myToken});
-		var downloadLink;
+});
 
-		var options = {
-		    // Required. Called when a user selects an item in the Chooser.
-		    success: function(files) {
-		    	downloadLink = files[0].link;
-				storeInServer(authUser,downloadLink);
-			
-		    },
-		    cancel: function() {
 
-		    },
-		    linkType: "preview",
-		    // Optional. This is a list of file extensions.
-		    extensions: ["audio"],
-		};
-		var button = Dropbox.createChooseButton(options);
-		$("#addAudio").append(button);
-	}
-})
-
-if (isAuthenticated()){
-	//already authenticated, show
-	myToken = getAccessTokenFromUrl();
-	//usersEndPoint.child(currentUser.key).update(currentUser)
-	//window.location ="https://eric-hoppenworth.github.io/codeRed/account.html";
-}
-
-function storeInServer(user,link){
+function storeInServer(user,link, type){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
-		var endPoint = firebase.ref(authUser.uid + "/music/" + data.name);
-		endPoint.put(data.fileBlob);
-
+		if (type === "audio"){
+			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
+		}else if (type === "image"){
+			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/" + data.name);
+		}
+		
+		endPoint.put(data.fileBlob).then(function(snapshot){
+			var fileURL = endPoint.getDownloadURL().then(function(url){
+				//store that shit
+				if (type === "audio"){
+					currentUser.audioURLs.push(url);
+					printAudio(currentUser,currentUser.audioURLs.length-1,true)
+				} else if (type === "image"){
+					currentUser.imageURL = url;
+				}
+				usersEndPoint.child(currentUser.key).update(currentUser);
+			});
+		});
     }).catch(function(error) {
   		console.error(error);
     });
 }
 
-function getAccessTokenFromUrl() {
-	return utils.parseQueryString(window.location.hash).access_token;
-}
-function isAuthenticated() {
-	return !!getAccessTokenFromUrl();
-}
+//remove audio source from profile
+$("body").on("click",".removeAudio",function(){
+	var index = $(this).attr("data-index");
+	currentUser.audioURLs[index] = "";
+	usersEndPoint.child(currentUser.key).update(currentUser);
+	$(this).parent().remove();
+})
 
 //users are created on login with default values
-function updateUser() {
-	var name = $("#userName").val().trim();
-	var email = $("#userEmail").val().trim();
-	var bio = $("#userBio").val().trim();
-
-	var myUser = new User(name, email, bio);
+function updateUser(user) {
+	var name = $("#newName").val().trim();
+	var email = $("#newEmail").val().trim();
+	var bio = $("#newBio").val().trim();
+	if (name != ""){
+		user.name = name;
+	}
+	if (email != ""){
+		user.email = email;
+	}
+	if (bio != ""){
+		user.bio = bio;
+	}
+	$("#userName").text(user.name);
+	$("#userBio").text(user.bio);
+	$("#userEmail").text(user.email);
+	usersEndPoint.child(user.key).update(user);
 }
 
 //creates a new project from the create project modal
 function createProject() {
-	var name = $("#projectName").val().trim();
-	var email = $("#projectEmail").val().trim();
-	var description = $("#projectDescription").val().trim();
+	var name = $("#newProjectName").val().trim();
+	var email = $("#newProjectEmail").val().trim();
+	var description = $("#newProjectInfo").val().trim();
 	var needs = [];
 	var wants = [];
 	$(".inputNewNeed").each(function(index) {
@@ -86,8 +170,12 @@ function createProject() {
 	var newProject = new Project(name,email,description,needs,wants)
 }
 
-$("#submitUserEdit").on("click",function(){
-	updateUser();
+$("#submitAccount").on("click",function(){
+	updateUser(currentUser);
+	$("#newName").val("");
+	$("#newEmail").val("");
+	$("#newBio").val("");
+	$("#myAccountEdit").modal("hide");
 })
 
 //edits an existing project
@@ -108,6 +196,12 @@ function editProject(key){
 	var newProject = new Project(name,email,description,needs,wants,key);
 }
 
+function printAccountInfo(user){
+	$("#userName").text(user.name);
+	$("#userBio").text(user.bio);
+	$("#userEmail").text(user.email);
+	printAllAudio(user,true);
+}
 
 ////////////////////////////////
 ////  Modals  //////////////////
@@ -126,10 +220,15 @@ $("#wantsAdd").on("click", function() {
 	}
 })
 
+<<<<<<< HEAD
 $("#modalSave").on("click", function() {
 	storeNewProject()
 	storeNeeds();
 	storeWants();
+=======
+$("#submitProject").on("click", function() {
+	createProject();
+>>>>>>> master
 })
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
@@ -142,6 +241,7 @@ function addNeed(){
 	$("#newProjectNeeds").val("");
 }
 
+<<<<<<< HEAD
 //enables the reomve button on each need/want to remove selected list item on create project modal
 $("body").on("click", ".removeMe", function() {
 	$(this).parent().remove();
@@ -161,6 +261,8 @@ function storeNeeds() {
 	})
 }
 
+=======
+>>>>>>> master
 //add a want(along with a remove button) to the wants list on the modal, and add clear the need input
 function addWant(){
 	var userWant = $("#newProjectWants").val().trim();
@@ -171,6 +273,7 @@ function addWant(){
 	$("#newProjectWants").val("");
 }
 
+<<<<<<< HEAD
 //stores the wants from the create project modal into the "wants" array
 var wants = [];
 function storeWants() {
@@ -180,3 +283,9 @@ function storeWants() {
 }
 
 
+=======
+//enables the reomve button on each need/want to remove selected list item on create project modal
+$("body").on("click", ".removeMe", function() {
+	$(this).parent().remove();
+})
+>>>>>>> master
