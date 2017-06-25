@@ -50,6 +50,10 @@ body {
   font-family: 'Trade Winds', cursive;  
 }
 
+.projectImage {
+  height: 150px;
+  width: auto;
+}
 nav form {
     float: right;
 }
