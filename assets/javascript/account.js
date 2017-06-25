@@ -17,6 +17,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			currentUser = new User();  //create a user using default values
 		}
 		//check to see if I just got sent here from dropbox auth
+		printAccountInfo(currentUser);
 		if(currentUser.dropBoxToken === "0"){
 			if (isAuthenticated()){
 				//already authenticated, show
@@ -120,6 +121,7 @@ function storeInServer(user,link, type){
 				//store that shit
 				if (type === "audio"){
 					currentUser.audioURLs.push(url);
+					printAudio(currentUser,currentUser.audioURLs.length-1,true)
 				} else if (type === "image"){
 					currentUser.imageURL = url;
 				}
@@ -134,7 +136,7 @@ function storeInServer(user,link, type){
 //remove audio source from profile
 $("body").on("click",".removeAudio",function(){
 	var index = $(this).attr("data-index");
-	currentUSer.audioURLs[index] = "";
+	currentUser.audioURLs[index] = "";
 	usersEndPoint.child(currentUser.key).update(currentUser);
 	$(this).parent().remove();
 })
@@ -187,6 +189,12 @@ function editProject(key){
 	var newProject = new Project(name,email,description,needs,wants,key);
 }
 
+function printAccountInfo(user){
+	$("#userName").text(user.name);
+	$("#userBio").text(user.bio);
+	$("#userEmail").text(user.email);
+	printAllAudio(user,true);
+}
 
 ////////////////////////////////
 ////  Modals  //////////////////

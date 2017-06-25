@@ -126,29 +126,32 @@ function printProjectShort(key,showButtons = false){
 
 //will print audio samples retrieved from storage
 //eric is building this one
-function printAudio(user,showButtons = false){
+function printAllAudio(user,showButtons = false){
 	for(var i= 0; i < user.audioURLs.length; i++){
 		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
 			//do nothing
 		}else {
-			var audioDiv = $("<div>");
-			audioDiv.addClass("audioHolder");
-			var audio = $("<audio>");
-			audio.attr("controls","");
-			var source = $("<source>");
-			source.attr("src", user.audioURLs[i]);
-			source.attr("type","audio/mp4");
-			audio.append(source);
-			audioDiv.append(audio);
-			if(showButtons){
-				var button = $("<button>");
-				button.addClass("removeAudio");
-				button.text("remove");
-				button.attr("data-index",i);
-				audioDiv.append(button);
-			}
-			$("#audioList").append(audioDiv);
+			printAudio(user,i,showButtons);
 		}
 		
 	}
+}
+function printAudio(user,index,showButtons = false){
+	var audioDiv = $("<div>");
+	audioDiv.addClass("audioHolder");
+	var audio = $("<audio>");
+	audio.attr("controls","");
+	var source = $("<source>");
+	source.attr("src", user.audioURLs[index]);
+	source.attr("type","audio/mp4");
+	audio.append(source);
+	audioDiv.append(audio);
+	if(showButtons){
+		var button = $("<button>");
+		button.addClass("removeAudio");
+		button.text("remove");
+		button.attr("data-index",index);
+		audioDiv.append(button);
+	}
+	$("#audioList").append(audioDiv);
 }
