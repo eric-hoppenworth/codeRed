@@ -155,7 +155,7 @@ function updateUser(user) {
 
 //creates a new project from the create project modal
 function createProject() {
-	var name = $("#newProjectName").val().trim();
+	var name = $("#newProjectTitle").val().trim();
 	var email = $("#newProjectEmail").val().trim();
 	var description = $("#newProjectInfo").val().trim();
 	var needs = [];
