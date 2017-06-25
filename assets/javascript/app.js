@@ -88,6 +88,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.name = name;
 	this.email = email;
 	this.description = desc;
+	this.genre = "Rap";
 	this.userKey = authUser.uid;
 	this.needs= needs;
 	this.wants = wants;
@@ -121,7 +122,18 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //On profile and browse pages, we do not want to have buttons
 //this should be in app.js
 function printProjectShort(key,showButtons = false){ 
-
+	projectsEndPoint.once("value",function(snapshot){
+		var myProject = snapshot.child(key).val();
+		var bigDiv = $("<div>");
+		bigDiv.addClass("col-xs-6 projectSample");
+		bigDiv.append($("<h2>").text(myProject.name));
+		bigDiv.append($("<img src ='" + myProject.imgURL + "' alt = 'Project Image'>"))
+		bigDiv.append($("<br>"));
+		//attach the audio
+		var details = $("<details><summary> Genre: " + myProject.genre +"</summary><p>"+ myProject.desctiption +"</p></details>")
+		bigDiv.append(details);
+		//in progress....EH
+	})
 }
 
 //will print audio samples retrieved from storage
