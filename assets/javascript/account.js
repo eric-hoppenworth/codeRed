@@ -78,6 +78,22 @@ firebase.auth().onAuthStateChanged(function(user){
 			};
 			var button = Dropbox.createChooseButton(options);
 			$("#addAudio").append(button);
+			options = {
+			    // Required. Called when a user selects an item in the Chooser.
+			    success: function(files) {
+			    	downloadLink = files[0].link;
+					storeInServer(authUser,downloadLink,"image");
+				
+			    },
+			    cancel: function() {
+
+			    },
+			    linkType: "preview",
+			    // Optional. This is a list of file extensions.
+			    extensions: ["images"],
+			};
+			var button = Dropbox.createChooseButton(options);
+			$("#account").append(button);
 		}
 	})
 
