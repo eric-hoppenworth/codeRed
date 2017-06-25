@@ -7,22 +7,24 @@ searchTerm = "guitar";
 $("#submitSearch").on("click",function(event){
 	event.preventDefault();
 	var index = 0;
-	projectsEndPoint.once("child_added",function(dataProject){
-		var myProject = dataProject.val();
-		//check to see if the project has a 'need'
-		if (typeof myProject.needs === "string"){
-			if (myProject.needs.toLowerCase() === searchTerm.toLowerCase()){
-				console.log(index + ": "+myProject.key);
-				index ++;
-			}
-		} else {
-			for (var i = 0; i < myProject.needs.length; i++){
-				if (myProject.needs[i].toLowerCase() === searchTerm.toLowerCase()){
+	projectsEndPoint.once("value",function(snapshot){
+		snapshot.forEach(function(dataProject){
+			var myProject = dataProject.val();
+			//check to see if the project has a 'need'
+			if (typeof myProject.needs === "string"){
+				if (myProject.needs.toLowerCase() === searchTerm.toLowerCase()){
 					console.log(index + ": "+myProject.key);
 					index ++;
-					break;
+				}
+			} else {
+				for (var i = 0; i < myProject.needs.length; i++){
+					if (myProject.needs[i].toLowerCase() === searchTerm.toLowerCase()){
+						console.log(index + ": "+myProject.key);
+						index ++;
+						break;
+					}
 				}
 			}
-		}
+		});
 	});
 });
