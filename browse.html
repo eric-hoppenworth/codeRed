@@ -50,13 +50,13 @@
 				<div class="col-lg-12">
                  <div id="preview">
                         <div id="preview-coverflow">
+                            <img class="cover" src="demo/keyboard.jpg"/>
                             <img class="cover" src="demo/attic.jpg"/>
                             <img class="cover" src="demo/aurora.jpg"/>
-                            <img id="myThing" class="cover" src="demo/barbecue.jpg"/>
+                            <img class="cover" src="demo/barbecue.jpg"/>
                             <img class="cover" src="demo/blackswan.jpg"/>
-                            <img class="cover" src="demo/chess.jpg"/>
                             <img class="cover" src="demo/fire.jpg"/>
-                            <img class="cover" src="demo/keyboard.jpg"/>
+                            <img class="cover" src="demo/chess.jpg"/>
                             <img class="cover" src="demo/locomotive.jpg"/>
                             <img class="cover" src="demo/diveevo.jpg"/>
                             <img class="cover" src="demo/person.jpg"/>
@@ -79,29 +79,32 @@
 					<div class="panel-body projectSampleHolder">
 						<div class="col-md-6">
 							<div class = "projectSample" id = "testProject1">
-								<h2 class = "projectName">Project Title: "Song Name"</h2>
-								<img class = "projectImage" src="" alt="Project Image">
-								<h5>Project Title: Love Is Hard</h5>
-								<audio controls src="assets/audio/loveIsHard.mp3" type="audio.mp3" controls controlsList="nodownload">Make music of the soul.</audio>
-								<details>
-									<summary>Instumental Type: R&B</summary>
-									<p class = "projectDescription">Boom Bap Appeal ...it was intended for Hip Hop. I'm looking forward to bringing out harmonies........to be continued.</p>
-								</details>
-								<details>
-									<summary>Contributors Needed:</summary>
-									<ul class = "projectNeedsHolder">
-										<li>Lead Male Vocalist</li>
-										<li>Lead Female Vocalist</li>
-										<li>lead guitar</li>
-										<li>bass</li>
-										<li>violinist</li>
-										<li>Rap Verse</li>
-									</ul>
-								</details>	
+								<h2 class = "projectName">Love Is Hard</h2>
+                                <img class = "projectImage" src="demo/rose.jpg" alt="Project Image">
+                                <br>
+                                <h5>Song Writers: W. Carroll</h5>
+                                <h5>Produced By: W. Carroll</h5>
+                                <audio controls src="assets/audio/loveIsHard.mp3" type="audio.mp3" controls controlsList="nodownload">Make music of the soul.</audio>
+                                
+                                <details>
+                                    <summary>Instumental Type: R&B</summary>
+                                    <p class = "projectDescription">Boom Bap Appeal ...it was intended for Hip Hop. I'm looking forward to bringing out harmonies........to be continued.</p>
+                                </details>
+                                <details>
+                                    <summary>Contributors Needed:</summary>
+                                    <ul class = "projectNeedsHolder">
+                                        <li>Lead Male Vocalist</li>
+                                        <li>Lead Female Vocalist</li>
+                                        <li>Lead guitar</li>
+                                        <li>Bass</li>
+                                        <li>Violinist</li>
+                                        <li>Rap Verse</li>
+                                    </ul>
+                                </details>  
 							</div>	
 						</div>	
 						<div class="col-md-6">
-						<h2>Project Name: Song 2</h2>
+						<h2>Project #2 Title: </h2>
 						</div>
 					</div>
 				</div>
@@ -169,9 +172,7 @@
                             }
                         }
                     });
-                    $("#myThing").on("click", function(){
-                        console.log($(this).attr("src"));
-                    })
+                    
                 });
             </script>
 	<footer>
