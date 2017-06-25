@@ -40,7 +40,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				    extensions: ["audio"],
 				};
 				var button = Dropbox.createChooseButton(options);
-				$("#addAudio").append(button);
+				$("#audioList").prepend(button);
 
 				options = {
 				    // Required. Called when a user selects an item in the Chooser.
@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			    extensions: ["audio"],
 			};
 			var button = Dropbox.createChooseButton(options);
-			$("#addAudio").append(button);
+			$("#audioList").oreoend(button);
 			options = {
 			    // Required. Called when a user selects an item in the Chooser.
 			    success: function(files) {
