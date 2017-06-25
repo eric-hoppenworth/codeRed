@@ -97,14 +97,6 @@ firebase.auth().onAuthStateChanged(function(user){
 			$("#photoHolder").append(button);
 		}
 	})
-
-	//this code will be used to retrieve user information on redirect
-	// var currentUrl = window.location.href;
-	// var newUrl = "";
-	// var userID = "#" + authUser.uid
-	// newUrl = currentUrl + "account" + userID;
-	// window.location.href = newUrl;
-	// console.log(newUrl);
 });
 
 
