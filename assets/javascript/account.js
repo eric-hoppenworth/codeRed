@@ -115,18 +115,20 @@ function editProject(key){
 
 ////  Project Modal ////////////
 $("#needsAdd").on("click", function() {
-	addNeed();
+	if ($("#newProjectNeeds").val().trim().length > 0 ) {
+		addNeed();
+	}
 })
 
 $("#wantsAdd").on("click", function() {
-	addWant();
+	if ($("#newProjectWants").val().trim().length > 0 ) {
+		addWant();
+	}
 })
 
 $("#modalSave").on("click", function() {
+	storeNewProject()
 	storeNeeds();
-})
-
-$("#modalSave").on("click", function() {
 	storeWants();
 })
 
@@ -140,15 +142,17 @@ function addNeed(){
 	$("#newProjectNeeds").val("");
 }
 
-//remove a need from the needs list on the modal
-/*function removeNeed(){
-	$(".removeMe").parent().remove();
-}*/
-
 //enables the reomve button on each need/want to remove selected list item on create project modal
 $("body").on("click", ".removeMe", function() {
 	$(this).parent().remove();
 })
+
+//stores the new project information
+function storeNewProject() {
+	var title = $("#newProjectTitle").val().trim();
+	var info = $("#newProjectInfo").val().trim();
+	var email = $("#newProjectEmail").val().trim();
+}
 //stores the needs from the create project modal into the "needs" array
 var needs = [];
 function storeNeeds() {
@@ -175,8 +179,4 @@ function storeWants() {
 	})
 }
 
-//remove a want from the wants list on the modal
-/*function removeWant(){
-
-}*/
 

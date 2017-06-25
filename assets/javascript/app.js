@@ -15,7 +15,7 @@ var currentUser; //User Object from our code
 
 firebase.auth().onAuthStateChanged(function(user){
 	authUser = user;
-	console.log('user',user);
+	//console.log('user',user);
 	usersEndPoint.once("value",function(snapshot){
 		if (snapshot.hasChild(user.uid)){
 		//if the user already exists
@@ -113,5 +113,6 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //On profile and browse pages, we do not want to have buttons
 //this should be in app.js
 function printProjectShort(key,showButtons = false){ 
-
+	$(".projectName").text(project.name);
+	$(".projectImage").attr("src", project.imgURL);
 }
