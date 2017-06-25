@@ -1,3 +1,29 @@
+body { 
+  background-color: #000000;
+  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*add padding to make room for the static footer*/
+  padding-bottom: 31px;
+}
+
+footer{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  clear: both;
+  font-size: 15px;
+  border-top: 1px black;
+  font-family: 'Trade Winds', cursive;
+  text-decoration-color: #fff;
+  font-color: green;
+  background-color: black;
+}
+
 .jumbotron{
   text-align: center;
   font-family: 'Trade Winds', cursive;
@@ -35,38 +61,10 @@ nav form{
   font-family: 'Trade Winds', cursive;    
 }
 
-#ph{
-  background-color: #0000ff;
-}
-
 .panel-body {
   background-color: #b1b1cd;
   border-bottom:2px solid #d260d4;
 }
-
-body { 
-  background-color: #000000;
-  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  /*add padding to make room for the static footer*/
-  padding-bottom: 31px;
-}
-
-footer{
-	position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  clear: both;
-  font-size: 15px;
-  border-top: 1px black;
-  margin-top: 50px;
-  font-family: 'Trade Winds', cursive;
-  text-decoration-color: #fff;
-  font-color: green;
-  background-color: black;
+.panel-heading{
+  background-color: #000099;
 }
