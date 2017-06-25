@@ -50,24 +50,26 @@
 						<!--Account Form-->
 						<div id="form">
 							<form id="account"> 
-								<label for="userName">Name:</label> 
-								<p id="userName"></p>
-								<br>								
-								<label for="userEmail">Email:</label> 
-								<p id="userEmail"></p>	
-								<br>
-								<label for="userBio">Bio:</label>
-								<p id="userBio"></p>
-								<br>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
-								<br>
-								<br>
-								<label for="dropbox">Link to Dropbox:</label>
-								<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>  
-								<br>
-								<br>
-								<label for="soundCloud">Link to Sound Cloud:</label>
-								<button type="soundCloud" id="userSoundCloud" class="btn btn-primary">Sound Cloud</button>							
+								<div class = "col-xs-6">
+									<label for="userName">Name:</label> 
+									<p id="userName"></p>
+									<br>								
+									<label for="userEmail">Email:</label> 
+									<p id="userEmail"></p>	
+									<br>
+									<label for="userBio">Bio:</label>
+									<p id="userBio"></p>
+									<br>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
+									<br>
+									<br>
+									<label for="dropbox">Link to Dropbox:</label>
+									<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>  
+								</div>
+								
+								<div class = "col-xs-6" id = "photoHolder">
+									<img src="" alt="profile picture">
+								</div>						
 								<!-- Modal -->
 								<div class="modal fade" id="myAccountEdit" role="dialog">
 									<div class="modal-dialog">

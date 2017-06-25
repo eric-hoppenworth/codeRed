@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				    extensions: ["images"],
 				};
 				var button = Dropbox.createChooseButton(options);
-				$("#account").append(button);
+				$("#photoHolder").append(button);
 			}	
 		}else{
 			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
@@ -93,7 +93,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			    extensions: ["images"],
 			};
 			var button = Dropbox.createChooseButton(options);
-			$("#account").append(button);
+			$("#photoHolder").append(button);
 		}
 	})
 
