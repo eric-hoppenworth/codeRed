@@ -134,7 +134,7 @@ function storeInServer(user,link, type){
 //remove audio source from profile
 $("body").on("click",".removeAudio",function(){
 	var index = $(this).attr("data-index");
-	currentUSer.audioURLs[index] = "";
+	currentUser.audioURLs[index] = "";
 	usersEndPoint.child(currentUser.key).update(currentUser);
 	$(this).parent().remove();
 })
