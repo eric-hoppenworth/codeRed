@@ -1,15 +1,22 @@
 //retrieve userID from address bar
-var userID = "KYVOypHI6oQcJUrYuAc6zlW2ifm2"
-var myUser;
+var profileID = "KYVOypHI6oQcJUrYuAc6zlW2ifm2"
+var profileUser;
 
-usersEndPoint.once("value",function(snapshot) {
-	myUser = snapshot.child(userID).val()
-	printUser(myUser);
-})
+profileID = window.location.hash;
+if (profileID=== ""){
+	//there is no project to display
+} else {
+	//remove the "#"
+	profileID = profileID.substring(1);
+	usersEndPoint.once("value",function(snapshot) {
+		var profileUser = snapshot.child(profileID).val()
+		printProfile(profileUser);
+	})
+}
 
 //function to print user data to the page on load
 //argument passed in as User Object
-function printUser(user){
+function printProfile(user){
 	$("#userName").text(user.name);
 	$("#userImage").text(user.pic);
 	$("#userInfo").text(user.bio);
