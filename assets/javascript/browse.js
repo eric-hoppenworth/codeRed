@@ -24,5 +24,5 @@ $("#submitSearch").on("click",function(event){
 				}
 			}
 		}
-	}
-})
+	});
+});
