@@ -15,7 +15,7 @@ var userBox;
 
 firebase.auth().onAuthStateChanged(function(user){
 	authUser = user;
-	console.log('user',user);
+	//console.log('user',user);
 	usersEndPoint.once("value",function(snapshot){
 		if (snapshot.hasChild(user.uid)){
 		//if the user already exists
@@ -88,6 +88,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.name = name;
 	this.email = email;
 	this.description = desc;
+	this.genre = "Rap";
 	this.userKey = authUser.uid;
 	this.needs= needs;
 	this.wants = wants;
@@ -121,5 +122,49 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //On profile and browse pages, we do not want to have buttons
 //this should be in app.js
 function printProjectShort(key,showButtons = false){ 
+	projectsEndPoint.once("value",function(snapshot){
+		var myProject = snapshot.child(key).val();
+		var bigDiv = $("<div>");
+		bigDiv.addClass("col-xs-6 projectSample");
+		bigDiv.append($("<h2>").text(myProject.name));
+		bigDiv.append($("<img src ='" + myProject.imgURL + "' alt = 'Project Image'>"))
+		bigDiv.append($("<br>"));
+		//attach the audio
+		//not there yet
+		var details = $("<details><summary> Genre: " + myProject.genre +"</summary><p>"+ myProject.desctiption +"</p></details>")
+		bigDiv.append(details);
+		//in progress....EH
+	})
+}
 
+//will print audio samples retrieved from storage
+//eric is building this one
+function printAllAudio(user,showButtons = false){
+	for(var i= 0; i < user.audioURLs.length; i++){
+		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
+			//do nothing
+		}else {
+			printAudio(user,i,showButtons);
+		}
+		
+	}
+}
+function printAudio(user,index,showButtons = false){
+	var audioDiv = $("<div>");
+	audioDiv.addClass("audioHolder");
+	var audio = $("<audio>");
+	audio.attr("controls","");
+	var source = $("<source>");
+	source.attr("src", user.audioURLs[index]);
+	source.attr("type","audio/mp4");
+	audio.append(source);
+	audioDiv.append(audio);
+	if(showButtons){
+		var button = $("<button>");
+		button.addClass("removeAudio");
+		button.text("remove");
+		button.attr("data-index",index);
+		audioDiv.append(button);
+	}
+	$("#audioList").append(audioDiv);
 }

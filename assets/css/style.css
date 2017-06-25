@@ -51,6 +51,8 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  /*add padding to make room for the static footer*/
+  padding-bottom: 31px;
 }
 
 footer{

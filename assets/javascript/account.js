@@ -17,6 +17,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			currentUser = new User();  //create a user using default values
 		}
 		//check to see if I just got sent here from dropbox auth
+		printAccountInfo(currentUser);
 		if(currentUser.dropBoxToken === "0"){
 			if (isAuthenticated()){
 				//already authenticated, show
@@ -40,7 +41,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				    extensions: ["audio"],
 				};
 				var button = Dropbox.createChooseButton(options);
-				$("#addAudio").append(button);
+				$("#audioList").prepend(button);
 
 				options = {
 				    // Required. Called when a user selects an item in the Chooser.
@@ -57,7 +58,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				    extensions: ["images"],
 				};
 				var button = Dropbox.createChooseButton(options);
-				$("#account").append(button);
+				$("#photoHolder").append(button);
 			}	
 		}else{
 			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
@@ -77,7 +78,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			    extensions: ["audio"],
 			};
 			var button = Dropbox.createChooseButton(options);
-			$("#addAudio").append(button);
+			$("#audioList").prepend(button);
 			options = {
 			    // Required. Called when a user selects an item in the Chooser.
 			    success: function(files) {
@@ -93,17 +94,9 @@ firebase.auth().onAuthStateChanged(function(user){
 			    extensions: ["images"],
 			};
 			var button = Dropbox.createChooseButton(options);
-			$("#account").append(button);
+			$("#photoHolder").append(button);
 		}
 	})
-
-	//this code will be used to retrieve user information on redirect
-	// var currentUrl = window.location.href;
-	// var newUrl = "";
-	// var userID = "#" + authUser.uid
-	// newUrl = currentUrl + "account" + userID;
-	// window.location.href = newUrl;
-	// console.log(newUrl);
 });
 
 
@@ -112,7 +105,7 @@ function storeInServer(user,link, type){
 		if (type === "audio"){
 			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
 		}else if (type === "image"){
-			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/profile.png");
+			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/" + data.name);
 		}
 		
 		endPoint.put(data.fileBlob).then(function(snapshot){
@@ -120,6 +113,7 @@ function storeInServer(user,link, type){
 				//store that shit
 				if (type === "audio"){
 					currentUser.audioURLs.push(url);
+					printAudio(currentUser,currentUser.audioURLs.length-1,true)
 				} else if (type === "image"){
 					currentUser.imageURL = url;
 				}
@@ -131,14 +125,32 @@ function storeInServer(user,link, type){
     });
 }
 
+//remove audio source from profile
+$("body").on("click",".removeAudio",function(){
+	var index = $(this).attr("data-index");
+	currentUser.audioURLs[index] = "";
+	usersEndPoint.child(currentUser.key).update(currentUser);
+	$(this).parent().remove();
+})
 
 //users are created on login with default values
-function updateUser() {
-	currentUser.name = $("#newName").val().trim();
-	currentUser.email = $("#newEmail").val().trim();
-	currentUser.bio = $("#newBio").val().trim();
-
-	usersEndPoint.child(currentUser.key).update(currentUser);
+function updateUser(user) {
+	var name = $("#newName").val().trim();
+	var email = $("#newEmail").val().trim();
+	var bio = $("#newBio").val().trim();
+	if (name != ""){
+		user.name = name;
+	}
+	if (email != ""){
+		user.email = email;
+	}
+	if (bio != ""){
+		user.bio = bio;
+	}
+	$("#userName").text(user.name);
+	$("#userBio").text(user.bio);
+	$("#userEmail").text(user.email);
+	usersEndPoint.child(user.key).update(user);
 }
 
 //creates a new project from the create project modal
@@ -159,7 +171,11 @@ function createProject() {
 }
 
 $("#submitAccount").on("click",function(){
-	updateUser();
+	updateUser(currentUser);
+	$("#newName").val("");
+	$("#newEmail").val("");
+	$("#newBio").val("");
+	$("#myAccountEdit").modal("hide");
 })
 
 //edits an existing project
@@ -180,6 +196,12 @@ function editProject(key){
 	var newProject = new Project(name,email,description,needs,wants,key);
 }
 
+function printAccountInfo(user){
+	$("#userName").text(user.name);
+	$("#userBio").text(user.bio);
+	$("#userEmail").text(user.email);
+	printAllAudio(user,true);
+}
 
 ////////////////////////////////
 ////  Modals  //////////////////
@@ -187,15 +209,21 @@ function editProject(key){
 
 ////  Project Modal ////////////
 $("#needsAdd").on("click", function() {
-	addNeed();
+	if ($("#newProjectNeeds").val().trim().length > 0 ) {
+		addNeed();
+	}
 })
 
 $("#wantsAdd").on("click", function() {
-	addWant();
+	if ($("#newProjectWants").val().trim().length > 0 ) {
+		addWant();
+	}
 })
+
 
 $("#submitProject").on("click", function() {
 	createProject();
+
 })
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
@@ -208,6 +236,7 @@ function addNeed(){
 	$("#newProjectNeeds").val("");
 }
 
+
 //add a want(along with a remove button) to the wants list on the modal, and add clear the need input
 function addWant(){
 	var userWant = $("#newProjectWants").val().trim();
@@ -218,24 +247,8 @@ function addWant(){
 	$("#newProjectWants").val("");
 }
 
+
 //enables the reomve button on each need/want to remove selected list item on create project modal
 $("body").on("click", ".removeMe", function() {
 	$(this).parent().remove();
 })
-//stores the needs from the create project modal into the "needs" array
-
-
-// var needs = [];
-// function storeNeeds() {
-// 	$(".inputNewNeed").each(function(){
-// 		needs.push($(this).text());
-// 	})
-// }
-
-// //stores the wants from the create project modal into the "wants" array
-// var wants = [];
-// function storeWants() {
-// 	$(".inputNewWant").each(function(){
-// 		wants.push($(this).text());
-// 	})
-// }
