@@ -224,8 +224,8 @@ $("#wantsAdd").on("click", function() {
 $("#submitProject").on("click", function() {
 	createProject();
 	$(".projectInput").val("");
-	$(".inputNewNeed").remove();
-	$(".inputNewWant").remove();
+	$(".inputNewNeed").parent().remove();
+	$(".inputNewWant").parent().remove();
 	$("#newProject").modal("hide");
 
 
@@ -236,7 +236,7 @@ function addNeed(){
 	var userNeed = $("#newProjectNeeds").val().trim();
 	var needDiv = $("<div>").addClass("needHolder");
 
-	$("#needList").append(needDiv).append("<li class='inputNewNeed'>" + userNeed + " <button class='removeMe'>Remove</button></li>");
+	$("#needList").append(needDiv).append("<li><span class='inputNewNeed'>" + userNeed + "</span> <button class='removeMe'>Remove</button></li>");
 
 	$("#newProjectNeeds").val("");
 }
@@ -247,7 +247,7 @@ function addWant(){
 	var userWant = $("#newProjectWants").val().trim();
 	var wantDiv = $("<div>").addClass("wantHolder");
 
-	$("#wantList").append(wantDiv).append("<li class='inputNewWant'>" + userWant + " <button class='removeMe'>Remove</button></li>");
+	$("#wantList").append(wantDiv).append("<li><span class='inputNewWant'>" + userWant + " </span><button class='removeMe'>Remove</button></li>");
 
 	$("#newProjectWants").val("");
 }
