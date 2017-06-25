@@ -10,7 +10,9 @@ usersEndPoint.once("value",function(snapshot) {
 //function to print user data to the page on load
 //argument passed in as User Object
 function printUser(user){
-
+	$("#userName").text(user.name);
+	$("#userImage").text(user.pic);
+	$("#userInfo").text(user.bio);
 }
 
 //printProjectShort(key,false)

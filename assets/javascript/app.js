@@ -15,7 +15,7 @@ var userBox;
 
 firebase.auth().onAuthStateChanged(function(user){
 	authUser = user;
-	console.log('user',user);
+	//console.log('user',user);
 	usersEndPoint.once("value",function(snapshot){
 		if (snapshot.hasChild(user.uid)){
 		//if the user already exists
