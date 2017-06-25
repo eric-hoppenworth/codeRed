@@ -2,22 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MC Profile</title>
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds" rel="stylesheet">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/css/profile.css">
 
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid" id="navbar">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">New MC</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mcNavbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">New MC</a>
                 </div>
+                <div class="collapse navbar-collapse" id="mcNavbar" >                
                 <ul class="nav navbar-nav">
-                	<li><a href="index.html">Welcome</a></li>
+                    <li><a href="index.html">Welcome</a></li>                
                     <li><a href="account.html">Account</a></li>
                     <li><a href="project.html">Project</a></li>
                     <li><a href="browse.html">Browse Projects</a></li>
@@ -28,6 +38,7 @@
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
+            </div>
             </div>
         </div>
     </nav>
