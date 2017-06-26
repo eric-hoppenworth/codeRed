@@ -26,79 +26,34 @@ firebase.auth().onAuthStateChanged(function(user){
 				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 				var downloadLink;
 				//audio dropbox button
-				var options = {
-				    // Required. Called when a user selects an item in the Chooser.
-				    success: function(files) {
-				    	downloadLink = files[0].link;
-						storeInServer(authUser,downloadLink,"audio");
-					
-				    },
-				    cancel: function() {
-
-				    },
-				    linkType: "preview",
-				    // Optional. This is a list of file extensions.
-				    extensions: ["audio"],
-				};
-				var button = Dropbox.createChooseButton(options);
-				$("#audioList").prepend(button);
-
-				options = {
-				    // Required. Called when a user selects an item in the Chooser.
-				    success: function(files) {
-				    	downloadLink = files[0].link;
-						storeInServer(authUser,downloadLink,"image");
-					
-				    },
-				    cancel: function() {
-
-				    },
-				    linkType: "preview",
-				    // Optional. This is a list of file extensions.
-				    extensions: ["images"],
-				};
-				var button = Dropbox.createChooseButton(options);
-				$("#photoHolder").append(button);
+				buildDropboxButton("audio",$("#audioList"));
+				//photo dropbox button
+				buildDropboxButton("images",$("#photoHolder"));
 			}	
 		}else{
 			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 			var downloadLink;
-			var options = {
-			    // Required. Called when a user selects an item in the Chooser.
-			    success: function(files) {
-			    	downloadLink = files[0].link;
-					storeInServer(authUser,downloadLink,"audio");
-				
-			    },
-			    cancel: function() {
-
-			    },
-			    linkType: "preview",
-			    // Optional. This is a list of file extensions.
-			    extensions: ["audio"],
-			};
-			var button = Dropbox.createChooseButton(options);
-			$("#audioList").prepend(button);
-			options = {
-			    // Required. Called when a user selects an item in the Chooser.
-			    success: function(files) {
-			    	downloadLink = files[0].link;
-					storeInServer(authUser,downloadLink,"image");
-				
-			    },
-			    cancel: function() {
-
-			    },
-			    linkType: "preview",
-			    // Optional. This is a list of file extensions.
-			    extensions: ["images"],
-			};
-			var button = Dropbox.createChooseButton(options);
-			$("#photoHolder").append(button);
+			//audio dropbox button
+			buildDropboxButton("audio",$("#audioList"));
+			//photo dropbox button
+			buildDropboxButton("images",$("#photoHolder"));
 		}
 	})
 });
 
+function buildDropboxButton(fileType, $appender){
+	options = {
+	    success: function(files) {
+	    	downloadLink = files[0].link;
+			storeInServer(authUser,downloadLink,fileType);
+	    },
+	    cancel: function() {},
+	    linkType: "preview",
+	    extensions: [fileType],
+	};
+	var button = Dropbox.createChooseButton(options);
+	$appender.append(button);
+}
 
 function storeInServer(user,link, type){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
@@ -114,7 +69,7 @@ function storeInServer(user,link, type){
 				if (type === "audio"){
 					currentUser.audioURLs.push(url);
 					printAudio(currentUser,currentUser.audioURLs.length-1,true)
-				} else if (type === "image"){
+				} else if (type === "images"){
 					currentUser.imageURL = url;
 				}
 				usersEndPoint.child(currentUser.key).update(currentUser);
