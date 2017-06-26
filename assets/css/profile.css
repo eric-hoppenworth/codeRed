@@ -1,14 +1,17 @@
 
+.projectImage {
+  height: 150px;
+  width: auto;
+}
 
-footer{
-    position: relative;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    clear: both;
-    font-size: 15px;
-    border-top: 1px black;
-    margin-top: 50px;
-    font-family: 'Trade Winds', cursive;
+
+.projectSample{
+  border-left:1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0px;
+  background: #d6d6ff;
+}
+.projectSample a{
+  color: #005f02;
+  text-decoration: none;
 }

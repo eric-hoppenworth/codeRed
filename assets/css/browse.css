@@ -2,12 +2,11 @@
 /*The previous line is for the carousel*/
 
 #preview-coverflow .cover {
-          cursor:   pointer;
-          width:    240px;
-          height:   180px;
-          box-shadow: 0 0 2em 1em darkblue;
-        }
-
+  cursor:   pointer;
+  width:    240px;
+  height:   180px;
+  box-shadow: 0 0 2em 1em darkblue;
+}
 
 .jumbotron{
 	  padding-top: 0;
@@ -18,8 +17,6 @@
   height: 150px;
   width: auto;
 }
-
-
 
 footer {
     position: relative;

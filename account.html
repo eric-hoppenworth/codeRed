@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
-	<title>Account page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MC Account</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 </head>
 <body>
 	<!--Navigation-->
@@ -50,24 +52,26 @@
 						<!--Account Form-->
 						<div id="form">
 							<form id="account"> 
-								<label for="userName">Name:</label> 
-								<p id="userName"></p>
-								<br>								
-								<label for="userEmail">Email:</label> 
-								<p id="userEmail"></p>	
-								<br>
-								<label for="userBio">Bio:</label>
-								<p id="userBio"></p>
-								<br>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
-								<br>
-								<br>
-								<label for="dropbox">Link to Dropbox:</label>
-								<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>  
-								<br>
-								<br>
-								<label for="soundCloud">Link to Sound Cloud:</label>
-								<button type="soundCloud" id="userSoundCloud" class="btn btn-primary">Sound Cloud</button>							
+								<div class = "col-xs-6">
+									<label for="userName">Name:</label> 
+									<p id="userName"></p>
+									<br>								
+									<label for="userEmail">Email:</label> 
+									<p id="userEmail"></p>	
+									<br>
+									<label for="userBio">Bio:</label>
+									<p id="userBio"></p>
+									<br>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
+									<br>
+									<br>
+									<label for="dropbox">Link to Dropbox:</label>
+									<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>  
+								</div>
+								
+								<div class = "col-xs-6" id = "photoHolder">
+									<img id="profilePicture" src="" alt="profile picture">
+								</div>						
 								<!-- Modal -->
 								<div class="modal fade" id="myAccountEdit" role="dialog">
 									<div class="modal-dialog">
@@ -83,9 +87,11 @@
 													<label for="newName" class="form-control-label">Account Name:</label>
 													<input type="text" class="form-control" id="newName">
 													<br>
+
 													<label for="newBio" class="form-control-label">Bio:</label>
 													<textarea class="form-control" id="newBio">
 													</textarea>
+
 													<br>
 													<label for="newEmail" class="form-control-label">Contact Email:</label>
 													<input type="text" class="form-control" id="newEmail">
@@ -110,11 +116,11 @@
 						<h2 class="panel-title">Manage Audio Samples</h2>
 					</div>
 					<div class="panel-body">
-						<div id = "addAudio"></div>
-						<hr>
-						<div id="form2">
-							<form class="audioSample"> 
-							</form>
+						<div id= "audioButtonHolder">
+							<!-- audio button -->
+						</div>
+						<div id = "audioList">
+							<!-- audio stored here -->
 						</div>
 					</div>
 				</div>
@@ -125,6 +131,10 @@
 						<h2 class="panel-title">Manage Projects</h2>
 					</div>
 					<div class="panel-body">
+						<hr>
+						<div id = "projectSampleHolder">
+							
+						</div>
 						<div id="form3">
 							<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
 							<form id="infoForm2">
@@ -145,22 +155,21 @@
 												<hr>
 												<div class="form-group">
 													<label for="newProjectTitle" class="form-control-label">Project Name:</label>
-													<input type="text" class="form-control" id="newProjectTitle">
+													<input type="text" class="form-control projectInput" id="newProjectTitle">
 													<br>
 													<label for="newProjectInfo" class="form-control-label">Project Description:</label>
-													<textarea class="form-control" id="newProjectInfo">
-													</textarea>
+													<textarea class="form-control projectInput" id="newProjectInfo"></textarea>
 													<br>
 													<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
-													<input type="email" class="form-control" id="newProjectEmail">
+													<input type="email" class="form-control projectInput" id="newProjectEmail">
 													<br>
 													<label for="newProjectNeeds" class="form-control-label" id = "needList">Needs:</label>
-													<input type="text" class="form-control" id="newProjectNeeds">
+													<input type="text" class="form-control projectInput" id="newProjectNeeds">
 													<button type="button" class="btn btn-primary" id="needsAdd">Add</button>
 													<br>
 													<br>
 													<label for="newProjectWants" class="form-control-label" id = "wantList">Wants:</label>
-													<input type="text" class="form-control" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
+													<input type="text" class="form-control projectInput" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-primary" id="submitProject">Save</button>
