@@ -18,6 +18,13 @@ firebase.auth().onAuthStateChanged(function(user){
 		}
 		//check to see if I just got sent here from dropbox auth
 		printAccountInfo(currentUser);
+		projectsEndPoint.on("child_added",function(snapshot){
+			var myProject = snapshot.val();
+			if(myProject.userKey === currentUser.key){
+				printProjectSnippet(myProject.key,true);
+			}
+			
+		});
 		if(currentUser.dropBoxToken === "0"){
 			if (isAuthenticated()){
 				//already authenticated, show
@@ -163,10 +170,6 @@ function printAccountInfo(user){
 	printAllAudio(user,true);
 }
 
-projectsEndPoint.on("child_added",function(snapshot){
-	var myProject = snapshot.val();
-	printProjectSnippet(myProject.key,true);
-})
 
 ////////////////////////////////
 ////  Modals  //////////////////
