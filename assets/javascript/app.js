@@ -86,6 +86,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.wants = wants;
 	this.completedList = [];
 	this.imgURL = "";
+	this.audioURLs = [""];
 	if (key === ""){
 		//this is a new project, generate a key
 		this.key = projectsEndPoint.push().key;
@@ -101,7 +102,7 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 	this.email = email;
 	this.bio = bio;
 	this.key = authUser.uid;
-	this.projectList = [];
+	this.projectList = [""];
 	this.contributersList = [];
 	this.dropBoxToken = "0";
 	this.audioURLs = [""];
