@@ -26,26 +26,26 @@ firebase.auth().onAuthStateChanged(function(user){
 				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 				var downloadLink;
 				//audio dropbox button
-				buildDropboxButton("audio",$("#audioList"));
+				buildDropboxButton(currentUser, "audio", "User", $("#audioList"));
 				//photo dropbox button
-				buildDropboxButton("images",$("#photoHolder"));
+				buildDropboxButton(currentUser, "images", "User", $("#photoHolder"));
 			}	
 		}else{
 			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 			var downloadLink;
-			//audio dropbox button
-			buildDropboxButton("audio",$("#audioList"));
+			//audio dropbox button for user
+			buildDropboxButton(currentUser, "audio", "User", $("#audioList"));
 			//photo dropbox button
-			buildDropboxButton("images",$("#photoHolder"));
+			buildDropboxButton(currentUser, "images", "User", $("#photoHolder"));
 		}
 	})
 });
 
-function buildDropboxButton(fileType, $appender){
+function buildDropboxButton(user,fileType, objectType, $appender){
 	options = {
 	    success: function(files) {
 	    	downloadLink = files[0].link;
-			storeInServer(authUser,downloadLink,fileType);
+			storeInServer(user,downloadLink,fileType,ojectType);
 	    },
 	    cancel: function() {},
 	    linkType: "preview",
@@ -55,24 +55,29 @@ function buildDropboxButton(fileType, $appender){
 	$appender.append(button);
 }
 
-function storeInServer(user,link, type){
+function storeInServer(user,link, fileType = "audio",objectType = "User"){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
-		if (type === "audio"){
-			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/music/" + data.name);
-		}else if (type === "image"){
-			var endPoint = firebase.storage().ref("Users/" + authUser.uid + "/" + data.name);
+		if (fileType === "audio"){
+			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/music/" + data.name);
+		}else if (fileType === "images"){
+			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/profile");
 		}
 		
 		endPoint.put(data.fileBlob).then(function(snapshot){
 			var fileURL = endPoint.getDownloadURL().then(function(url){
 				//store that shit
-				if (type === "audio"){
-					currentUser.audioURLs.push(url);
-					printAudio(currentUser,currentUser.audioURLs.length-1,true)
-				} else if (type === "images"){
-					currentUser.imageURL = url;
+				if (fileType === "audio"){
+					user.audioURLs.push(url);
+					printAudio(user,user.audioURLs.length-1,true)
+				} else if (fileType === "images"){
+					user.imageURL = url;
 				}
-				usersEndPoint.child(currentUser.key).update(currentUser);
+				if (objectType === "User"){
+					usersEndPoint.child(user.key).update(user);
+				} else if (objectType === "Project"){
+					projectsEndPoint.child(user.key).update(user);
+				}
+				
 			});
 		});
     }).catch(function(error) {
