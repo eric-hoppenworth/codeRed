@@ -173,14 +173,14 @@ function printProjectSnippet(key,showButtons = false){
 			buttonDiv.addClass("col-xs-6");
 			//images
 			var imgRow = $("<div>").addClass("row");
-			var imgDbDiv = $("<div>").addClass("col-xs-6");
+			var imgDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload an Image"));
 			imgRow.append(imgDbDiv);
 			buildDropboxButton(myProject,"images","Project",imgDbDiv);
 			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").attr("src",myProject.imageURL)));
 			buttonDiv.append(imgRow);
 			//audio
 			var audioRow = $("<div>").addClass("row");
-			var audioDbDiv = $("<div>").addClass("col-xs-6");
+			var audioDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload a Sample"));
 			audioRow.append(audioDbDiv);
 			buildDropboxButton(myProject,"images","Project",audioDbDiv);
 			var audioHolder = $("<div>").addClass("col-xs-6");
