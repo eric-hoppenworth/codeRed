@@ -125,6 +125,7 @@ function createProject() {
 	var name = $("#newProjectTitle").val().trim();
 	var email = $("#newProjectEmail").val().trim();
 	var description = $("#newProjectInfo").val().trim();
+	var genre = $("#newProjectGenre").val().trim();
 	var needs = [""];
 	var wants = [""];
 	$(".inputNewNeed").each(function(index) {
@@ -134,7 +135,7 @@ function createProject() {
 		wants.push($(this).text());
 	})
 
-	var newProject = new Project(name,email,description,needs,wants)
+	var newProject = new Project(name,email,description,genre,needs,wants)
 }
 
 $("#submitAccount").on("click",function(){
