@@ -45,7 +45,7 @@ function buildDropboxButton(user,fileType, objectType, $appender){
 	options = {
 	    success: function(files) {
 	    	downloadLink = files[0].link;
-			storeInServer(user,downloadLink,fileType,ojectType);
+			storeInServer(user,downloadLink,fileType,objectType);
 	    },
 	    cancel: function() {},
 	    linkType: "preview",
