@@ -170,9 +170,26 @@ function printProjectSnippet(key,showButtons = false){
 		if(showButtons){
 			var buttonDiv = $("<div>");
 			buttonDiv.addClass("col-xs-6");
-			buttonDiv.append($("<button>").text("edit Details"));
-			buttonDiv.append($("<button>").text("add Picture"));
-			buttonDiv.append($("<button>").text("add Audio"));
+			//images
+			var imgRow = $("<div>").addClass("row");
+			var imgDbDiv = $("<div>").addClass("col-xs-6");
+			imgRow.append(imgDbDiv);
+			buildDropboxButton(myProject,"images","Project",imgDbDiv);
+			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").attr("src",myProject.imageURL)));
+			buttonDiv.append(imgRow);
+			//audio
+			var audioRow = $("<div>").addClass("row");
+			var audioDbDiv = $("<div>").addClass("col-xs-6");
+			audioRow.append(audioDbDiv);
+			buildDropboxButton(myProject,"images","Project",audioDbDiv);
+			var audioHolder = $("<div>").addClass("col-xs-6");
+			audioRow.append(audioHolder);
+			printAllAudio(myProject,true,audioHolder);
+			buttonDiv.append(audioRow);
+			//edit
+			var editRow = $("<div>").addClass("row");
+			editRow.append($("<button>").text("edit Details"));
+			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
 		}
 		bigCol.append(bigRow);
@@ -181,18 +198,17 @@ function printProjectSnippet(key,showButtons = false){
 }
 
 //will print audio samples retrieved from storage
-//eric is building this one
-function printAllAudio(user,showButtons = false){
+function printAllAudio(user,showButtons = false,appender){
 	for(var i= 0; i < user.audioURLs.length; i++){
 		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
 			//do nothing
 		}else {
-			printAudio(user,i,showButtons);
+			printAudio(user,i,showButtons,appender);
 		}
 		
 	}
 }
-function printAudio(user,index,showButtons = false){
+function printAudio(user,index,showButtons = false,appender = ""){
 	var audioDiv = $("<div>");
 	audioDiv.addClass("audioHolder");
 	var audio = $("<audio>");
@@ -209,5 +225,10 @@ function printAudio(user,index,showButtons = false){
 		button.attr("data-index",index);
 		audioDiv.append(button);
 	}
-	$("#audioList").append(audioDiv);
+	if (appender === ""){
+		$("#audioList").append(audioDiv);
+	} else {
+		appender.append(audioDiv);
+	}
+
 }

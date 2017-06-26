@@ -26,7 +26,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 				var downloadLink;
 				//audio dropbox button
-				buildDropboxButton(currentUser, "audio", "User", $("#audioList"));
+				buildDropboxButton(currentUser, "audio", "User", $("#audioButtonHolder"));
 				//photo dropbox button
 				buildDropboxButton(currentUser, "images", "User", $("#photoHolder"));
 			}	
@@ -34,7 +34,7 @@ firebase.auth().onAuthStateChanged(function(user){
 			userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
 			var downloadLink;
 			//audio dropbox button for user
-			buildDropboxButton(currentUser, "audio", "User", $("#audioList"));
+			buildDropboxButton(currentUser, "audio", "User", $("#audioButtonHolder"));
 			//photo dropbox button
 			buildDropboxButton(currentUser, "images", "User", $("#photoHolder"));
 		}
@@ -45,7 +45,7 @@ function buildDropboxButton(user,fileType, objectType, $appender){
 	options = {
 	    success: function(files) {
 	    	downloadLink = files[0].link;
-			storeInServer(user,downloadLink,fileType,ojectType);
+			storeInServer(user,downloadLink,fileType,objectType);
 	    },
 	    cancel: function() {},
 	    linkType: "preview",
@@ -152,7 +152,7 @@ function editProject(key){
 	$(".editNewWant").each(function(index) {
 		wants.push($(this).text());
 	})
-	var key = $("editProject").att("data-key");
+	var key = $("#editProject").att("data-key");
 	var newProject = new Project(name,email,description,needs,wants,key);
 }
 
@@ -162,6 +162,11 @@ function printAccountInfo(user){
 	$("#userEmail").text(user.email);
 	printAllAudio(user,true);
 }
+
+projectsEndPoint.on("child_added",function(snapshot){
+	var myProject = snapshot.val();
+	printProjectSnippet(myProject.key,true);
+})
 
 ////////////////////////////////
 ////  Modals  //////////////////
