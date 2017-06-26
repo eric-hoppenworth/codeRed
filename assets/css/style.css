@@ -8,21 +8,36 @@ body {
   /*add padding to make room for the static footer*/
   padding-bottom: 31px;
 }
-
-footer{
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  clear: both;
-  font-size: 15px;
-  border-top: 1px black;
-  font-family: 'Trade Winds', cursive;
-  text-decoration-color: #fff;
-  font-color: green;
-  background-color: black;
+nav form{
+  float: right;
+  font-family: 'Trade Winds', cursive; 
 }
+
+.navmod {
+    background-color: black;
+    border:2px solid #0000cc;
+    border-bottom:2px solid #000099;
+
+}
+
+#mcNavbar{
+  font-family: 'Trade Winds', cursive; 
+}
+
+.navbar-header{
+  font-family: 'Trade Winds', cursive; 
+  color: black; 
+}
+
+nav form {
+    float: right;
+}
+
+.panel{
+  font-family: 'Trade Winds', cursive;    
+}
+
+
 
 .jumbotron{
   text-align: center;
@@ -32,6 +47,11 @@ footer{
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom:2px solid #d260d4;
+}
+
+.jumbotron .container {
+  position:relative;
+  top:50px;
 }
 
 #welcomeText{
@@ -44,27 +64,43 @@ footer{
   word-wrap: break-word;
 }
 
-nav form{
-  float: right;
-  font-family: 'Trade Winds', cursive; 
+.panel-body {
+    background-color: #b1b1cd;
+    border-bottom:2px solid #d260d4;
+    text-align: justify;
 }
-#mcNavbar{
-  font-family: 'Trade Winds', cursive; 
-}
-
-.navbar-header{
-  font-family: 'Trade Winds', cursive; 
-  color: black; 
+.projectImage {
+  height: 150px;
+  width: auto;
 }
 
-.panel{
-  font-family: 'Trade Winds', cursive;    
+.audioPlayer {
+  width: auto;
+}
+.row {
+    width: auto;
 }
 
+footer{
+	position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  clear: both;
+  font-size: 15px;
+  border-top: 1px black;
+  margin-top: 50px;
+  font-family: 'Trade Winds', cursive;
+  text-decoration-color: #fff;
+  font-color: green;
+  background-color: black;
+}
 .panel-body {
   background-color: #b1b1cd;
   border-bottom:2px solid #d260d4;
 }
 .panel-heading{
   background-color: #000099;
+}
 }
