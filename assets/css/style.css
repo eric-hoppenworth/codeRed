@@ -1,3 +1,45 @@
+body { 
+  background-color: #000000;
+  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+nav form{
+  float: right;
+  font-family: 'Trade Winds', cursive; 
+}
+
+.navmod {
+    background-color: black;
+    border:2px solid #0000cc;
+    border-bottom:2px solid #000099;
+
+}
+
+#mcNavbar{
+  font-family: 'Trade Winds', cursive; 
+}
+
+.navbar-header{
+  font-family: 'Trade Winds', cursive; 
+  color: black; 
+}
+
+nav form {
+    float: right;
+}
+
+.panel{
+  font-family: 'Trade Winds', cursive;    
+}
+
+#ph{
+  background-color: #0000ff;
+}
+
 .jumbotron{
   text-align: center;
   font-family: 'Trade Winds', cursive;
@@ -6,6 +48,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom:2px solid #d260d4;
+}
+
+.jumbotron .container {
+  position:relative;
+  top:50px;
 }
 
 #welcomeText{
@@ -18,39 +65,31 @@
   word-wrap: break-word;
 }
 
-nav form{
-  float: right;
-  font-family: 'Trade Winds', cursive; 
-}
-#mcNavbar{
-  font-family: 'Trade Winds', cursive; 
-}
 
-.navbar-header{
-  font-family: 'Trade Winds', cursive; 
-  color: black; 
-}
-
-.panel{
-  font-family: 'Trade Winds', cursive;    
-}
-
-#ph{
-  background-color: #0000ff;
-}
 
 .panel-body {
-  background-color: #b1b1cd;
-  border-bottom:2px solid #d260d4;
+    background-color: #b1b1cd;
+    border-bottom:2px solid #d260d4;
+    text-align: justify;
+}
+.projectImage {
+  height: 150px;
+  width: auto;
 }
 
-body { 
-  background-color: #000000;
-  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.audioPlayer {
+  width: auto;
+}
+.row {
+    width: auto;
+}
+#ph {
+    background-color: #000099;
+
+}
+
+video ::-internal-media-controls-download-button {
+    display:none;
 }
 
 footer{
