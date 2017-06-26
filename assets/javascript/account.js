@@ -125,8 +125,8 @@ function createProject() {
 	var name = $("#newProjectTitle").val().trim();
 	var email = $("#newProjectEmail").val().trim();
 	var description = $("#newProjectInfo").val().trim();
-	var needs = [];
-	var wants = [];
+	var needs = [""];
+	var wants = [""];
 	$(".inputNewNeed").each(function(index) {
 		needs.push($(this).text());
 	})
