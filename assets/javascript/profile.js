@@ -61,8 +61,11 @@ firebase.auth().onAuthStateChanged(function(user){
 //argument passed in as User Object
 function printProfile(user){
 	$("#userName").text(user.name);
-	$("#userImage").text(user.pic);
 	$("#userInfo").text(user.bio);
+	$("#userContact").text("Contact: "+user.email);
+	//show picture
+	$("#userImage").attr("src",user.imageURL);
+
 	//print audio
 	printAllAudio(profileUser);
 	//print project snippets
