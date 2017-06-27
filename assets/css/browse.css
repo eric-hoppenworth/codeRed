@@ -1,85 +1,24 @@
 .pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:700}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:700}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:700}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
 /*The previous line is for the carousel*/
 
-body { 
-  background-color: #000000;
-  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-
 #preview-coverflow .cover {
-          cursor:   pointer;
-          width:    240px;
-          height:   180px;
-          box-shadow: 0 0 2em 1em darkblue;
-        }
-
-.navmod {
-    background-color: black;
-    border:2px solid #0000cc;
-    border-bottom:2px solid #000099;
-
-}
-
-.panel-body {
-    background-color: #b1b1cd;
-    border-bottom:2px solid #d260d4;
-    text-align: justify;
-}
-
-.audioPlayer {
-  width: auto;
-}
-.row {
-    width: auto;
-}
-#ph {
-    background-color: #000099;
-
+  cursor:   pointer;
+  width:    240px;
+  height:   180px;
+  box-shadow: 0 0 2em 1em darkblue;
 }
 
 .jumbotron{
-	text-align: center;
-    font-family: 'Trade Winds', cursive;
-    height: 300px;
-    background-image: url(../images/waveMeterRs.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-bottom:2px solid #d260d4;
-  padding-top: 0;
+	  padding-top: 0;
 }
 
-.jumbotron .container {
-  position:relative;
-  top:50px;
-}
-
-.navbar-header{
-  font-family: 'Trade Winds', cursive;  
-}
 
 .projectImage {
   height: 150px;
   width: auto;
 }
-nav form {
-    float: right;
-}
 
-.panel{
-    font-family: 'Trade Winds', cursive;    
-}
-
-video ::-internal-media-controls-download-button {
-    display:none;
-}
-
-
-footer{
+footer {
     position: relative;
     right: 0;
     bottom: 0;
@@ -92,11 +31,11 @@ footer{
     font-family: 'Trade Winds', cursive;
 }
 
-      #menu {
+#menu {
         margin-bottom:      2em;
       }
 
-      #preview {
+#preview {
       
         padding:        2em;
         margin:         0 10%;
@@ -104,7 +43,7 @@ footer{
         
       }
 
-      .chapter {
+.chapter {
         -webkit-columns:    460px;
            -moz-columns:    460px;
             columns:    460px;
@@ -123,7 +62,7 @@ footer{
       
   
 
-      #footer {
+#footer {
         margin-top:     4em;
         text-align:     center;
         color:        silver;
@@ -131,18 +70,18 @@ footer{
         padding-top:    1em;
       }
 
-      .output {
+.output {
         font-family:    monospace;
         border:       solid thin silver;
         padding:      .2em .4em;
         background-color: #cf3;
       }
 
-      .clickable {
+.clickable {
         cursor:       pointer;
       }
 
-      pre {
+pre {
         tab-size:     4;
         overflow-x:     auto;
         background-color: #eee;

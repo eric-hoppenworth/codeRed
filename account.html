@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
-	<title>Account page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MC Account</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/profile.css">
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 </head>
 <body>
 	<!--Navigation-->
@@ -25,7 +28,6 @@
 					<ul class="nav navbar-nav">
 						<li><a href="index.html">Welcome</a></li>
 						<li><a href="profile.html">Profile</a></li>
-						<li><a href="project.html">Project</a></li>
 						<li><a href="browse.html">Browse Projects</a></li>
 					</ul>
 
@@ -68,7 +70,7 @@
 								</div>
 								
 								<div class = "col-xs-6" id = "photoHolder">
-									<img src="" alt="profile picture">
+									<img id="profilePicture" src="" alt="profile picture">
 								</div>						
 								<!-- Modal -->
 								<div class="modal fade" id="myAccountEdit" role="dialog">
@@ -85,9 +87,10 @@
 													<label for="newName" class="form-control-label">Account Name:</label>
 													<input type="text" class="form-control" id="newName">
 													<br>
+
 													<label for="newBio" class="form-control-label">Bio:</label>
-													<textarea class="form-control" id="newBio">
-													</textarea>
+													<textarea class="form-control" id="newBio"></textarea>
+
 													<br>
 													<label for="newEmail" class="form-control-label">Contact Email:</label>
 													<input type="text" class="form-control" id="newEmail">
@@ -107,42 +110,66 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading" id="ph">
-							<h2 class="panel-title">Manage Audio Samples</h2>
+			</div>
+			<div class="col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading" id="ph">
+						<h2 class="panel-title">Manage Audio Samples</h2>
+					</div>
+					<div class="panel-body">
+						<div id= "audioButtonHolder">
+							<!-- audio button -->
 						</div>
-						<div class="panel-body">
-							<div id = "addAudio"></div>
-							<hr>
-							<div id="form2">
-								<form class="audioSample"> 
-								</form>
-							</div>
+						<div id = "audioList">
+							<!-- audio stored here -->
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading" id="ph">
-							<h2 class="panel-title">Manage Projects</h2>
-						</div>
-						<div class="panel-body">
-							<div id="form3">
-								<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
-								<form id="infoForm2">
-									<label for="newProject"><h2>Projects</h2></label>
-									<br>
-									<!-- Trigger the modal with a button -->
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
-									<!-- Modal -->
-									<div class="modal fade" id="newProject" role="dialog">
-										<div class="modal-dialog">
-											<!-- Modal content-->
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal">&times;</button>
-													<h4 class="modal-title">Create New Project</h4>
+			</div>
+			<div class="col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">Manage Projects</h2>
+					</div>
+					<div class="panel-body">
+						<div>
+							<!-- This section will look different after modals are created.  It should diplay info, and the edit/create buttons should bring up modals with input fields -->
+							<form>
+								<label for="newProject"><h2>Projects</h2></label>
+								<br>
+								<!-- Trigger the modal with a button -->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
+								<!-- Modal -->
+								<div class="modal fade" id="newProject" role="dialog">
+									<div class="modal-dialog">
+										<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Create New Project</h4>
+											</div>
+											<div class="modal-body">
+												<hr>
+												<div class="form-group">
+													<label for="newProjectTitle" class="form-control-label">Project Name:</label>
+													<input type="text" class="form-control projectInput" id="newProjectTitle">
+													<br>
+													<label for="newProjectInfo" class="form-control-label">Project Description:</label>
+													<textarea class="form-control projectInput" id="newProjectInfo"></textarea>
+													<br>
+													<label for="newProjectGenre" class="form-control-label">Genre:</label>
+													<input class="form-control projectInput" id="newProjectGenre"></input>
+													<br>
+													<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
+													<input type="email" class="form-control projectInput" id="newProjectEmail">
+													<br>
+													<label for="newProjectNeeds" class="form-control-label" id = "needList">Needs:</label>
+													<input type="text" class="form-control projectInput" id="newProjectNeeds">
+													<button type="button" class="btn btn-primary" id="needsAdd">Add</button>
+													<br>
+													<br>
+													<label for="newProjectWants" class="form-control-label" id = "wantList">Wants:</label>
+													<input type="text" class="form-control projectInput" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
 												</div>
 												<div class="modal-body">
 													<hr>
@@ -174,6 +201,10 @@
 									</div>
 								</form>
 							</div>
+						</div>
+						<hr>
+						<div id = "projectSampleHolder">
+							
 						</div>
 					</div>
 				</div>

@@ -1,37 +1,79 @@
+var currentPage = "profile";
 //retrieve userID from address bar
-var userID = "KYVOypHI6oQcJUrYuAc6zlW2ifm2"
-var myUser;
-
-usersEndPoint.once("value",function(snapshot) {
-	myUser = snapshot.child(userID).val()
-	printUser(myUser);
-})
+var profileID = window.location.hash;
+var profileUser;
+firebase.auth().onAuthStateChanged(function(user){
+	if (user){
+		authUser = user;
+		usersEndPoint.once("value",function(snapshot){
+			if (snapshot.hasChild(user.uid)){
+			//if the user already exists
+				currentUser = snapshot.child(user.uid).val();
+			} else {
+				currentUser = new User();  //create a user using default values
+			}
+			if (profileID === ""){
+				//there is no profile to display
+				profileID = currentUser.key;
+				profileUser = currentUser;
+				printProfile(profileUser);
+			} else {
+				//remove the "#"
+				profileID = profileID.substring(1);
+				usersEndPoint.once("value",function(snapshot) {
+					if (snapshot.hasChild(profileID)){
+						profileUser = snapshot.child(profileID).val();
+						printProfile(profileUser);
+					} else {
+						//no profile to show
+						//there is no profile to display
+						profileID = currentUser.key;
+						profileUser = currentUser;
+						printProfile(profileUser);
+					}
+				});
+			}
+		});
+		
+	} else {
+		//no user is signed in
+		if (profileID === ""){
+			//there is no profile to display
+			window.location = "index.html";
+		} else {
+			//remove the "#"
+			profileID = profileID.substring(1);
+			usersEndPoint.once("value",function(snapshot) {
+				if (snapshot.hasChild(profileID)){
+					var profileUser = snapshot.child(profileID).val();
+					printProfile(profileUser);
+				} else {
+					//no profile to show
+					window.location = "index.html";
+				}
+			});
+		}
+	}
+		
+});
 
 //function to print user data to the page on load
 //argument passed in as User Object
-function printUser(user){
+function printProfile(user){
+	$("#userName").text(user.name);
+	$("#userInfo").text(user.bio);
+	$("#userContact").text("Contact: "+user.email);
+	//show picture
+	$("#userImage").attr("src",user.imageURL);
 
-}
-
-//printProjectShort(key,false)
-//This function will be living in the app.js file, since many pages will be using it
-
-//will print audio samples retrieved from storage
-//eric is building this one
-function printAudio(user){
-	for(var i= 0; i < user.audioURLs.length; i++){
-		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
-			//do nothing
-		}else {
-			var audio = $("<audio>");
-			audio.attr("controls","");
-			var source = $("<source>");
-			source.attr("src", user.audioURLs[i])
-			source.attr("type","audio/mp4");
-			audio.append(source);
-			$("#audioHolder").append(audio);
+	//print audio
+	printAllAudio(profileUser);
+	//print project snippets
+	projectsEndPoint.on("child_added",function(snapshot){
+		var myProject = snapshot.val();
+		if(myProject.userKey === profileUser.key){
+			printProjectSnippet(myProject.key,false);
 		}
-		
-	}
+	});
 }
 

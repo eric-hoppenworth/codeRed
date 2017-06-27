@@ -1,3 +1,44 @@
+body { 
+  background-color: #000000;
+  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*add padding to make room for the static footer*/
+  padding-bottom: 51px;
+}
+nav form{
+  float: right;
+  font-family: 'Trade Winds', cursive; 
+}
+
+.navmod {
+  background-color: black;
+  border:2px solid #0000cc;
+  border-bottom:2px solid #000099;
+
+}
+
+#mcNavbar{
+  font-family: 'Trade Winds', cursive; 
+}
+
+.navbar-header{
+  font-family: 'Trade Winds', cursive; 
+  color: black; 
+}
+
+nav form {
+  float: right;
+}
+
+.panel{
+  font-family: 'Trade Winds', cursive;    
+}
+
+
+
 .jumbotron{
   text-align: center;
   font-family: 'Trade Winds', cursive;
@@ -6,6 +47,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom:2px solid #d260d4;
+}
+
+.jumbotron .container {
+  position:relative;
+  top:50px;
 }
 
 #welcomeText{
@@ -18,42 +64,21 @@
   word-wrap: break-word;
 }
 
-nav form{
-  float: right;
-  font-family: 'Trade Winds', cursive; 
-}
-#mcNavbar{
-  font-family: 'Trade Winds', cursive; 
-}
-
-.navbar-header{
-  font-family: 'Trade Winds', cursive; 
-  color: black; 
-}
-
-.panel{
-  font-family: 'Trade Winds', cursive;    
-}
-
-#ph{
-  background-color: #0000ff;
-}
-
 .panel-body {
   background-color: #b1b1cd;
   border-bottom:2px solid #d260d4;
 }
-#marquee{
-  width: 100%;
+
+.projectImage {
+  height: 150px;
+  width: auto;
 }
 
-body { 
-  background-color: #000000;
-  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.audioPlayer {
+  width: auto;
+}
+.row {
+  width: auto;
 }
 
 footer{
@@ -64,10 +89,15 @@ footer{
   text-align: center;
   clear: both;
   font-size: 15px;
-  border-top: 1px black;
-  margin-top: 50px;
+  padding: 10px 0;
   font-family: 'Trade Winds', cursive;
   text-decoration-color: #fff;
-  font-color: green;
   background-color: black;
+}
+.panel-body {
+  background-color: #b1b1cd;
+  border-bottom:2px solid #d260d4;
+}
+.panel-heading{
+  background-color: #000099;
 }
