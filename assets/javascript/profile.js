@@ -12,28 +12,29 @@ firebase.auth().onAuthStateChanged(function(user){
 			} else {
 				currentUser = new User();  //create a user using default values
 			}
+			if (profileID === ""){
+				//there is no profile to display
+				profileID = currentUser.key;
+				profileUser = currentUser;
+				printProfile(profileUser);
+			} else {
+				//remove the "#"
+				profileID = profileID.substring(1);
+				usersEndPoint.once("value",function(snapshot) {
+					if (snapshot.hasChild(profileID)){
+						profileUser = snapshot.child(profileID).val();
+						printProfile(profileUser);
+					} else {
+						//no profile to show
+						//there is no profile to display
+						profileID = currentUser.key;
+						profileUser = currentUser;
+						printProfile(profileUser);
+					}
+				});
+			}
 		});
-		if (profileID === ""){
-			//there is no profile to display
-			profileID = currentUser.key;
-			profileUser = currentUser;
-			printProfile(profileUser);
-		} else {
-			//remove the "#"
-			profileID = profileID.substring(1);
-			usersEndPoint.once("value",function(snapshot) {
-				if (snapshot.hasChild(profileID)){
-					profileUser = snapshot.child(profileID).val();
-					printProfile(profileUser);
-				} else {
-					//no profile to show
-					//there is no profile to display
-					profileID = currentUser.key;
-					profileUser = currentUser;
-					printProfile(profileUser);
-				}
-			});
-		}
+		
 	} else {
 		//no user is signed in
 		if (profileID === ""){
