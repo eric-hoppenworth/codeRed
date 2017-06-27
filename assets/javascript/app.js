@@ -22,7 +22,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.needs= needs;
 	this.wants = wants;
 	this.completedList = [""];
-	this.imgURL = "assets/images/defaultProject.png";
+	this.imageURL = "assets/images/defaultProject.png";
 	this.audioURLs = [""];
 	if (key === ""){
 		//this is a new project, generate a key
@@ -113,7 +113,7 @@ function printProjectSnippet(key,showButtons = false){
 			var imgDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload an Image"));
 			imgRow.append(imgDbDiv);
 			buildDropboxButton(myProject,"images","Project",imgDbDiv);
-			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").attr("src",myProject.imageURL)));
+			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").attr("src",myProject.imageURL).attr("id","img"+myProject.key)));
 			buttonDiv.append(imgRow);
 			//audio
 			var audioRow = $("<div>").addClass("row");
@@ -136,7 +136,7 @@ function printProjectSnippet(key,showButtons = false){
 }
 
 //will print audio samples retrieved from storage
-function printAllAudio(user,showButtons = false,appender){
+function printAllAudio(user,showButtons = false,appender = ""){
 	for(var i= 0; i < user.audioURLs.length; i++){
 		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
 			//do nothing

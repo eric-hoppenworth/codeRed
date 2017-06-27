@@ -1,6 +1,5 @@
 var currentPage = "browse";
 var searchTerm;
-searchTerm = "guitar";
 firebase.auth().onAuthStateChanged(function(user){
 	if (user){
 		authUser = user;
@@ -15,13 +14,28 @@ firebase.auth().onAuthStateChanged(function(user){
 	} else {
 		//no user is signed in
 	}
-		
+	//regardless of whether or not you are signed in, still do a search based on hash
+	searchTerm = window.location.hash;
+	if (searchTerm === "" || searchTerm === "#"){
+		//no search term provided
+	} else {
+		//perform search
+		//remove hash
+		searchTerm = searchTerm.subString(1);
+		executeSearch("need",searchTerm);
+	}
 });
 
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
 $("#submitSearch").on("click",function(event){
 	event.preventDefault();
+	var searchTerm = $("#inputSearch").val().trim();
+	executeSearch("need",searchTerm);
+	
+});
+
+function executeSearch(type= "need",searchTerm){
 	var index = 0;
 	projectsEndPoint.once("value",function(snapshot){
 		snapshot.forEach(function(dataProject){
@@ -29,12 +43,14 @@ $("#submitSearch").on("click",function(event){
 			//check to see if the project has a 'need'
 			if (typeof myProject.needs === "string"){
 				if (myProject.needs.toLowerCase() === searchTerm.toLowerCase()){
+					//print project images to carousel
 					console.log(index + ": "+myProject.key);
 					index ++;
 				}
 			} else {
 				for (var i = 0; i < myProject.needs.length; i++){
 					if (myProject.needs[i].toLowerCase() === searchTerm.toLowerCase()){
+						//print project images to carousel
 						console.log(index + ": "+myProject.key);
 						index ++;
 						break;
@@ -43,4 +59,4 @@ $("#submitSearch").on("click",function(event){
 			}
 		});
 	});
-});
+}
