@@ -12,6 +12,9 @@ firebase.auth().onAuthStateChanged(function(user){
 		});
 	} else {
 		//no user is signed in
+		//clear out options in navbar
+		//unauthorized users will still be able to access the browse page by using te search bar
+		$(".nav").empty();
 	}
 		
 });
