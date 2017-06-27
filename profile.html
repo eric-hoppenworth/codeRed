@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Profile: New MCs</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse">
         <div class="container-fluid" id="navbar">
             <div class="container">
                 <div class="navbar-header">
@@ -26,18 +26,18 @@
                     <a class="navbar-brand" href="index.html">New MC</a>
                 </div>
                 <div class="collapse navbar-collapse" id="mcNavbar" >                
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Welcome</a></li>                
-                    <li><a href="account.html">Account</a></li>
-                    <li><a href="browse.html">Browse Projects</a></li>
-                </ul>
-                <form class="navbar-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" id="inputSearch">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-            </div>
+	                <ul class="nav navbar-nav">
+	                    <li><a href="index.html">Welcome</a></li>                
+	                    <li><a href="account.html">Account</a></li>
+	                    <li><a href="browse.html">Browse Projects</a></li>
+	                </ul>
+	                <form class="navbar-form">
+	                    <div class="form-group">
+	                        <input type="text" class="form-control" placeholder="Search" id="inputSearch">
+	                    </div>
+	                    <button type="submit" class="btn btn-default">Submit</button>
+	                </form>
+            	</div>
             </div>
         </div>
     </nav>
@@ -51,36 +51,42 @@
 			</div>
 			<br><br>
 			<!-- Adding train Info Panel -->
-			<div class="col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title" id="userName">Name</h3>
-					</div>
-					<div class="panel-body">
-						<div class="col-xs-6">
-							<img src="" id="userImage" alt="A Picture of the user">
-							<p id="userInfo">About The Producer - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-							<p id = "userContact">
-								Contact: email@fake.gov
-							</p>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title" id="userName">Name</h3>
 						</div>
-						<div class="col-xs-6">
-							<h5>Audio Samples</h5>
-							<div id="audioList" class="audioPlayer">
-								
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-6">
+									<img src="" id="userImage" alt="A Picture of the user">
+									<p id="userInfo">About The Producer - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+									<p id = "userContact">
+										Contact: email@fake.gov
+									</p>
+								</div>
+								<div class="col-xs-6">
+									<h5>Audio Samples</h5>
+									<div id="audioList" class="audioPlayer">
+										
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">Current Projects</h3>
-					</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Current Projects</h3>
+						</div>
 
-					<div class="panel-body" id = "projectSampleHolder">
-						<!-- projects will live here -->
+						<div class="panel-body" id = "projectSampleHolder">
+							<!-- projects will live here -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -90,7 +96,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+  	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	<script type="text/javascript" src="assets/javascript/profile.js"></script>
 
