@@ -34,7 +34,7 @@ if (projectID=== ""){
 //this function will print the project info for the current project page
 //argument is coming in as a Project Object
 function printProject(project){
-	$("#projectImage").attr("src", project.imgURL);
+	$("#projectImage").attr("src", project.imageURL);
 	$("#projectName").text(project.name);
 	$("#projectEmail").text(project.email);
 	$("#projectDescription").text(project.description);
