@@ -45,6 +45,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		});
 	} else {
 		//no user is signed in
+		window.location = "index.html";
 	}
 		
 });

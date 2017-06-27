@@ -1,6 +1,6 @@
 var currentPage = "project";
 //retrieve projectID from address bar
-var projectID = "-KnMvn4lKj-V7wyciCUl";
+var projectID = window.location.hash;
 var myProject;
 firebase.auth().onAuthStateChanged(function(user){
 	if (user){
@@ -12,23 +12,45 @@ firebase.auth().onAuthStateChanged(function(user){
 			} else {
 				currentUser = new User();  //create a user using default values
 			}
+			if (projectID === ""){
+				//there is no project to display
+				window.location = "index.html";
+			} else {
+				//remove the "#"
+				projectID = projectID.substring(1);
+				projectsEndPoint.once("value",function(snapshot) {
+					if (snapshot.hasChild(projectID)){
+						myProject = snapshot.child(projectID).val();
+						printProject(myProject);	
+					} else {
+						//invalid hash
+						window.location = "index.html";
+					}
+				})
+			}
 		});
 	} else {
 		//no user is signed in
+		if (projectID === ""){
+			//there is no project to display
+			window.location = "index.html";
+		} else {
+			//remove the "#"
+			projectID = projectID.substring(1);
+			projectsEndPoint.once("value",function(snapshot) {
+				if (snapshot.hasChild(projectID)){
+					myProject = snapshot.child(projectID).val();
+					printProject(myProject);	
+				} else {
+					//invalid hash
+					window.location = "index.html";
+				}
+			})
+		}
 	}
 		
 });
-projectID = window.location.hash;
-if (projectID=== ""){
-	//there is no project to display
-} else {
-	//remove the "#"
-	projectID = projectID.substring(1);
-	projectsEndPoint.once("value",function(snapshot) {
-		myProject = snapshot.child(projectID).val()
-		printProject(myProject);
-	})
-}
+
 
 
 //this function will print the project info for the current project page
