@@ -20,21 +20,21 @@ nav form{
   border-bottom:2px solid #000099;
 }
 
-#mcNavbar{
-  font-family: 'Trade Winds', cursive; 
+#mcNavbar {
+    font-family: 'Trade Winds', cursive;
 }
 
-.navbar-header{
-  font-family: 'Trade Winds', cursive; 
-  color: black; 
+.navbar-header {
+    font-family: 'Trade Winds', cursive;
+    color: black;
 }
 
 nav form {
   float: right;
 }
 
-.panel{
-  font-family: 'Trade Winds', cursive;    
+.panel {
+    font-family: 'Trade Winds', cursive;
 }
 
 .jumbotron{
@@ -48,18 +48,18 @@ nav form {
 }
 
 .jumbotron .container {
-  position:relative;
-  top:50px;
+    position: relative;
+    top: 50px;
 }
 
-#welcomeText{
-  color: black;
-  text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
-  max-width: 100%;
-  box-sizing: 90%;
-  margin-right: 10%;
-  margin-left: 10%;
-  word-wrap: break-word;
+#welcomeText {
+    color: black;
+    text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
+    max-width: 100%;
+    box-sizing: 90%;
+    margin-right: 10%;
+    margin-left: 10%;
+    word-wrap: break-word;
 }
 
 .panel-body {
@@ -69,34 +69,43 @@ nav form {
 }
 
 .projectImage {
-  height: 150px;
-  width: auto;
+    height: 150px;
+    width: auto;
 }
 
 .audioPlayer {
-  width: auto;
+    width: auto;
 }
+
 .row {
   width: auto;
 }
 
-footer{
-	position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  clear: both;
-  font-size: 15px;
-  padding: 10px 0;
-  font-family: 'Trade Winds', cursive;
-  text-decoration-color: #fff;
-  background-color: black;
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    clear: both;
+    font-size: 15px;
+    border-top: 1px black;
+    margin-top: 50px;
+    font-family: 'Trade Winds', cursive;
+    text-decoration-color: #fff;
+    color: #ddd;
+    background-color: black;
 }
+
+footer p {
+    padding-top: 15px;
+}
+
 .panel-body {
-  background-color: #b1b1cd;
-  border-bottom:2px solid #d260d4;
+    background-color: #b1b1cd;
+    border-bottom: 2px solid #d260d4;
 }
+
 .panel-heading{
-  background-color: #000099;
+  background-color: #371f94;
 }
