@@ -109,3 +109,19 @@ footer p {
 .panel-heading{
   background-color: #371f94;
 }
+
+/* project sample styling */
+.projectSample{
+  border-left:1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0px;
+  background: #d6d6ff;
+  text-align: left;
+}
+.projectSample a{
+  color: #005f02;
+  text-decoration: none;
+}
+.projectImage {
+  width: 80%;
+}
