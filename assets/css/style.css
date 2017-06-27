@@ -6,7 +6,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   /*add padding to make room for the static footer*/
-  padding-bottom: 31px;
+  padding-bottom: 51px;
 }
 nav form{
   float: right;
@@ -14,9 +14,9 @@ nav form{
 }
 
 .navmod {
-    background-color: black;
-    border:2px solid #0000cc;
-    border-bottom:2px solid #000099;
+  background-color: black;
+  border:2px solid #0000cc;
+  border-bottom:2px solid #000099;
 
 }
 
@@ -30,7 +30,7 @@ nav form{
 }
 
 nav form {
-    float: right;
+  float: right;
 }
 
 .panel{
@@ -65,9 +65,8 @@ nav form {
 }
 
 .panel-body {
-    background-color: #b1b1cd;
-    border-bottom:2px solid #d260d4;
-    text-align: justify;
+  background-color: #b1b1cd;
+  border-bottom:2px solid #d260d4;
 }
 .projectImage {
   height: 150px;
@@ -78,7 +77,7 @@ nav form {
   width: auto;
 }
 .row {
-    width: auto;
+  width: auto;
 }
 
 footer{
@@ -89,11 +88,9 @@ footer{
   text-align: center;
   clear: both;
   font-size: 15px;
-  border-top: 1px black;
-  margin-top: 50px;
+  padding: 10px 0;
   font-family: 'Trade Winds', cursive;
   text-decoration-color: #fff;
-  font-color: green;
   background-color: black;
 }
 .panel-body {
@@ -102,5 +99,4 @@ footer{
 }
 .panel-heading{
   background-color: #000099;
-}
 }
