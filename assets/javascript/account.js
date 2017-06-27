@@ -2,6 +2,7 @@ var currentPage = "account";
 var myDbxId = "0ot1htkfrv9jzeg";
 var userBox;
 
+
 firebase.auth().onAuthStateChanged(function(user){
 	if (user){
 		authUser = user;
@@ -79,7 +80,9 @@ function printAccountInfo(user){
 	$("#userName").text(user.name);
 	$("#userBio").text(user.bio);
 	$("#userEmail").text(user.email);
-	$("#profilePicture").attr("src", user.imageURL);
+	//the "profilePicture img needs to have its id changed"
+	$("#profilePicture").attr("id","img"+user.key);
+	$("#img"+user.key).attr("src", user.imageURL);
 	printAllAudio(user,true);
 }
 
@@ -215,6 +218,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 					printAudio(user,user.audioURLs.length-1,true)
 				} else if (fileType === "images"){
 					user.imageURL = url;
+					$("#img"+user.key).attr("src",user.imgURL);
 				}
 				if (objectType === "User"){
 					usersEndPoint.child(user.key).update(user);
