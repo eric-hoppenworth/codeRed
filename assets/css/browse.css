@@ -57,8 +57,8 @@
 }
 
 pre {
-  tab-size:     4;
-  overflow-x:     auto;
+  tab-size: 4;
+  overflow-x: auto;
   background-color: #eee;
   -webkit-column-break-inside: avoid;
 }

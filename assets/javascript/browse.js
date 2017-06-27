@@ -18,6 +18,7 @@ firebase.auth().onAuthStateChanged(function(user){
 	searchTerm = window.location.hash;
 	if (searchTerm === "" || searchTerm === "#"){
 		//no search term provided
+		//do a search based on recent
 	} else {
 		//perform search
 		//remove hash
