@@ -43,6 +43,9 @@ nav form{
   background-color: #b1b1cd;
   border-bottom:2px solid #d260d4;
 }
+#marquee{
+  width: 100%;
+}
 
 body { 
   background-color: #000000;
