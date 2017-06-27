@@ -79,6 +79,7 @@ function printAccountInfo(user){
 	$("#userName").text(user.name);
 	$("#userBio").text(user.bio);
 	$("#userEmail").text(user.email);
+	$("#profilePicture").attr("src", user.imgURL);
 	printAllAudio(user,true);
 }
 
