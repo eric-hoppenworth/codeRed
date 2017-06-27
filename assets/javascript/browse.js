@@ -1,6 +1,22 @@
+var currentPage = "browse";
 var searchTerm;
 searchTerm = "guitar";
-
+firebase.auth().onAuthStateChanged(function(user){
+	if (user){
+		authUser = user;
+		usersEndPoint.once("value",function(snapshot){
+			if (snapshot.hasChild(user.uid)){
+			//if the user already exists
+				currentUser = snapshot.child(user.uid).val();
+			} else {
+				currentUser = new User();  //create a user using default values
+			}
+		});
+	} else {
+		//no user is signed in
+	}
+		
+});
 
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
