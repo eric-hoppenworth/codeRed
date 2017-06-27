@@ -8,6 +8,7 @@ body {
   /*add padding to make room for the static footer*/
   padding-bottom: 51px;
 }
+
 nav form{
   float: right;
   font-family: 'Trade Winds', cursive; 
@@ -17,7 +18,6 @@ nav form{
   background-color: black;
   border:2px solid #0000cc;
   border-bottom:2px solid #000099;
-
 }
 
 #mcNavbar{
@@ -36,8 +36,6 @@ nav form {
 .panel{
   font-family: 'Trade Winds', cursive;    
 }
-
-
 
 .jumbotron{
   text-align: center;
@@ -67,6 +65,7 @@ nav form {
 .panel-body {
   background-color: #b1b1cd;
   border-bottom:2px solid #d260d4;
+  font-family: 'Arimo', sans-serif
 }
 
 .projectImage {
