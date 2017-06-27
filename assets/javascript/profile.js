@@ -1,6 +1,23 @@
+var currentPage = "profile";
 //retrieve userID from address bar
 var profileID = "KYVOypHI6oQcJUrYuAc6zlW2ifm2"
 var profileUser;
+firebase.auth().onAuthStateChanged(function(user){
+	if (user){
+		authUser = user;
+		usersEndPoint.once("value",function(snapshot){
+			if (snapshot.hasChild(user.uid)){
+			//if the user already exists
+				currentUser = snapshot.child(user.uid).val();
+			} else {
+				currentUser = new User();  //create a user using default values
+			}
+		});
+	} else {
+		//no user is signed in
+	}
+		
+});
 
 profileID = window.location.hash;
 if (profileID=== ""){

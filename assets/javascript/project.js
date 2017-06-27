@@ -1,6 +1,23 @@
+var currentPage = "project";
 //retrieve projectID from address bar
 var projectID = "-KnMvn4lKj-V7wyciCUl";
 var myProject;
+firebase.auth().onAuthStateChanged(function(user){
+	if (user){
+		authUser = user;
+		usersEndPoint.once("value",function(snapshot){
+			if (snapshot.hasChild(user.uid)){
+			//if the user already exists
+				currentUser = snapshot.child(user.uid).val();
+			} else {
+				currentUser = new User();  //create a user using default values
+			}
+		});
+	} else {
+		//no user is signed in
+	}
+		
+});
 projectID = window.location.hash;
 if (projectID=== ""){
 	//there is no project to display
