@@ -218,7 +218,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 					printAudio(user,user.audioURLs.length-1,true)
 				} else if (fileType === "images"){
 					user.imageURL = url;
-					$("#img"+user.key).attr("src",user.imgURL);
+					$("#img"+user.key).attr("src",user.imageURL);
 				}
 				if (objectType === "User"){
 					usersEndPoint.child(user.key).update(user);
