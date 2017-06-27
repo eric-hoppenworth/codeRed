@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid" id="navbar">
             <div class="container">
                 <div class="navbar-header">
@@ -25,19 +25,20 @@
                     </button>
                     <a class="navbar-brand" href="index.html">New MC</a>
                 </div>
-                <div class="collapse navbar-collapse" id="mcNavbar" >                
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Welcome</a></li>
-                    <li><a href="account.html">Account</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="browse.html">Browse Projects</a></li>
-                </ul>
-                <form class="navbar-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" id="inputSearch">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+                <div class="collapse navbar-collapse" id="mcNavbar">                
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Welcome</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="browse.html">Browse Projects</a></li>
+                    </ul>
+                    <form class="navbar-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search" id="inputSearch">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
@@ -51,9 +52,6 @@
                     <div class="panel-body">
                         <div id="projectImageHolder">
                             <img id = "projectImage" src="#" alt="A Picture of the User">
-                            <div>
-                                <p id="imgLabel"></p>
-                            </div>
                         </div>
                         <p id="projectName"></p>
                         <p id="projectDescription"></p>
@@ -121,5 +119,4 @@
     <script type="text/javascript" src="assets/javascript/project.js"></script>
 
 </body>
-
 </html>
