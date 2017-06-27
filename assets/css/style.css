@@ -1,106 +1,114 @@
-body { 
-  background-color: #000000;
-  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  /*add padding to make room for the static footer*/
-  padding-bottom: 31px;
+body {
+    background-color: #000000;
+    background: url(../images/blueSphere.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*add padding to make room for the static footer*/
+    padding-bottom: 31px;
 }
-nav form{
-  float: right;
-  font-family: 'Trade Winds', cursive; 
+
+nav form {
+    float: right;
+    font-family: 'Trade Winds', cursive;
 }
 
 .navmod {
     background-color: black;
-    border:2px solid #0000cc;
-    border-bottom:2px solid #000099;
-
+    border: 2px solid #0000cc;
+    border-bottom: 2px solid #000099;
 }
 
-#mcNavbar{
-  font-family: 'Trade Winds', cursive; 
+#mcNavbar {
+    font-family: 'Trade Winds', cursive;
 }
 
-.navbar-header{
-  font-family: 'Trade Winds', cursive; 
-  color: black; 
+.navbar-header {
+    font-family: 'Trade Winds', cursive;
+    color: black;
 }
 
 nav form {
     float: right;
 }
 
-.panel{
-  font-family: 'Trade Winds', cursive;    
+.panel {
+    font-family: 'Trade Winds', cursive;
 }
 
-
-
-.jumbotron{
-  text-align: center;
-  font-family: 'Trade Winds', cursive;
-  height: 300px;
-  background-image: url(../images/waveMeterRs.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-bottom:2px solid #d260d4;
+.jumbotron {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    height: 300px;
+    background-image: url(../images/waveMeterRs.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 2px solid #d260d4;
 }
 
 .jumbotron .container {
-  position:relative;
-  top:50px;
+    position: relative;
+    top: 50px;
 }
 
-#welcomeText{
-  color: black;
-  text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
-  max-width: 100%;
-  box-sizing: 90%;
-  margin-right: 10%;
-  margin-left: 10%;
-  word-wrap: break-word;
+#welcomeText {
+    color: black;
+    text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
+    max-width: 100%;
+    box-sizing: 90%;
+    margin-right: 10%;
+    margin-left: 10%;
+    word-wrap: break-word;
 }
 
 .panel-body {
     background-color: #b1b1cd;
-    border-bottom:2px solid #d260d4;
+    border-bottom: 2px solid #d260d4;
     text-align: justify;
 }
+
 .projectImage {
-  height: 150px;
-  width: auto;
+    height: 150px;
+    width: auto;
 }
 
 .audioPlayer {
-  width: auto;
+    width: auto;
 }
+
 .row {
     width: auto;
 }
 
-footer{
-	position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  clear: both;
-  font-size: 15px;
-  border-top: 1px black;
-  margin-top: 50px;
-  font-family: 'Trade Winds', cursive;
-  text-decoration-color: #fff;
-  font-color: green;
-  background-color: black;
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    clear: both;
+    font-size: 15px;
+    border-top: 1px black;
+    margin-top: 50px;
+    font-family: 'Trade Winds', cursive;
+    text-decoration-color: #fff;
+    color: silver;
+    background-color: black;
 }
+
+footer p {
+    padding-top: 15px;
+}
+
 .panel-body {
-  background-color: #b1b1cd;
-  border-bottom:2px solid #d260d4;
+    background-color: #b1b1cd;
+    border-bottom: 2px solid #d260d4;
 }
-.panel-heading{
-  background-color: #000099;
+
+#ph {
+    background-color: #371f94;
 }
+
+
 }
