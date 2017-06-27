@@ -76,16 +76,16 @@ function getAccessTokenFromUrl() {
   };
 })(window);
 
-function Project(name ="default",email = "", desc = "Producer has not yet added a description.",needs= [""],wants = [""],key =""){
+function Project(name ="default",email = "", desc = "Producer has not yet added a description.",genre = "none",needs= [""],wants = [""],key =""){
 	this.name = name;
 	this.email = email;
 	this.description = desc;
-	this.genre = "Rap";
+	this.genre = genre;
 	this.userKey = authUser.uid;
 	this.needs= needs;
 	this.wants = wants;
-	this.completedList = [];
-	this.imgURL = "";
+	this.completedList = [""];
+	this.imgURL = "assets/images/defaultProject.png";
 	this.audioURLs = [""];
 	if (key === ""){
 		//this is a new project, generate a key
@@ -103,10 +103,10 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 	this.bio = bio;
 	this.key = authUser.uid;
 	this.projectList = [""];
-	this.contributersList = [];
+	this.contributersList = [""];
 	this.dropBoxToken = "0";
 	this.audioURLs = [""];
-	this.imageURL = "";
+	this.imageURL = "assets/images/defaultUser.png";
 	usersEndPoint.child(this.key).update(this);
 }
 
@@ -213,7 +213,8 @@ function printAudio(user,index,showButtons = false,appender = ""){
 	var audioDiv = $("<div>");
 	audioDiv.addClass("audioHolder");
 	var audio = $("<audio>");
-	audio.attr("controls","");
+	audio.attr("controls","")
+	audio.attr('controlsList','nodownload');
 	var source = $("<source>");
 	source.attr("src", user.audioURLs[index]);
 	source.attr("type","audio/mp4");

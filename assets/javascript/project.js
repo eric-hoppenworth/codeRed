@@ -21,20 +21,28 @@ function printProject(project){
 	$("#projectName").text(project.name);
 	$("#projectEmail").text(project.email);
 	$("#projectDescription").text(project.description);
-	$(".projectNeedsHolder").text("");
-	$(".projectWantsHolder").text("");
+	$("#projectNeedsHolder").text("");
+	$("#projectWantsHolder").text("");
 	if (typeof project.needs === "string"){
-		$(".projectNeedsHolder").append("<li>" + project.needs[i] + "</li>");
+		if(project.needs != "" && project.needs != undefined){
+			$("#projectNeedsHolder").append("<li>" + project.needs + "</li>");
+		}
 	} else if (typeof project.needs === "object") {
 		for (var i = 0; i < project.needs.length; i++) {
-			$(".projectNeedsHolder").append("<li>" + project.needs[i] + "</li>");
+			if(project.needs[i] != "" && project.needs[i] != undefined){
+				$("#projectNeedsHolder").append("<li>" + project.needs[i] + "</li>");
+			}
 		}
 	}
 	if (typeof project.wants === "string"){
-		$(".projectWantsHolder").append("<li>" + project.wants[i] + "</li>");
+		if(project.wants != "" && project.wants != undefined){
+			$("#projectWantsHolder").append("<li>" + project.wants + "</li>");
+		}
 	} else if (typeof project.wants === "object") {
 		for (var i = 0; i < project.wants.length; i++) {
-			$(".projectWantsHolder").append("<li>" + project.wants[i] + "</li>");
+			if(project.wants[i] != "" && project.wants[i] != undefined){
+				$("#projectWantsHolder").append("<li>" + project.wants[i] + "</li>");
+			}
 		}
 	}
 }
