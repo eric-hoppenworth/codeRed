@@ -1,6 +1,6 @@
 var currentPage = "profile";
 //retrieve userID from address bar
-var profileID = "KYVOypHI6oQcJUrYuAc6zlW2ifm2"
+var profileID = window.location.hash;
 var profileUser;
 firebase.auth().onAuthStateChanged(function(user){
 	if (user){
@@ -13,23 +13,48 @@ firebase.auth().onAuthStateChanged(function(user){
 				currentUser = new User();  //create a user using default values
 			}
 		});
+		if (profileID === ""){
+			//there is no profile to display
+			profileID = currentUser.key;
+			profileUser = currentUser;
+			printProfile(profileUser);
+		} else {
+			//remove the "#"
+			profileID = profileID.substring(1);
+			usersEndPoint.once("value",function(snapshot) {
+				if (snapshot.hasChild(profileID)){
+					profileUser = snapshot.child(profileID).val();
+					printProfile(profileUser);
+				} else {
+					//no profile to show
+					//there is no profile to display
+					profileID = currentUser.key;
+					profileUser = currentUser;
+					printProfile(profileUser);
+				}
+			});
+		}
 	} else {
 		//no user is signed in
+		if (profileID === ""){
+			//there is no profile to display
+			window.location = "index.html";
+		} else {
+			//remove the "#"
+			profileID = profileID.substring(1);
+			usersEndPoint.once("value",function(snapshot) {
+				if (snapshot.hasChild(profileID)){
+					var profileUser = snapshot.child(profileID).val();
+					printProfile(profileUser);
+				} else {
+					//no profile to show
+					window.location = "index.html";
+				}
+			});
+		}
 	}
 		
 });
-
-profileID = window.location.hash;
-if (profileID=== ""){
-	//there is no project to display
-} else {
-	//remove the "#"
-	profileID = profileID.substring(1);
-	usersEndPoint.once("value",function(snapshot) {
-		var profileUser = snapshot.child(profileID).val()
-		printProfile(profileUser);
-	})
-}
 
 //function to print user data to the page on load
 //argument passed in as User Object
@@ -37,8 +62,14 @@ function printProfile(user){
 	$("#userName").text(user.name);
 	$("#userImage").text(user.pic);
 	$("#userInfo").text(user.bio);
+	//print audio
+	printAllAudio(profileUser);
+	//print project snippets
+	projectsEndPoint.on("child_added",function(snapshot){
+		var myProject = snapshot.val();
+		if(myProject.userKey === profileUser.key){
+			printProjectSnippet(myProject.key,false);
+		}
+	});
 }
-
-//printProjectShort(key,false)
-//This function will be living in the app.js file, since many pages will be using it
 

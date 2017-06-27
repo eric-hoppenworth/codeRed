@@ -136,7 +136,7 @@ function printProjectSnippet(key,showButtons = false){
 }
 
 //will print audio samples retrieved from storage
-function printAllAudio(user,showButtons = false,appender){
+function printAllAudio(user,showButtons = false,appender = ""){
 	for(var i= 0; i < user.audioURLs.length; i++){
 		if (user.audioURLs[i]=== undefined || user.audioURLs[i]=== ""){
 			//do nothing
