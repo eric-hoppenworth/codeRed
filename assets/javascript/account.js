@@ -1,6 +1,7 @@
 var currentPage = "account";
 var myDbxId = "0ot1htkfrv9jzeg";
 var userBox;
+var myProjects [];
 
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -13,15 +14,10 @@ firebase.auth().onAuthStateChanged(function(user){
 			} else {
 				currentUser = new User();  //create a user using default values
 			}
-			//check to see if I just got sent here from dropbox auth
+			//print account info
 			printAccountInfo(currentUser);
-			projectsEndPoint.on("child_added",function(snapshot){
-				var myProject = snapshot.val();
-				if(myProject.userKey === currentUser.key){
-					printProjectSnippet(myProject.key,true);
-				}
-				
-			});
+		
+			//check to see if I just got sent here from dropbox auth
 			if(currentUser.dropBoxToken === "0"){
 				if (isAuthenticated()){
 					//already authenticated, show
@@ -65,17 +61,45 @@ function editProject(key){
 	var name = $("#editProjectName").val().trim();
 	var email = $("#editProjectEmail").val().trim();
 	var description = $("#editProjectDescription").val().trim();
-	var genre = $("#editProjectGenre")
-	var needs = [];
-	var wants = [];
+	var genre = $("#editProjectGenre").val().trim();
+	var needs = [""];
+	var wants = [""];
 	$(".editNewNeed").each(function(index) {
 		needs.push($(this).text());
-	})
+	});
 	$(".editNewWant").each(function(index) {
 		wants.push($(this).text());
-	})
-	var key = $("#editProject").attr("data-key", key);
-	var newProject = new Project(name,email,description,needs,wants,key);
+	});
+	var index;
+	//get project
+	for(var i = 0; i< myProjects.length; i++){
+		if(myProjects[i].key === key){
+			index = i;
+			break;
+		}
+	}
+
+	//validate
+	if (name != ""){
+		myProjects[index].name = name;
+	}
+	if (email != ""){
+		myProjects[index].email = email;
+	}
+	if (description != ""){
+		myProjects[index].description = description;
+	}
+	if (genre != ""){
+		myProjects[index].genre = genre;
+	}
+	if(needs[1] !== undefined){
+		myProjects[index].needs = needs;
+	}
+	if(wants[1] !== undefined){
+		myProjects[index].wants = wants;
+	}
+	//update
+	projectsEndPoint.child(key).update(myProjects[index]);
 }
 
 function printAccountInfo(user){
@@ -86,7 +110,16 @@ function printAccountInfo(user){
 	$("#profilePicture").attr("id","img"+user.key);
 	$("#img"+user.key).attr("src", user.imageURL).attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
 	printAllAudio(user,true);
-}
+	//get projects
+	projectsEndPoint.on("child_added",function(snapshot){
+		var myProject = snapshot.val();
+		if(myProject.userKey === currentUser.key){
+			myProjects.push(myProject);
+			printProjectSnippet(myProject.key,true);
+		}
+		
+	});
+	}
 
 
 ////////////////////////////////
