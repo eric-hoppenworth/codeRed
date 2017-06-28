@@ -9,15 +9,18 @@
 }
 
 .jumbotron{
-  padding-top: 100px;
-  padding-bottom: 100px;
-  height: 600px;
+  padding-top: 0px;
+
 }
 
 
 .projectImage {
   height: 150px;
   width: auto;
+}
+
+.cover {
+  border-radius: 100%;
 }
 
 #menu {
