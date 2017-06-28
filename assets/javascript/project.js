@@ -62,6 +62,9 @@ function printProject(project){
 	$("#projectDescription").text(project.description);
 	$("#projectNeedsHolder").text("");
 	$("#projectWantsHolder").text("");
+
+	printAllAudio(project);
+
 	if (typeof project.needs === "string"){
 		if(project.needs != "" && project.needs != undefined){
 			$("#projectNeedsHolder").append("<li>" + project.needs + "</li>");
@@ -85,15 +88,3 @@ function printProject(project){
 		}
 	}
 }
-
-//this function will print the user info for the current signed in user
-//argument is coming in as a User Object
-function printUser(user){
-	var userDiv = $("<div>");
-	var userName = $("<h2>").text(user.name);
-	var userEmail = $("<h3>").text(user.email);
-	var userBio = $("<p>").text(user.bio);
-
-	userDiv.append(userName, userEmail, userBio).appendTo("#userProfile");
-};
-
