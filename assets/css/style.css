@@ -1,56 +1,56 @@
 body {
-    background-color: #000000;
-    background: url(../images/blueSphere.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    /*add padding to make room for the static footer*/
-    padding-bottom: 51px;
+  background-color: #000000;
+  background: url(../images/blueSphere.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*add padding to make room for the static footer*/
+  padding-bottom: 51px;
 }
 
 nav form {
-    float: right;
-    font-family: 'Trade Winds', cursive;
+  float: right;
+  font-family: 'Trade Winds', cursive;
 }
 
 .navmod {
-    background-color: black;
-    border: 2px solid #0000cc;
-    border-bottom: 2px solid #000099;
+  background-color: black;
+  border: 2px solid #0000cc;
+  border-bottom: 2px solid #000099;
 }
 
 #mcNavbar {
-    font-family: 'Trade Winds', cursive;
+  font-family: 'Trade Winds', cursive;
 }
 
 .navbar-header {
-    font-family: 'Trade Winds', cursive;
-    color: black;
+  font-family: 'Trade Winds', cursive;
+  color: black;
 }
 
 nav form {
-    float: right;
+  float: right;
 }
 
 .panel {
-    font-family: 'Trade Winds', cursive;
+  font-family: 'Trade Winds', cursive;
 }
 
 
 .jumbotron {
-    text-align: center;
-    font-family: 'Trade Winds', cursive;
-    height: 300px;
-    background-image: url(../images/waveMeterRs.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom: 2px solid #d260d4;
+  text-align: center;
+  font-family: 'Trade Winds', cursive;
+  height: 300px;
+  background-image: url(../images/waveMeterRs.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 2px solid #d260d4;
 }
 
 .jumbotron .container {
-    position: relative;
-    top: 50px;
+  position: relative;
+  top: 50px;
 }
 
 #welcomeText{
@@ -64,51 +64,39 @@ nav form {
 }
 
 .panel-body {
-    background-color: #b1b1cd;
-    border-bottom: 2px solid #d260d4;
-    font-family: 'Arimo', sans-serif
+  background-color: #b1b1cd;
+  border-bottom: 2px solid #d260d4;
+  font-family: 'Arimo', sans-serif
 }
 
-.projectImage {
-    height: 150px;
-    width: auto;
-}
-
-.audioPlayer {
-    width: auto;
-}
-
-.row {
-    width: auto;
-}
 
 footer {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    clear: both;
-    font-size: 15px;
-    border-top: 1px black;
-    margin-top: 50px;
-    font-family: 'Trade Winds', cursive;
-    text-decoration-color: #fff;
-    color: #ddd;
-    background-color: black;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  clear: both;
+  font-size: 15px;
+  border-top: 1px black;
+  font-family: 'Trade Winds', cursive;
+  text-decoration-color: #fff;
+  color: #ddd;
+  background-color: black;
 }
 
 footer p {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 .panel-body {
-    background-color: #b1b1cd;
-    border-bottom: 2px solid #d260d4;
+  background-color: #b1b1cd;
+  border-bottom: 2px solid #d260d4;
+  padding: 15px;
 }
 
 label {
-    font-size: 17px;
+  font-size: 17px;
 }
 
 .panel-heading{
@@ -122,7 +110,6 @@ label {
   margin: 0px;
   background: #d6d6ff;
   text-align: left;
-  width: 80%;
 }
 .projectSample a{
   color: #005f02;
@@ -130,4 +117,8 @@ label {
 }
 .projectImage {
   width: 80%;
+}
+
+.projectSample audio{
+  width: 50%;
 }
