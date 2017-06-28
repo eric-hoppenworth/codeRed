@@ -61,8 +61,8 @@ function executeSearch(type= "need",searchTerm){
 					}
 				}
 			}
-			showResults(searchResults);
 		});
+		showResults(searchResults);
 	});
 }
 
@@ -81,3 +81,4 @@ function showResults(resultArray){
 	}
 	$("#preview-coverflow").coverflow("refresh");
 }
+
