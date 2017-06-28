@@ -1,5 +1,6 @@
 var currentPage = "browse";
 var searchTerm;
+var searchResults = [];
 firebase.auth().onAuthStateChanged(function(user){
 	if (user){
 		authUser = user;
@@ -26,3 +27,54 @@ firebase.auth().onAuthStateChanged(function(user){
 		executeSearch("need",searchTerm);
 	}
 });
+
+//search through the data base for a project with the provided searchTerm
+//at first, it will only search by need, but I can allow other queries as well.
+$("#submitSearch").on("click",function(event){
+	event.preventDefault();
+	var searchTerm = $("#inputSearch").val().trim();
+	executeSearch("need",searchTerm);
+});
+
+function executeSearch(type= "need",searchTerm){
+	var index = 0;
+	projectsEndPoint.once("value",function(snapshot){
+		snapshot.forEach(function(dataProject){
+			var myProject = dataProject.val();
+			//check to see if the project has a 'need'
+			if (typeof myProject.needs === "string"){
+				if (myProject.needs.toLowerCase() === searchTerm.toLowerCase()){
+					//print project images to carousel
+					searchResults.push(myProject);
+					//console.log(index + ": "+myProject.key);
+					//index ++;
+				}
+			} else {
+				for (var i = 0; i < myProject.needs.length; i++){
+					if (myProject.needs[i].toLowerCase() === searchTerm.toLowerCase()){
+						//print project images to carousel
+						searchResults.push(myProject);
+						//console.log(index + ": "+myProject.key);
+						//index ++;
+						break;
+					}
+				}
+			}
+			showResults(searchResults);
+		});
+	});
+}
+
+//an array of projects
+function showResults(resultArray){
+	//add image to carousel
+	var appender = $("#preview-coverflow");
+	for (var i = 0; i < resultArray.length;i++){
+		var holder = $("<div>").addClass("cover");
+		var image = $("<img>").attr("src",resultArray[i].imageURL)
+		var paraName = $("<p>").addClass("coverName").text(resultArray[i].name);
+		var paraGenre = $("<p>").addClass("coverGenre").text(resultArray[i].genre);
+		holder.append(image).append(paraName).append(paraGenre);
+		appender.append(holder);
+	}
+}
