@@ -126,8 +126,9 @@ function printProjectSnippet(key,showButtons = false){
 			buttonDiv.append(audioRow);
 			//edit
 			var editRow = $("<div>").addClass("row");
-			editRow.append($("<button>").text("edit Details"));
+			editRow.append($("<button>").addClass("btn btn-primary").attr("data-key", key).text("Edit Details"));
 			buttonDiv.append(editRow);
+
 			bigRow.append(buttonDiv);
 		}
 		bigCol.append(bigRow);
