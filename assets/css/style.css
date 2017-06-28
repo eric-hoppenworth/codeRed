@@ -92,7 +92,7 @@ footer p {
 .panel-body {
   background-color: #b1b1cd;
   border-bottom: 2px solid #d260d4;
-  padding: 15px;
+  padding: 0px 30px;
 }
 
 label {
@@ -107,7 +107,7 @@ label {
 .projectSample{
   border-left:1px solid black;
   border-bottom: 1px solid black;
-  margin: 0px;
+  margin-bottom: 15px;
   background: #d6d6ff;
   text-align: left;
 }
