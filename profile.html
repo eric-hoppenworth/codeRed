@@ -102,6 +102,52 @@
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	<script type="text/javascript" src="assets/javascript/profile.js"></script>
 
+	////////////////////////////////////
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+
+	<!-- Firechat -->
+	<link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+	<script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+
+	<script>
+	  function login() {
+	    // Log the user in via Twitter
+	    var provider = new firebase.auth.GoogleAuthProvider();
+	    firebase.auth().signInWithPopup(provider).catch(function(error) {
+	      console.log("Error authenticating user:", error);
+	    });
+	  }
+
+	  firebase.auth().onAuthStateChanged(function(user) {
+	    // Once authenticated, instantiate Firechat with the logged in user
+	    if (user) {
+	      initChat(user);
+	    }
+	  });
+	</script>
+
+	<button onclick="login()">Login</button>
+
+	<script>
+	  function initChat(user) {
+	    // Get a Firebase Database ref
+	    var chatRef = firebase.database().ref("chat");
+
+	    // Create a Firechat instance
+	    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+
+	    // Set the Firechat user
+	    chat.setUser(user.uid, user.displayName);
+	  }
+	</script>
+
+	<div id="firechat-wrapper"></div>
+	//////////////////////////////////////
+
 	<footer>
 		<div class="container">
 			<p>&#9400; Copyright 2017 New MC's</p>
