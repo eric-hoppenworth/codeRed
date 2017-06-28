@@ -9,7 +9,9 @@
 }
 
 .jumbotron{
-  padding-top: 0;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  height: 600px;
 }
 
 
@@ -19,7 +21,7 @@
 }
 
 #menu {
-  margin-bottom:      2em;
+  margin-bottom: 2em;
 }
 
 #preview {
