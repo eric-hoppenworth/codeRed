@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Profile</title>
+	<title>Debug</title>
 	<link rel=icon href="assets/images/newmc.ico" sizes="any" type="image/svg+xml">
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/profile.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/browse.css">
 </head>
 <body>
 	<!--Navigation-->
@@ -42,76 +42,61 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container">
 
-		<!-- PROFILE INFORMATION ROW -->
-		<div class = "row">
-			<div class = "col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h2 class="panel-title"> Profile Details</h2>
-					</div>
-					<div class="panel-body">
-						<div class = "row">
-							<div class = "col-xs-6">
-                        		<h2 id="userName"></h2>
-                        		<h4>Description: </h4>
-                        		<p id="userInfo"></p>
-							
-							</div>
-							<div class = "col-xs-6">
-								<div id="userImageHolder">
-                            		<div id = "userImage"></div>
-                    			</div>
-                    			<h4>Contact Me:</h4>
-                    			<p id="userContact"></p>
-							</div>
-						</div>				
-					</div>   <!-- End panel body-->
-				</div>
-			</div>
-		</div>   <!-- End Main row -->
 
-		<!-- AUDIO SAMPLES ROW -->
-		<div class = "row">
-			<div class = "col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h2 class="panel-title">Audio Samples</h2>
-					</div>
-					<div class="panel-body">
-						<div class = "row" id = "audioList">
-							<!-- dynamic audio here -->
-						</div>
-					</div>   <!-- End panel body-->
-				</div>
-			</div>
-		</div>   <!-- End Main row -->
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-		<div class = "row">
-			<div class = "col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h2 class="panel-title">My Account</h2>
-					</div>
-					<div class="panel-body" id = "projectSampleHolder">
-					
-					</div>   <!-- End panel body-->
-				</div>
-			</div>
-		</div>   <!-- End Main row -->
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 
-	</div>
-	<footer>
-		<div class="container">
-			<p>&#9400; Copyright 2017 Code Red</p>
-		</div>
-	</footer>
+	<!-- Firechat -->
+	<link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+	<script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+
+	<script>
+	  function login() {
+	    // Log the user in via Twitter
+	    var provider = new firebase.auth.GoogleAuthProvider();
+	    firebase.auth().signInWithPopup(provider).catch(function(error) {
+	      console.log("Error authenticating user:", error);
+	    });
+	  }
+
+	  firebase.auth().onAuthStateChanged(function(user) {
+	    // Once authenticated, instantiate Firechat with the logged in user
+	    if (user) {
+	      initChat(user);
+	    }
+	  });
+	</script>
+
+	<button onclick="login()">Login</button>
+
+	<script>
+	  function initChat(user) {
+	    // Get a Firebase Database ref
+	    var chatRef = firebase.database().ref("chat");
+
+	    // Create a Firechat instance
+	    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+
+	    // Set the Firechat user
+	    chat.setUser(user.uid, user.displayName);
+	  }
+	</script>
+
+	<div id="firechat-wrapper"></div>
+
+
+
 
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="0ot1htkfrv9jzeg"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
-	<script type="text/javascript" src="assets/javascript/profile.js"></script>
+	<script type="text/javascript" src="assets/javascript/browse.js"></script>
 </body>
 </html>
