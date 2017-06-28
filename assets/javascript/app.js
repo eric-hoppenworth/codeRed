@@ -11,7 +11,10 @@ var usersEndPoint = firebase.database().ref().child("Users");
 var projectsEndPoint = firebase.database().ref().child("Projects");
 var authUser; //auth user is the user from firebase
 var currentUser; //User Object from our code
-
+$("#signOut").on("click",function(event){
+	event.preventDefault();
+	firebase.auth().signOut();
+})
 
 function Project(name ="default",email = "", desc = "Producer has not yet added a description.",genre = "none",needs= [""],wants = [""],key =""){
 	this.name = name;
