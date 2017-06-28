@@ -84,7 +84,7 @@ function printAccountInfo(user){
 	$("#userEmail").text(user.email);
 	//the "profilePicture img needs to have its id changed"
 	$("#profilePicture").attr("id","img"+user.key);
-	$("#img"+user.key).attr("src", user.imageURL);
+	$("#img"+user.key).attr("src", user.imageURL).attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
 	printAllAudio(user,true);
 }
 
