@@ -70,7 +70,7 @@ function executeSearch(type= "need",searchTerm){
 function showResults(resultArray){
 	//add image to carousel
 	var appender = $("#preview-coverflow");
-	//appender.empty();
+	appender.empty();
 	for (var i = 0; i < resultArray.length;i++){
 		var holder = $("<div>").addClass("cover");
 		var image = $("<img>").attr("src",resultArray[i].imageURL)
