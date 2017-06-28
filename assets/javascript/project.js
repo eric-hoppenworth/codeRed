@@ -56,7 +56,7 @@ firebase.auth().onAuthStateChanged(function(user){
 //this function will print the project info for the current project page
 //argument is coming in as a Project Object
 function printProject(project){
-	$("#projectImage").attr("src", project.imageURL);
+	$("#projectImage").attr("style", "background-image: url('"+project.imageURL+"');").addClass("crop");
 	$("#projectName").text(project.name);
 	$("#projectEmail").text(project.email);
 	$("#projectDescription").text(project.description);
