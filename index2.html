@@ -8,7 +8,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/account.css">
 </head>
 <body>
 	<!--Navigation-->
@@ -44,40 +43,57 @@
 	</nav>
 	<div class="container">
 
+		<!-- JUMBOTRON ROW -->
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="jumbotron">
+					<div id="welcomeText">
+						<marquee behavior="alternate" id="marquee">
+							<h1>Welcome to the New MC</h1>
+						</marquee>
+					</div>
+					<p>
+						<a class="btn btn-success btn-md" href="#" role="button" id="btnSignGoogle">Sign in with Google</a> <a class="btn btn-success btn-md" href="#" role="button">Sign in with Facebook</a>
+					</p>
+					<p>
+						<a class="btn btn-success btn-md" href="#" role="button">Sign in</a> <a class="btn btn-success btn-md" href="#" role="button">Sign up</a>
+					</p>
+				</div>
+			</div>
+		</div>   <!-- End Main row -->
+
+		<!-- CONTENT 1 ROW -->
 		<div class = "row">
 			<div class = "col-xs-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h2 class="panel-title">My Account</h2>
+						<h2 class="panel-title">Who are We?</h2>
 					</div>
 					<div class="panel-body">
-					
+						<ul>
+							<li>Providing a single platform for music producers to network and colaborate with local artists.</li>
+							<li>Providing a single platform that allows venue owners/promoters to audition and communicate with local artists.</li>
+						</ul>
 					</div>   <!-- End panel body-->
 				</div>
 			</div>
 		</div>   <!-- End Main row -->
 
+		<!-- CONTENT TWO ROW -->
 		<div class = "row">
 			<div class = "col-xs-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h2 class="panel-title">My Account</h2>
+						<h2 class="panel-title">Integration with Popular Apps</h2>
 					</div>
 					<div class="panel-body">
-					
-					</div>   <!-- End panel body-->
-				</div>
-			</div>
-		</div>   <!-- End Main row -->
-
-		<div class = "row">
-			<div class = "col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h2 class="panel-title">My Account</h2>
-					</div>
-					<div class="panel-body">
-					
+						<p>
+			                Drop Box will allow vocalists and instrumentalists to submit their studio performances to producers, who will ultimately mix and master the stems they submit into their production.
+			            </p>
+			            <h4>Coming Soon!</h4>
+			            <p>
+			                SoundCloud – will allow performers to experience the producers productions and decide what projects they wish to be apart of, and which producers they’d like to reach out to.
+			            </p>
 					</div>   <!-- End panel body-->
 				</div>
 			</div>
@@ -93,9 +109,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
-	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="0ot1htkfrv9jzeg"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
-	<script type="text/javascript" src="assets/javascript/account.js"></script>
+	<script type="text/javascript" src="assets/javascript/index.js"></script>
 </body>
 </html>
