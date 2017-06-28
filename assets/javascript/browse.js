@@ -39,7 +39,7 @@ $("#submitSearch").on("click",function(event){
 function executeSearch(type= "need",searchTerm){
 	var index = 0;
 	searchResults = [];
-	projectsEndPoint.once("value",function(snapshot){
+	projectsEndPoint.orderByChild("name").once("value",function(snapshot){
 		snapshot.forEach(function(dataProject){
 			var myProject = dataProject.val();
 			//check to see if the project has a 'need'

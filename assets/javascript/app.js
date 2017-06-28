@@ -27,6 +27,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.completedList = [""];
 	this.imageURL = "assets/images/defaultProject.png";
 	this.audioURLs = [""];
+	this.visits = 0;
 	if (key === ""){
 		//this is a new project, generate a key
 		this.key = projectsEndPoint.push().key;
@@ -56,7 +57,12 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //this should be in app.js
 function printProjectSnippet(key,showButtons = false){ 
 	projectsEndPoint.once("value",function(snapshot){
-		var myProject = snapshot.child(key).val();
+		if (snapshot.hasChild(key)){
+			var myProject = snapshot.child(key).val();
+		}else{
+			return false;
+		}
+		
 		var bigCol = $("<div>");
 		//projects will be wider if they have edit buttons attached
 		if (showButtons){
