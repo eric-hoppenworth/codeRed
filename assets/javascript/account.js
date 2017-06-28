@@ -190,6 +190,7 @@ $("#submitAccount").on("click",function(){
 ////////////////////////////////
 ////  DropBox  /////////////////
 ////////////////////////////////
+
 function buildDropboxButton(user,fileType, objectType, $appender){
 	options = {
 	    success: function(files) {
