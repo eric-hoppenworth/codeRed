@@ -71,12 +71,28 @@ function showResults(resultArray){
 	//add image to carousel
 	var appender = $("#preview-coverflow");
 	appender.empty();
-	for (var i = 0; i < resultArray.length;i++){
+
+	if (resultArray.length === 0){
+		//there are no results to show
 		var holder = $("<div>").addClass("cover");
-		var image = $("<img>").attr("src",resultArray[i].imageURL)
+		holder.append($("<p>").text("No Results Were Found"));
+		holder.append($("<p>").text("Try a seach for similar terms"));
+		hodler.append($("<p>").text("i.e. 'vocals' or 'vocalist'"));
+	} else{
+		for (var i = 0; i < resultArray.length;i++){
+		var holder = $("<div>").addClass("cover").attr("data-key",resultArray[i].key);
+		var image = $("<img>").attr("src",resultArray[i].imageURL);
 		var paraName = $("<p>").addClass("coverName").text(resultArray[i].name);
 		var paraGenre = $("<p>").addClass("coverGenre").text(resultArray[i].genre);
 		holder.append(image).append(paraName).append(paraGenre);
 		appender.append(holder);
 	}
+
+	
+	$("#preview-coverflow").coverflow("refresh");
+}
+
+$("#preview-coverflow").on("click",".cover",function(){
+	$("#projectSampleHolder").empty();
+	printProjectSnippet(this.attr("data-key"));
 }
