@@ -1,23 +1,23 @@
-body { 
-  background-color: #000000;
-  background: url(../images/blueSphere.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  /*add padding to make room for the static footer*/
-  padding-bottom: 51px;
+body {
+    background-color: #000000;
+    background: url(../images/blueSphere.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*add padding to make room for the static footer*/
+    padding-bottom: 51px;
 }
 
-nav form{
-  float: right;
-  font-family: 'Trade Winds', cursive; 
+nav form {
+    float: right;
+    font-family: 'Trade Winds', cursive;
 }
 
 .navmod {
-  background-color: black;
-  border:2px solid #0000cc;
-  border-bottom:2px solid #000099;
+    background-color: black;
+    border: 2px solid #0000cc;
+    border-bottom: 2px solid #000099;
 }
 
 #mcNavbar {
@@ -30,21 +30,21 @@ nav form{
 }
 
 nav form {
-  float: right;
+    float: right;
 }
 
 .panel {
     font-family: 'Trade Winds', cursive;
 }
 
-.jumbotron{
-  text-align: center;
-  font-family: 'Trade Winds', cursive;
-  height: 300px;
-  background-image: url(../images/waveMeterRs.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-bottom:2px solid #d260d4;
+.jumbotron {
+    text-align: center;
+    font-family: 'Trade Winds', cursive;
+    height: 300px;
+    background-image: url(../images/waveMeterRs.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 2px solid #d260d4;
 }
 
 .jumbotron .container {
@@ -63,9 +63,9 @@ nav form {
 }
 
 .panel-body {
-  background-color: #b1b1cd;
-  border-bottom:2px solid #d260d4;
-  font-family: 'Arimo', sans-serif
+    background-color: #b1b1cd;
+    border-bottom: 2px solid #d260d4;
+    font-family: 'Arimo', sans-serif
 }
 
 .projectImage {
@@ -78,7 +78,7 @@ nav form {
 }
 
 .row {
-  width: auto;
+    width: auto;
 }
 
 footer {
@@ -106,6 +106,10 @@ footer p {
     border-bottom: 2px solid #d260d4;
 }
 
-.panel-heading{
-  background-color: #371f94;
+.panel-heading {
+    background-color: #371f94;
+}
+
+label {
+    font-size: 17px;
 }
