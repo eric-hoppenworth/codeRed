@@ -37,6 +37,7 @@ nav form {
     font-family: 'Trade Winds', cursive;
 }
 
+
 .jumbotron {
     text-align: center;
     font-family: 'Trade Winds', cursive;
@@ -52,14 +53,14 @@ nav form {
     top: 50px;
 }
 
-#welcomeText {
-    color: black;
-    text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
-    max-width: 100%;
-    box-sizing: 90%;
-    margin-right: 10%;
-    margin-left: 10%;
-    word-wrap: break-word;
+#welcomeText{
+  color: black;
+  text-shadow: -2px 0 green, 2px 0 green, 0 -2px green;
+  max-width: 100%;
+  box-sizing: 95%;
+  margin-right: 1%;
+  margin-left: 1%;
+  word-wrap: break-word;
 }
 
 .panel-body {
@@ -106,10 +107,27 @@ footer p {
     border-bottom: 2px solid #d260d4;
 }
 
-.panel-heading {
-    background-color: #371f94;
-}
-
 label {
     font-size: 17px;
+}
+
+.panel-heading{
+  background-color: #371f94;
+}
+
+/* project sample styling */
+.projectSample{
+  border-left:1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0px;
+  background: #d6d6ff;
+  text-align: left;
+  width: 80%;
+}
+.projectSample a{
+  color: #005f02;
+  text-decoration: none;
+}
+.projectImage {
+  width: 80%;
 }

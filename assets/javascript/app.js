@@ -113,7 +113,7 @@ function printProjectSnippet(key,showButtons = false){
 			var imgDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload an Image"));
 			imgRow.append(imgDbDiv);
 			buildDropboxButton(myProject,"images","Project",imgDbDiv);
-			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").attr("src",myProject.imageURL).attr("id","img"+myProject.key)));
+			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").addClass("projectImage").attr("src",myProject.imageURL).attr("id","img"+myProject.key)));
 			buttonDiv.append(imgRow);
 			//audio
 			var audioRow = $("<div>").addClass("row");
@@ -171,3 +171,4 @@ function printAudio(user,index,showButtons = false,appender = ""){
 	}
 
 }
+

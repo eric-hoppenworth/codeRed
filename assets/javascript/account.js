@@ -65,6 +65,7 @@ function editProject(key){
 	var name = $("#editProjectName").val().trim();
 	var email = $("#editProjectEmail").val().trim();
 	var description = $("#editProjectDescription").val().trim();
+	var genre = $("#editProjectGenre")
 	var needs = [];
 	var wants = [];
 	$(".editNewNeed").each(function(index) {
@@ -73,7 +74,7 @@ function editProject(key){
 	$(".editNewWant").each(function(index) {
 		wants.push($(this).text());
 	})
-	var key = $("#editProject").att("data-key");
+	var key = $("#editProject").attr("data-key", key);
 	var newProject = new Project(name,email,description,needs,wants,key);
 }
 
