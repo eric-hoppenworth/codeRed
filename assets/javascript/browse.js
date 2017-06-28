@@ -95,4 +95,4 @@ function showResults(resultArray){
 $("#preview-coverflow").on("click",".cover",function(){
 	$("#projectSampleHolder").empty();
 	printProjectSnippet(this.attr("data-key"));
-}
+});
