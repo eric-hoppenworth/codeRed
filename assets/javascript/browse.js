@@ -71,6 +71,7 @@ function showResults(resultArray){
 	//add image to carousel
 	var appender = $("#preview-coverflow");
 	appender.empty();
+	appender.coverflow("_destroy");
 	for (var i = 0; i < resultArray.length;i++){
 		var holder = $("<div>").addClass("cover");
 		var image = $("<img>").attr("src",resultArray[i].imageURL)
@@ -89,7 +90,7 @@ function initializeCoverflow(){
     }
 
     $('#preview-coverflow').coverflow({
-        index: 6,
+        index: 0,
         density: 2,
         innerOffset: 50,
         innerScale: .7,
