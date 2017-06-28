@@ -64,7 +64,7 @@ function printProfile(user){
 	$("#userInfo").text(user.bio);
 	$("#userContact").text("Contact: "+user.email);
 	//show picture
-	$("#userImage").attr("src",user.imageURL);
+	$("#userImage").attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
 
 	//print audio
 	printAllAudio(user);
