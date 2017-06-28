@@ -45,102 +45,102 @@
 	</nav>
 	<div class="container">
 
-
 	<!-- ACCOUNT INFO PANEL -->
-	<div class = "row">
-		<div class = "col-xs-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h2 class="panel-title">My Account</h2>
-				</div>
-				<div id = "account" class="panel-body">
-					<div class = "row">
-						<div class = "col-xs-6">
-							<div class = "row">
-								<h2>Name:</h2> 
-								<p id="userName"></p>
-							</div>
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">My Account</h2>
+					</div>
+					<div id = "account" class="panel-body">
+						<div class = "row">
+							<div class = "col-xs-6">
+								<div class = "row">
+									<h2>Name:</h2> 
+									<p id="userName"></p>
+								</div>
+									
+								<div class = "row">	
+									<h2>Email:</h2> 
+									<p id="userEmail"></p>	
+								</div>
+
+								<div class = "row">
+									<h2>Bio:</h2>
+									<p id="userBio"></p>
+								</div>
 								
-							<div class = "row">	
-								<h2>Email:</h2> 
-								<p id="userEmail"></p>	
+								<div class = "row">
+									<hr>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
+								</div>
+
+								<div id ="dropboxLinkRow" class = "row">
+									<h2>Link to Dropbox:</h2>
+									<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>
+								</div>  
 							</div>
 
-							<div class = "row">
-								<h2>Bio:</h2>
-								<p id="userBio"></p>
+							<div class = "col-xs-6" id = "photoHolder">
+								<div id="profilePicture" src="" alt="profile picture">
+								</div>	
 							</div>
-							
-							<div class = "row">
+						</div>   <!-- End panel body-->
+					</div>
+				</div>
+			</div>
+		</div>   <!-- End Main row -->
+		
+		<!-- AUDIO PANEL -->
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">Manage Audio</h2>
+					</div>
+					<div class="panel-body">
+						<div id= "audioButtonHolder">
+							<!-- audio button -->
+						</div>
+						<div id = "audioList">
+							<!-- audio stored here -->
+						</div>
+					</div>   <!-- End panel body-->
+				</div>
+			</div>
+		</div>   <!-- End Main row -->
+
+
+		<!-- MANAGE PROJECTS PANEL -->
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">Manage Projects</h2>
+					</div>
+					<div class="panel-body">
+						<div class = "row">
+							<div class = "col-xs-12">
+								<h2>Projects</h2>
+								<!-- Trigger the modal with a button -->
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
 								<hr>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
 							</div>
-
-							<div id ="dropboxLinkRow" class = "row">
-								<h2>Link to Dropbox:</h2>
-								<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>
-							</div>  
 						</div>
+					
+						<div class = "row" id = "projectSampleHolder">
 
-						<div class = "col-xs-6" id = "photoHolder">
-							<div id="profilePicture" src="" alt="profile picture">
-						</div>	
-					</div>
-				</div>   <!-- End panel body-->
-			</div>
-		</div>
-	</div>   <!-- End Main row -->
-	
-	<!-- AUDIO PANEL -->
-	<div class = "row">
-		<div class = "col-xs-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h2 class="panel-title">Manage Audio</h2>
-				</div>
-				<div class="panel-body">
-					<div id= "audioButtonHolder">
-						<!-- audio button -->
-					</div>
-					<div id = "audioList">
-						<!-- audio stored here -->
-					</div>
-				</div>   <!-- End panel body-->
-			</div>
-		</div>
-	</div>   <!-- End Main row -->
-
-
-	<!-- MANAGE PROJECTS PANEL -->
-	<div class = "row">
-		<div class = "col-xs-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h2 class="panel-title">Manage Projects</h2>
-				</div>
-				<div class="panel-body">
-					<div class = "row">
-						<div class = "col-xs-12">
-							<h2>Projects</h2>
-							<!-- Trigger the modal with a button -->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
-							<hr>
 						</div>
-					</div>
-				
-					<div class = "row" id = "projectSampleHolder">
-
-					</div>
-				</div>   <!-- End panel body-->
+					</div>   <!-- End panel body-->
+				</div>
 			</div>
-		</div>
-	</div>   <!-- End Main row -->
+		</div>   <!-- End Main row -->
 
 	</div>
 	<footer>
-		<div class="container">
-			<p>&#9400; Copyright 2017 Code Red</p>
-		</div>
+			<div class="container">
+				<p>&#9400; Copyright 2017 Code Red</p>
+			</div>
 	</footer>
 
 	<!-- #######    MODALS    ####### -->
