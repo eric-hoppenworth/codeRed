@@ -38,6 +38,7 @@ $("#submitSearch").on("click",function(event){
 
 function executeSearch(type= "need",searchTerm){
 	var index = 0;
+	searchResults = [];
 	projectsEndPoint.once("value",function(snapshot){
 		snapshot.forEach(function(dataProject){
 			var myProject = dataProject.val();
@@ -69,6 +70,7 @@ function executeSearch(type= "need",searchTerm){
 function showResults(resultArray){
 	//add image to carousel
 	var appender = $("#preview-coverflow");
+	appender.empty();
 	for (var i = 0; i < resultArray.length;i++){
 		var holder = $("<div>").addClass("cover");
 		var image = $("<img>").attr("src",resultArray[i].imageURL)
@@ -77,4 +79,6 @@ function showResults(resultArray){
 		holder.append(image).append(paraName).append(paraGenre);
 		appender.append(holder);
 	}
+	$("#preview-coverflow").coverflow("refresh");
 }
+
