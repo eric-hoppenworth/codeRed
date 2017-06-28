@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		executeSearch("need",searchTerm);
 	}
 });
-initializeCoverflow();
+//initializeCoverflow();
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
 $("#submitSearch").on("click",function(event){
