@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		//no user is signed in
 		if (profileID === ""){
 			//there is no profile to display
-			window.location = "index.html";
+			//window.location = "index.html";
 		} else {
 			//remove the "#"
 			profileID = profileID.substring(1);
@@ -49,7 +49,7 @@ firebase.auth().onAuthStateChanged(function(user){
 					printProfile(profileUser);
 				} else {
 					//no profile to show
-					window.location = "index.html";
+					//window.location = "index.html";
 				}
 			});
 		}
