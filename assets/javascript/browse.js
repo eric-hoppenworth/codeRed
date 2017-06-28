@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		executeSearch("need",searchTerm);
 	}
 });
-
+initializeCoverflow();
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
 $("#submitSearch").on("click",function(event){
@@ -71,7 +71,6 @@ function showResults(resultArray){
 	//add image to carousel
 	var appender = $("#preview-coverflow");
 	appender.empty();
-	appender.coverflow("_destroy");
 	for (var i = 0; i < resultArray.length;i++){
 		var holder = $("<div>").addClass("cover");
 		var image = $("<img>").attr("src",resultArray[i].imageURL)
@@ -80,7 +79,6 @@ function showResults(resultArray){
 		holder.append(image).append(paraName).append(paraGenre);
 		appender.append(holder);
 	}
-	initializeCoverflow();
 }
 
 function initializeCoverflow(){
