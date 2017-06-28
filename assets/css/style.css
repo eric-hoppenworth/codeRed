@@ -33,11 +33,6 @@ nav form {
   float: right;
 }
 
-.panel {
-  font-family: 'Trade Winds', cursive;
-}
-
-
 .jumbotron {
   text-align: center;
   font-family: 'Trade Winds', cursive;
@@ -66,7 +61,8 @@ nav form {
 .panel-body {
   background-color: #b1b1cd;
   border-bottom: 2px solid #d260d4;
-  font-family: 'Arimo', sans-serif
+  font-family: 'Arimo', sans-serif;
+  padding: 0px 30px;
 }
 
 
@@ -89,18 +85,13 @@ footer p {
   padding-top: 15px;
 }
 
-.panel-body {
-  background-color: #b1b1cd;
-  border-bottom: 2px solid #d260d4;
-  padding: 0px 30px;
-}
-
 label {
   font-size: 17px;
 }
 
 .panel-heading{
   background-color: #371f94;
+  font-family: 'Trade Winds', cursive;
 }
 
 /* project sample styling */
