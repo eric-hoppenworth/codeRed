@@ -212,24 +212,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/profile");
 		}
 		
-		var uploadTask = endPoint.put(data.fileBlob).then(function(snapshot){
-			var fileURL = endPoint.getDownloadURL().then(function(url){
-				//store that shit
-				if (fileType === "audio"){
-					user.audioURLs.push(url);
-					printAudio(user,user.audioURLs.length-1,true)
-				} else if (fileType === "images"){
-					user.imageURL = url;
-					$("#img"+user.key).attr("src",user.imageURL);
-				}
-				if (objectType === "User"){
-					usersEndPoint.child(user.key).update(user);
-				} else if (objectType === "Project"){
-					projectsEndPoint.child(user.key).update(user);
-				}
-				
-			});
-		});
+		var uploadTask = endPoint.put(data.fileBlob);
 		// Register three observers:
 		// 1. 'state_changed' observer, called any time the state changes
 		// 2. Error observer, called on failure
@@ -248,11 +231,24 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 		      break;
 		  }
 		}, function(error) {
-		  // Handle unsuccessful uploads
+			// Handle unsuccessful uploads
 		}, function() {
-		  // Handle successful uploads on complete
-		  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-		  //var downloadURL = uploadTask.snapshot.downloadURL;
+			// Handle successful uploads on complete
+			// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+			var downloadURL = uploadTask.snapshot.downloadURL;
+			//store that shit
+			if (fileType === "audio"){
+				user.audioURLs.push(downloadURL);
+				printAudio(user,user.audioURLs.length-1,true)
+			} else if (fileType === "images"){
+				user.imageURL = downloadURL;
+				$("#img"+user.key).attr("src",user.imageURL);
+			}
+			if (objectType === "User"){
+				usersEndPoint.child(user.key).update(user);
+			} else if (objectType === "Project"){
+				projectsEndPoint.child(user.key).update(user);
+			}
 		});
 
 
