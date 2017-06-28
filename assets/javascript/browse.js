@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		executeSearch("need",searchTerm);
 	}
 });
-//initializeCoverflow();
+
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
 $("#submitSearch").on("click",function(event){
@@ -79,36 +79,4 @@ function showResults(resultArray){
 		holder.append(image).append(paraName).append(paraGenre);
 		appender.append(holder);
 	}
-}
-
-function initializeCoverflow(){
-	//For the Carousel on the Browser Page
-    if ($.fn.reflect) {
-        $('#preview-coverflow .cover').reflect();   // only possible in very specific situations
-    }
-
-    $('#preview-coverflow').coverflow({
-        index: 0,
-        density: 2,
-        innerOffset: 50,
-        innerScale: .7,
-        animateStep: function(event, cover, offset, isVisible, isMiddle, sin, cos) {
-            if (isVisible) {
-                if (isMiddle) {
-                    $(cover).css({
-                        'filter': 'none',
-                        '-webkit-filter': 'none'
-                    });
-                } else {
-                    var brightness = 1 + Math.abs(sin),
-                        contrast = 1 - Math.abs(sin),
-                        filter = 'contrast('+contrast+') brightness('+brightness+')';
-                    $(cover).css({
-                        'filter': filter,
-                        '-webkit-filter': filter
-                    });
-                }
-            }
-        }
-    });
 }
