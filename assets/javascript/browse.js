@@ -60,8 +60,8 @@ function executeSearch(type= "need",searchTerm){
 					}
 				}
 			}
-			showResults(searchResults);
 		});
+		showResults(searchResults);
 	});
 }
 
