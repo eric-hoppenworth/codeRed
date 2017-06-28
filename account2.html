@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MC Account</title>
+	<link rel=icon href="assets/images/newmc.ico" sizes="any" type="image/svg+xml">
+	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/account.css">
+</head>
+<body>
+	<!--Navigation-->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid" id="navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mcNavbar" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">New MC</a>
+				</div>
+				<div class="collapse navbar-collapse" id="mcNavbar" >                
+					<ul class="nav navbar-nav">
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="profile.html">Profile</a></li>
+						<li><a href="browse.html">Browse Projects</a></li>
+						<li><a id = "signOut">Sign Out</a></li>
+					</ul>
+
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search" id="inputSearch">
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+
+
+	<!-- ACCOUNT INFO PANEL -->
+	<div class = "row">
+		<div class = "col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="panel-title">My Account</h2>
+				</div>
+				<div id = "account" class="panel-body">
+					<div class = "row">
+						<div class = "col-xs-6">
+							<div class = "row">
+								<h2>Name:</h2> 
+								<p id="userName"></p>
+							</div>
+								
+							<div class = "row">	
+								<h2>Email:</h2> 
+								<p id="userEmail"></p>	
+							</div>
+
+							<div class = "row">
+								<h2>Bio:</h2>
+								<p id="userBio"></p>
+							</div>
+							
+							<div class = "row">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAccountEdit">Edit My Account</button>	
+							</div>
+
+							<div class = "row">
+								<h2>Link to Dropbox:</h2>
+								<button type="dropbox" id="userDropbox" class="btn btn-primary">Dropbox</button>
+							</div>  
+						</div>
+
+						<div class = "col-xs-6" id = "photoHolder">
+							<img id="profilePicture" src="" alt="profile picture">
+						</div>	
+					</div>
+				</div>   <!-- End panel body-->
+			</div>
+		</div>
+	</div>   <!-- End Main row -->
+	
+	<!-- AUDIO PANEL -->
+	<div class = "row">
+		<div class = "col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="panel-title">Manage Audio</h2>
+				</div>
+				<div class="panel-body">
+					<div id= "audioButtonHolder">
+						<!-- audio button -->
+					</div>
+					<div id = "audioList">
+						<!-- audio stored here -->
+					</div>
+				</div>   <!-- End panel body-->
+			</div>
+		</div>
+	</div>   <!-- End Main row -->
+
+
+	<!-- MANAGE PROJECTS PANEL -->
+	<div class = "row">
+		<div class = "col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="panel-title">Manage Projects</h2>
+				</div>
+				<div class="panel-body">
+					<div class = "row">
+						<div class = "col-xs-12">
+							<h2>Projects</h2>
+							<!-- Trigger the modal with a button -->
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
+							<hr>
+						</div>
+					</div>
+				
+					<div class = "row" id = "projectSampleHolder">
+
+					</div>
+				</div>   <!-- End panel body-->
+			</div>
+		</div>
+	</div>   <!-- End Main row -->
+
+	</div>
+	<footer>
+		<div class="container">
+			<p>&#9400; Copyright 2017 Code Red</p>
+		</div>
+	</footer>
+
+	<!-- #######    MODALS    ####### -->
+
+	<!-- Account Edit Modal -->
+	<div class="modal fade" id="myAccountEdit" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">My Account</h4>
+				</div>
+				<div class="modal-body">
+					<hr>
+					<div class="form-group">
+						<label for="newName" class="form-control-label">Account Name:</label>
+						<input type="text" class="form-control" id="newName">
+						<br>
+
+						<label for="newBio" class="form-control-label">Bio:</label>
+						<textarea class="form-control" id="newBio"></textarea>
+
+						<br>
+						<label for="newEmail" class="form-control-label">Contact Email:</label>
+						<input type="text" class="form-control" id="newEmail">
+						<br>
+					</div>
+					<div class="modal-body">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="submitAccount">Save</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Create Project Modal -->
+	<div class="modal fade" id="newProject" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Create New Project</h4>
+				</div>
+				<div class="modal-body">
+					<hr>
+					<div class="form-group">
+						<label for="newProjectTitle" class="form-control-label">Project Name:</label>
+						<input type="text" class="form-control projectInput" id="newProjectTitle">
+						<br>
+						<label for="newProjectInfo" class="form-control-label">Project Description:</label>
+						<textarea class="form-control projectInput" id="newProjectInfo"></textarea>
+						<br>
+						<label for="newProjectGenre" class="form-control-label">Genre:</label>
+						<input class="form-control projectInput" id="newProjectGenre"></input>
+						<br>
+						<label for="newProjectEmail" class="form-control-label">Contact Email:</label>
+						<input type="email" class="form-control projectInput" id="newProjectEmail">
+						<br>
+						<label for="newProjectNeeds" class="form-control-label" id = "needList"><p>Needs:<a href="#" class="tooltip-test" title="Type what you Need and select Add to enter it into the Project Needs.">?</a></p></label>
+						<input type="text" class="form-control projectInput" id="newProjectNeeds">
+						<button type="button" class="btn btn-primary" id="needsAdd">Add</button>
+						<br>
+						<br>
+						<label for="newProjectWants" class="form-control-label" id = "wantList">
+							<p>Wants:<a href="#" class="tooltip-test" title="Type what you Want and select Add to enter it into the Project Wants.">?</a></p>
+						</label>
+						<input type="text" class="form-control projectInput" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
+					</div>
+					<div class="modal-body">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="submitProject">Save</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit Project Modal -->
+	<div class="modal fade" id="editProject" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">EditProject</h4>
+				</div>
+				<div class="modal-body">
+					<hr>
+					<div class="form-group">
+						<label for="editProjectName" class="form-control-label">Project Name:</label>
+						<input type="text" class="form-control projectInput" id="editProjectName">
+						<br>
+						<label for="editProjectDescription" class="form-control-label">Project Description:</label>
+						<textarea class="form-control projectInput" id="editProjectDescription"></textarea>
+						<br>
+						<label for="editProjectGenre" class="form-control-label">Genre:</label>
+						<input class="form-control projectInput" id="editProjectGenre"></input>
+						<br>
+						<label for="editProjectEmail" class="form-control-label">Contact Email:</label>
+						<input type="email" class="form-control projectInput" id="editProjectEmail">
+						<br>
+						<label for="newProjectNeeds" class="form-control-label" id = "needList"><p>Needs:<a href="#" class="tooltip-test" title="Type what you Need and select Add to enter it into the Project Needs.">?</a></p></label>
+						<input type="text" class="form-control projectInput" id="newProjectNeeds">
+						<button type="button" class="btn btn-primary" id="needsAdd">Add</button>
+						<br>
+						<br>
+						<label for="newProjectWants" class="form-control-label" id = "wantList">
+							<p>Wants:<a href="#" class="tooltip-test" title="Type what you Want and select Add to enter it into the Project Wants.">?</a></p>
+						</label>
+						<input type="text" class="form-control projectInput" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="submitProject">Save</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="0ot1htkfrv9jzeg"></script>
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+	<script type="text/javascript" src="assets/javascript/account.js"></script>
+</body>
+</html>

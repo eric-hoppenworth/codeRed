@@ -16,7 +16,7 @@ firebase.auth().onAuthStateChanged(function(user){
 		//clear out options in navbar
 		//unauthorized users will still be able to access the browse page by using te search bar
 		$(".nav").eq(0).empty();
-		var btnGoogle = $("<li><a id ='navGoogle'>Browse Projects</a></li>");
+		var btnGoogle = $("<li><a id ='navGoogle'>Sign In</a></li>");
 		$(".nav").eq(0).append(btnGoogle);
 		$("#navGoogle").on("click",function(){
 			var provider = new firebase.auth.GoogleAuthProvider();
