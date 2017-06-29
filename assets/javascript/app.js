@@ -64,7 +64,7 @@ function printProjectSnippet(key,showButtons = false){
 			return false;
 		}
 		
-		var bigCol = $("<div>".attr("id","sample"+myProject.key));
+		var bigCol = $("<div>").attr("id","sample"+myProject.key);
 		//projects will be wider if they have edit buttons attached
 		if (showButtons){
 			bigCol.addClass("col-xs-12");
