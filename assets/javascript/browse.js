@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function(user){
 	} else {
 		//perform search
 		//remove hash
-		searchTerm = searchTerm.subString(1);
+		searchTerm = searchTerm.substring(1);
 		executeSearch("need",searchTerm);
 	}
 });
