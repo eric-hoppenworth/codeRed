@@ -190,3 +190,9 @@ function printAudio(user,index,showButtons = false,appender = ""){
 
 }
 
+////////    Search    ///////////
+$("#submitSearch").on("click",function(event){
+	var term = $("#inputSearch").val().trim();
+	//relocate to search page
+	window.location = "browse.html#"+term;
+});
