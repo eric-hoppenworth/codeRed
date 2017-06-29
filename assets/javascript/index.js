@@ -10,11 +10,21 @@ firebase.auth().onAuthStateChanged(function(user){
 				currentUser = new User();  //create a user using default values
 			}
 		});
+		window.location = "account.html";
 	} else {
 		//no user is signed in
 		//clear out options in navbar
 		//unauthorized users will still be able to access the browse page by using te search bar
-		$(".nav").empty();
+		$(".nav").eq(0).empty();
+		var btnGoogle = $("<li><a id ='navGoogle'>Sign In</a></li>");
+		$(".nav").eq(0).append(btnGoogle);
+		$("#navGoogle").on("click",function(){
+			var provider = new firebase.auth.GoogleAuthProvider();
+			firebase.auth().signInWithRedirect(provider)
+				.catch(function(error){
+					console.log("google sign in error", error);
+				});
+		})
 	}
 		
 });
@@ -29,3 +39,5 @@ $("#btnSignGoogle").on("click",function(event){
 		});
 
 });
+
+

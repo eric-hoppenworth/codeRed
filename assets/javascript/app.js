@@ -11,6 +11,10 @@ var usersEndPoint = firebase.database().ref().child("Users");
 var projectsEndPoint = firebase.database().ref().child("Projects");
 var authUser; //auth user is the user from firebase
 var currentUser; //User Object from our code
+$("#signOut").on("click",function(event){
+	event.preventDefault();
+	firebase.auth().signOut();
+})
 
 
 function Project(name ="default",email = "", desc = "Producer has not yet added a description.",genre = "none",needs= [""],wants = [""],key =""){
@@ -24,6 +28,7 @@ function Project(name ="default",email = "", desc = "Producer has not yet added 
 	this.completedList = [""];
 	this.imageURL = "assets/images/defaultProject.png";
 	this.audioURLs = [""];
+	this.visits = 0;
 	if (key === ""){
 		//this is a new project, generate a key
 		this.key = projectsEndPoint.push().key;
@@ -53,8 +58,13 @@ function User(name="default", email="",bio="User has not yet added a bio."){
 //this should be in app.js
 function printProjectSnippet(key,showButtons = false){ 
 	projectsEndPoint.once("value",function(snapshot){
-		var myProject = snapshot.child(key).val();
-		var bigCol = $("<div>");
+		if (snapshot.hasChild(key)){
+			var myProject = snapshot.child(key).val();
+		}else{
+			return false;
+		}
+		
+		var bigCol = $("<div>").attr("id","sample"+myProject.key);
 		//projects will be wider if they have edit buttons attached
 		if (showButtons){
 			bigCol.addClass("col-xs-12");
@@ -113,20 +123,28 @@ function printProjectSnippet(key,showButtons = false){
 			var imgDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload an Image"));
 			imgRow.append(imgDbDiv);
 			buildDropboxButton(myProject,"images","Project",imgDbDiv);
-			imgRow.append($("<div>").addClass("col-xs-6").append($("<img>").addClass("projectImage").attr("src",myProject.imageURL).attr("id","img"+myProject.key)));
+			imgRow.append($("<div>").addClass("col-xs-6").append($("<div>").attr("style", "background-image: url('"+myProject.imageURL+"');").addClass("crop").attr("id","img"+myProject.key)));
 			buttonDiv.append(imgRow);
 			//audio
 			var audioRow = $("<div>").addClass("row");
 			var audioDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload a Sample"));
 			audioRow.append(audioDbDiv);
-			buildDropboxButton(myProject,"images","Project",audioDbDiv);
-			var audioHolder = $("<div>").addClass("col-xs-6");
+			buildDropboxButton(myProject,"audio","Project",audioDbDiv);
+			var audioHolder = $("<div>").addClass("col-xs-6").attr("id","audio"+myProject.key);
 			audioRow.append(audioHolder);
 			printAllAudio(myProject,true,audioHolder);
 			buttonDiv.append(audioRow);
-			//edit
+			//edit and remove
 			var editRow = $("<div>").addClass("row");
-			editRow.append($("<button>").text("edit Details"));
+			var editRemoveCol = $("<div>").addClass("col-xs-6");
+			editRow.append(editRemoveCol);
+			editRemoveCol.append($("<button>").attr("type", "button").addClass("btn btn-primary openEditProject").attr("data-toggle", "modal").attr("data-target", "#newProject").attr("data-key", myProject.key).text("Edit Details"));
+			editRemoveCol.append($("<button>").attr("type", "button").addClass("btn btn-primary openModConfirm").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
+			var linkHolder = $("<div>").addClass("col-xs-6");
+			linkHolder.append($("<p>").text("Project Link For Sharing"));
+			linkHolder.append($("<p>").text(window.location.origin + "/codeRed/project.html#"+myProject.key));
+			editRow.append(linkHolder);
+			//finish
 			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
 		}
@@ -172,36 +190,10 @@ function printAudio(user,index,showButtons = false,appender = ""){
 
 }
 
-//search through the data base for a project with the provided searchTerm
-//at first, it will only search by need, but I can allow other queries as well.
+////////    Search    ///////////
 $("#submitSearch").on("click",function(event){
 	event.preventDefault();
-	var searchTerm = $("#inputSearch").val().trim();
-	executeSearch("need",searchTerm);
+	var term = $("#inputSearch").val().trim();
+	//relocate to search page
+	window.location = "browse.html#"+term;
 });
-
-function executeSearch(type= "need",searchTerm){
-	var index = 0;
-	projectsEndPoint.once("value",function(snapshot){
-		snapshot.forEach(function(dataProject){
-			var myProject = dataProject.val();
-			//check to see if the project has a 'need'
-			if (typeof myProject.needs === "string"){
-				if (myProject.needs.toLowerCase() === searchTerm.toLowerCase()){
-					//print project images to carousel
-					console.log(index + ": "+myProject.key);
-					index ++;
-				}
-			} else {
-				for (var i = 0; i < myProject.needs.length; i++){
-					if (myProject.needs[i].toLowerCase() === searchTerm.toLowerCase()){
-						//print project images to carousel
-						console.log(index + ": "+myProject.key);
-						index ++;
-						break;
-					}
-				}
-			}
-		});
-	});
-}

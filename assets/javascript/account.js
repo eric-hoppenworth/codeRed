@@ -1,6 +1,7 @@
 var currentPage = "account";
 var myDbxId = "0ot1htkfrv9jzeg";
 var userBox;
+var myProjects = [];
 
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -13,15 +14,10 @@ firebase.auth().onAuthStateChanged(function(user){
 			} else {
 				currentUser = new User();  //create a user using default values
 			}
-			//check to see if I just got sent here from dropbox auth
+			//print account info
 			printAccountInfo(currentUser);
-			projectsEndPoint.on("child_added",function(snapshot){
-				var myProject = snapshot.val();
-				if(myProject.userKey === currentUser.key){
-					printProjectSnippet(myProject.key,true);
-				}
-				
-			});
+		
+			//check to see if I just got sent here from dropbox auth
 			if(currentUser.dropBoxToken === "0"){
 				if (isAuthenticated()){
 					//already authenticated, show
@@ -59,33 +55,25 @@ $("body").on("click",".removeAudio",function(){
 	$(this).parent().remove();
 })
 
-//edits an existing project
-//the project's key should be attached to its edit button.
-function editProject(key){
-	var name = $("#editProjectName").val().trim();
-	var email = $("#editProjectEmail").val().trim();
-	var description = $("#editProjectDescription").val().trim();
-	var needs = [];
-	var wants = [];
-	$(".editNewNeed").each(function(index) {
-		needs.push($(this).text());
-	})
-	$(".editNewWant").each(function(index) {
-		wants.push($(this).text());
-	})
-	var key = $("#editProject").att("data-key");
-	var newProject = new Project(name,email,description,needs,wants,key);
-}
-
 function printAccountInfo(user){
 	$("#userName").text(user.name);
 	$("#userBio").text(user.bio);
 	$("#userEmail").text(user.email);
 	//the "profilePicture img needs to have its id changed"
 	$("#profilePicture").attr("id","img"+user.key);
-	$("#img"+user.key).attr("src", user.imageURL);
+	$("#img"+user.key).attr("src", user.imageURL).attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
+	$("#userProfileLink").text(window.location.origin + "/codeRed/profile.html#"+user.key);
 	printAllAudio(user,true);
-}
+	//get projects
+	projectsEndPoint.on("child_added",function(snapshot){
+		var myProject = snapshot.val();
+		if(myProject.userKey === currentUser.key){
+			myProjects.push(myProject);
+			printProjectSnippet(myProject.key,true);
+		}
+		
+	});
+	}
 
 
 ////////////////////////////////
@@ -93,6 +81,22 @@ function printAccountInfo(user){
 ////////////////////////////////
 
 ////  Project Modal ////////////
+$("#openNewProject").on("click",function(){
+	//change title
+	$("#modalTitle").text("Create New Project");
+	//add a data-key
+	$("#submitProject").attr("data-key","new");
+});
+
+$("#projectSampleHolder").on("click",".openEditProject",function(){
+	//change title
+	$("#modalTitle").text("Edit Project Details");
+	//add a data-key
+	$("#submitProject").attr("data-key",$(this).attr("data-key"));
+});
+
+
+
 $("#needsAdd").on("click", function() {
 	if ($("#newProjectNeeds").val().trim().length > 0 ) {
 		addNeed();
@@ -103,15 +107,6 @@ $("#wantsAdd").on("click", function() {
 	if ($("#newProjectWants").val().trim().length > 0 ) {
 		addWant();
 	}
-});
-
-
-$("#submitProject").on("click", function() {
-	createProject();
-	$(".projectInput").val("");
-	$(".inputNewNeed").parent().remove();
-	$(".inputNewWant").parent().remove();
-	$("#newProject").modal("hide");
 });
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
@@ -152,9 +147,114 @@ function createProject() {
 	$(".inputNewWant").each(function(index) {
 		wants.push($(this).text());
 	})
-
 	var newProject = new Project(name,email,description,genre,needs,wants)
 }
+
+//edits an existing project
+//the project's key should be attached to its edit button.
+function editProject(key){
+	var name = $("#newProjectTitle").val().trim();
+	var email = $("#newProjectEmail").val().trim();
+	var description = $("#newProjectInfo").val().trim();
+	var genre = $("#newProjectGenre").val().trim();
+	var needs = [""];
+	var wants = [""];
+	$(".inputNewNeed").each(function(index) {
+		needs.push($(this).text());
+	});
+	$(".inputNewWant").each(function(index) {
+		wants.push($(this).text());
+	});
+	var index;
+	//get project
+	for(var i = 0; i< myProjects.length; i++){
+		if(myProjects[i].key === key){
+			index = i;
+			break;
+		}
+	}
+
+	//validate
+	if (name != ""){
+		myProjects[index].name = name;
+	}
+	if (email != ""){
+		myProjects[index].email = email;
+	}
+	if (description != ""){
+		myProjects[index].description = description;
+	}
+	if (genre != ""){
+		myProjects[index].genre = genre;
+	}
+	if(needs[1] !== undefined){
+		myProjects[index].needs = needs;
+	}
+	if(wants[1] !== undefined){
+		myProjects[index].wants = wants;
+	}
+	//update
+	projectsEndPoint.child(key).update(myProjects[index]);
+}
+
+$("#submitProject").on("click", function() {
+	//now needs dual functionality, based on edit/create
+	var myKey = $(this).attr("data-key");
+	if(myKey === "new"){
+		createProject();
+	} else{
+		editProject(myKey);
+		//after edit it does not refresh on the screen
+	}
+	
+	$(".projectInput").val("");
+	$(".inputNewNeed").parent().remove();
+	$(".inputNewWant").parent().remove();
+	$("#newProject").modal("hide");
+});
+
+$("#closeProject").on("click", function(){
+	//clrear all fields on the modal
+	$(".projectInput").val("");
+	$(".inputNewNeed").parent().remove();
+	$(".inputNewWant").parent().remove();
+});
+
+/////////    Confirm Remove Modal /////////
+$("#projectSampleHolder").on("click",".openModConfirm",function(){
+	//add a data-key to the sumbit button
+	$("#modConfirmYes").attr("data-key",$(this).attr("data-key"));
+	//add type "project"
+	$("#modConfirmYes").attr("data-rmType","Project");
+	//then the modal will show
+});
+
+function removeItem(key, type){
+	if (type === "Project"){
+		//to remove a project, it needs to be removed in a few places
+		//1. remove from the projects endpoit
+		projectsEndPoint.child(key).remove();
+		//2. remove from the list
+		$("#sample"+key).remove();
+		//3. remove files from storage
+		//bug
+		//this doesn't work because directeries cannot be deleted.
+		//I will have to add files paths to the projects(or someting)
+		firebase.storage().ref().child("Projects/"+key).delete().catch(function(error){
+			console.log(error);
+		});
+	}
+}
+
+
+$("#modConfirmYes").on("click",function(){
+	var key = $(this).attr("data-key");
+	var type = $(this).attr("data-rmType");
+
+	removeItem(key,type);
+	$("#modConfirm").modal("hide");
+});
+
 
 /////////   User Modal  ///////////////
 //users are created on login with default values
@@ -189,11 +289,12 @@ $("#submitAccount").on("click",function(){
 ////////////////////////////////
 ////  DropBox  /////////////////
 ////////////////////////////////
+
 function buildDropboxButton(user,fileType, objectType, $appender){
 	options = {
 	    success: function(files) {
 	    	downloadLink = files[0].link;
-			storeInServer(user,downloadLink,fileType,objectType);
+			storeInServer(user,downloadLink,fileType,objectType,$appender);
 	    },
 	    cancel: function() {},
 	    linkType: "preview",
@@ -203,32 +304,57 @@ function buildDropboxButton(user,fileType, objectType, $appender){
 	$appender.append(button);
 }
 
-function storeInServer(user,link, fileType = "audio",objectType = "User"){
+function storeInServer(user,link, fileType = "audio",objectType = "User",$appender){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
 		if (fileType === "audio"){
 			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/music/" + data.name);
 		}else if (fileType === "images"){
 			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/profile");
 		}
+
+		var barHolder = $("<div>").addClass("barHolder");
+		var progressBar = $("<div>").addClass("progressBar");
+		barHolder.append(progressBar);
+		$appender.append(barHolder);
 		
-		endPoint.put(data.fileBlob).then(function(snapshot){
-			var fileURL = endPoint.getDownloadURL().then(function(url){
-				//store that shit
-				if (fileType === "audio"){
-					user.audioURLs.push(url);
-					printAudio(user,user.audioURLs.length-1,true)
-				} else if (fileType === "images"){
-					user.imageURL = url;
-					$("#img"+user.key).attr("src",user.imageURL);
-				}
+		var uploadTask = endPoint.put(data.fileBlob);
+		// Register three observers:
+		// 1. 'state_changed' observer, called any time the state changes
+		// 2. Error observer, called on failure
+		// 3. Completion observer, called on successful completion
+		uploadTask.on('state_changed', function(snapshot){
+		  // Observe state change events such as progress, pause, and resume
+		  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+		  var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		  progressBar.css("width",progress+"%");
+		}, function(error) {
+			// Handle unsuccessful uploads
+		}, function() {
+			// Handle successful uploads on complete
+			var downloadURL = uploadTask.snapshot.downloadURL;
+			//store that shit
+			if (fileType === "audio"){
+				user.audioURLs.push(downloadURL);
 				if (objectType === "User"){
-					usersEndPoint.child(user.key).update(user);
-				} else if (objectType === "Project"){
-					projectsEndPoint.child(user.key).update(user);
+					printAudio(user,user.audioURLs.length-1,true);
+				} else if(objectType === "Project"){
+					printAudio(user,user.audioURLs.length-1,true,$("#audio"+user.key));
 				}
 				
-			});
+			} else if (fileType === "images"){
+				user.imageURL = downloadURL;
+				//cropped image edit
+				$("#img"+user.key).attr("src",user.imageURL);
+			}
+			if (objectType === "User"){
+				usersEndPoint.child(user.key).update(user);
+			} else if (objectType === "Project"){
+				projectsEndPoint.child(user.key).update(user);
+			}
+			barHolder.remove();
 		});
+
+
     }).catch(function(error) {
   		console.error(error);
     });

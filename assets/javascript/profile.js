@@ -64,14 +64,14 @@ function printProfile(user){
 	$("#userInfo").text(user.bio);
 	$("#userContact").text("Contact: "+user.email);
 	//show picture
-	$("#userImage").attr("src",user.imageURL);
+	$("#userImage").attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
 
 	//print audio
-	printAllAudio(profileUser);
+	printAllAudio(user);
 	//print project snippets
 	projectsEndPoint.on("child_added",function(snapshot){
 		var myProject = snapshot.val();
-		if(myProject.userKey === profileUser.key){
+		if(myProject.userKey === user.key){
 			printProjectSnippet(myProject.key,false);
 		}
 	});
