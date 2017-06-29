@@ -135,7 +135,7 @@ function printProjectSnippet(key,showButtons = false){
 			buttonDiv.append(audioRow);
 			//edit
 			var editRow = $("<div>").addClass("row");
-			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary").attr("data-toggle", "modal").attr("data-target", "#newProject").attr("data-key", myProject.key).text("Edit Details"));
+			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary openEditProject").attr("data-toggle", "modal").attr("data-target", "#newProject").attr("data-key", myProject.key).text("Edit Details"));
 			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
 			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
