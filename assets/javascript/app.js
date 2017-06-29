@@ -134,10 +134,17 @@ function printProjectSnippet(key,showButtons = false){
 			audioRow.append(audioHolder);
 			printAllAudio(myProject,true,audioHolder);
 			buttonDiv.append(audioRow);
-			//edit
+			//edit and remove
 			var editRow = $("<div>").addClass("row");
-			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary openEditProject").attr("data-toggle", "modal").attr("data-target", "#newProject").attr("data-key", myProject.key).text("Edit Details"));
-			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary openModConfirm").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
+			var editRemoveCol = $("<div>").addClass("col-xs-6");
+			editRow.append(editRemoveCol);
+			editRemoveCol.append($("<button>").attr("type", "button").addClass("btn btn-primary openEditProject").attr("data-toggle", "modal").attr("data-target", "#newProject").attr("data-key", myProject.key).text("Edit Details"));
+			editRemoveCol.append($("<button>").attr("type", "button").addClass("btn btn-primary openModConfirm").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
+			var linkHolder = $("<div>").addClass("col-xs-6");
+			linkHolder.append($("<p>").text("Project Link For Sharing"));
+			linkHolder.append($("<p>").text(window.location.origin + "/codeRed/project.html#"+myProject.key));
+			editRow.append(linkHolder);
+			//finish
 			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
 		}
