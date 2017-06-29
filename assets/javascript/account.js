@@ -1,7 +1,7 @@
 var currentPage = "account";
 var myDbxId = "0ot1htkfrv9jzeg";
 var userBox;
-var myProjects [];
+var myProjects = [];
 
 
 firebase.auth().onAuthStateChanged(function(user){
@@ -87,7 +87,7 @@ $("#openNewProject").on("click",function(){
 	$("#sumbitProject").attr("data-key","new");
 });
 
-$("#newProject").on("click",".openEditProject",function(){
+$("#projectSampleHolder").on("click",".openEditProject",function(){
 	//change title
 	$("#modalTitle").text("Edit Project Details");
 	//add a data-key
