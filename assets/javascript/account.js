@@ -62,6 +62,7 @@ function printAccountInfo(user){
 	//the "profilePicture img needs to have its id changed"
 	$("#profilePicture").attr("id","img"+user.key);
 	$("#img"+user.key).attr("src", user.imageURL).attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
+	$("#userProfileLink").text(window.location.origin + "/codeRed/profile.html#"+user.key);
 	printAllAudio(user,true);
 	//get projects
 	projectsEndPoint.on("child_added",function(snapshot){
@@ -236,6 +237,9 @@ function removeItem(key, type){
 		//2. remove from the list
 		$("#sample"+key).remove();
 		//3. remove files from storage
+		//bug
+		//this doesn't work because directeries cannot be deleted.
+		//I will have to add files paths to the projects(or someting)
 		firebase.storage().ref().child("Projects/"+key).delete().catch(function(error){
 			console.log(error);
 		});
@@ -338,6 +342,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 				printAudio(user,user.audioURLs.length-1,true)
 			} else if (fileType === "images"){
 				user.imageURL = downloadURL;
+				//cropped image edit
 				$("#img"+user.key).attr("src",user.imageURL);
 			}
 			if (objectType === "User"){
