@@ -181,12 +181,12 @@
 	</div>
 
 	<!-- Create Project Modal -->
+	<!-- This Modal Now Doubles as The Edit Project as Well -->
 	<div class="modal fade" id="newProject" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 id = "modalTitle" class="modal-title">Create New Project</h4>
 				</div>
 				<div class="modal-body">
@@ -214,16 +214,36 @@
 						</label>
 						<input type="text" class="form-control projectInput" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
 					</div>
-					<div class="modal-body">
-						<div class="modal-footer">
-							<button data-key = "new" type="button" class="btn btn-primary" id="submitProject">Save</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal" id = "closeProject">Close</button>
-						</div>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button data-key = "new" type="button" class="btn btn-primary" id="submitProject">Save</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" id = "closeProject">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- Confirm Modal -->
+	<div class = "modal fade" id = "modConfirm" role = "dialog">
+		<div class = "modal-dialog modal-sm">
+			<div class = "modal-content">
+				<div class = "modal-header">
+					<h4 class="modal-title">Are You Sure?</h4>
+				</div>
+				<div class = "modal-body">
+					<p> This Action Cannot Be Reversed </p>
+					<button data-key = "new" type="button" class="btn btn-primary" id="modConfirmYes">YES</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" id = "modConfirmNo">NO</button>
+				</div>
+				<div class = "modal-footer">
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
 	
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
