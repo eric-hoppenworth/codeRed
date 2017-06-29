@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user){
 					//audio dropbox button
 					buildDropboxButton(currentUser, "audio", "User", $("#audioButtonHolder"));
 					//photo dropbox button
-					buildDropboxButton(currentUser, "images", "User", $("#photoHolder"));
+					buildDropboxButton(currentUser, "images", "User", $("#photoBoxHolder"));
 				}	
 			}else{
 				userBox = new Dropbox({accessToken: currentUser.dropBoxToken});
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(function(user){
 				//audio dropbox button for user
 				buildDropboxButton(currentUser, "audio", "User", $("#audioButtonHolder"));
 				//photo dropbox button
-				buildDropboxButton(currentUser, "images", "User", $("#photoHolder"));
+				buildDropboxButton(currentUser, "images", "User", $("#photoBoxHolder"));
 			}
 		});
 	} else {
