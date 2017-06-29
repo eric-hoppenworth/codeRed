@@ -130,6 +130,7 @@ function printProjectSnippet(key,showButtons = false){
 			//edit
 			var editRow = $("<div>").addClass("row");
 			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary openEditProject").attr("data-toggle", "modal").attr("data-target", "#editProject").attr("data-key", myProject.key).text("Edit Details"));
+			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary").text("Remove Project"));
 			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
 		}
