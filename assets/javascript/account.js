@@ -337,7 +337,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User",$append
 				user.audioURLs.push(downloadURL);
 				if (objectType === "User"){
 					printAudio(user,user.audioURLs.length-1,true);
-				} else if(objectType ==- "Project"){
+				} else if(objectType === "Project"){
 					printAudio(user,user.audioURLs.length-1,true,$("#audio"+user.key));
 				}
 				
