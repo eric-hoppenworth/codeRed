@@ -84,14 +84,14 @@ $("#openNewProject").on("click",function(){
 	//change title
 	$("#modalTitle").text("Create New Project");
 	//add a data-key
-	$("#sumbitProject").attr("data-key","new");
+	$("#submitProject").attr("data-key","new");
 });
 
 $("#projectSampleHolder").on("click",".openEditProject",function(){
 	//change title
 	$("#modalTitle").text("Edit Project Details");
 	//add a data-key
-	$("#sumbitProject").attr("data-key",$(this).attr("data-key"));
+	$("#submitProject").attr("data-key",$(this).attr("data-key"));
 });
 
 
