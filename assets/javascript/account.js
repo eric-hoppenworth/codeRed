@@ -55,53 +55,6 @@ $("body").on("click",".removeAudio",function(){
 	$(this).parent().remove();
 })
 
-//edits an existing project
-//the project's key should be attached to its edit button.
-function editProject(key){
-	var name = $("#editProjectName").val().trim();
-	var email = $("#editProjectEmail").val().trim();
-	var description = $("#editProjectDescription").val().trim();
-	var genre = $("#editProjectGenre").val().trim();
-	var needs = [""];
-	var wants = [""];
-	$(".editNewNeed").each(function(index) {
-		needs.push($(this).text());
-	});
-	$(".editNewWant").each(function(index) {
-		wants.push($(this).text());
-	});
-	var index;
-	//get project
-	for(var i = 0; i< myProjects.length; i++){
-		if(myProjects[i].key === key){
-			index = i;
-			break;
-		}
-	}
-
-	//validate
-	if (name != ""){
-		myProjects[index].name = name;
-	}
-	if (email != ""){
-		myProjects[index].email = email;
-	}
-	if (description != ""){
-		myProjects[index].description = description;
-	}
-	if (genre != ""){
-		myProjects[index].genre = genre;
-	}
-	if(needs[1] !== undefined){
-		myProjects[index].needs = needs;
-	}
-	if(wants[1] !== undefined){
-		myProjects[index].wants = wants;
-	}
-	//update
-	projectsEndPoint.child(key).update(myProjects[index]);
-}
-
 function printAccountInfo(user){
 	$("#userName").text(user.name);
 	$("#userBio").text(user.bio);
@@ -127,6 +80,22 @@ function printAccountInfo(user){
 ////////////////////////////////
 
 ////  Project Modal ////////////
+$("#openNewProject").on("click",function(){
+	//change title
+	$("#modalTitle").text("Create New Project");
+	//add a data-key
+	$("#sumbitProject").attr("data-key","new");
+});
+
+$("#newProject").on("click",".openEditProject",function(){
+	//change title
+	$("#modalTitle").text("Create New Project");
+	//add a data-key
+	$("#sumbitProject").attr("data-key",$(this).attr("data-key"));
+});
+
+
+
 $("#needsAdd").on("click", function() {
 	if ($("#newProjectNeeds").val().trim().length > 0 ) {
 		addNeed();
@@ -137,15 +106,6 @@ $("#wantsAdd").on("click", function() {
 	if ($("#newProjectWants").val().trim().length > 0 ) {
 		addWant();
 	}
-});
-
-
-$("#submitProject").on("click", function() {
-	createProject();
-	$(".projectInput").val("");
-	$(".inputNewNeed").parent().remove();
-	$(".inputNewWant").parent().remove();
-	$("#newProject").modal("hide");
 });
 
 //add a need(along with a remove button) to the needs list on the modal, and add clear the need input
@@ -189,6 +149,74 @@ function createProject() {
 
 	var newProject = new Project(name,email,description,genre,needs,wants)
 }
+
+//edits an existing project
+//the project's key should be attached to its edit button.
+function editProject(key){
+	var name = $("#newProjectTitle").val().trim();
+	var email = $("#newProjectEmail").val().trim();
+	var description = $("#newProjectInfo").val().trim();
+	var genre = $("#newProjectGenre").val().trim();
+	var needs = [""];
+	var wants = [""];
+	$(".inputNewNeed").each(function(index) {
+		needs.push($(this).text());
+	});
+	$(".inputNewWant").each(function(index) {
+		wants.push($(this).text());
+	});
+	var index;
+	//get project
+	for(var i = 0; i< myProjects.length; i++){
+		if(myProjects[i].key === key){
+			index = i;
+			break;
+		}
+	}
+
+	//validate
+	if (name != ""){
+		myProjects[index].name = name;
+	}
+	if (email != ""){
+		myProjects[index].email = email;
+	}
+	if (description != ""){
+		myProjects[index].description = description;
+	}
+	if (genre != ""){
+		myProjects[index].genre = genre;
+	}
+	if(needs[1] !== undefined){
+		myProjects[index].needs = needs;
+	}
+	if(wants[1] !== undefined){
+		myProjects[index].wants = wants;
+	}
+	//update
+	projectsEndPoint.child(key).update(myProjects[index]);
+}
+
+$("#submitProject").on("click", function() {
+	//now needs dual functionality, based on edit/create
+	var myKey = $(this).attr("data-key");
+	if(myKey === "new"){
+		createProject();
+	} else{
+		editProject(myKey);
+	}
+	
+	$(".projectInput").val("");
+	$(".inputNewNeed").parent().remove();
+	$(".inputNewWant").parent().remove();
+	$("#newProject").modal("hide");
+});
+
+$("#closeProject").on("click", function(){
+	//clrear all fields on the modal
+	$(".projectInput").val("");
+}
+
 
 /////////   User Modal  ///////////////
 //users are created on login with default values

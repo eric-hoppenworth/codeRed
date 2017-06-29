@@ -135,7 +135,14 @@ function printProjectSnippet(key,showButtons = false){
 			buttonDiv.append(audioRow);
 			//edit
 			var editRow = $("<div>").addClass("row");
+
+			//edit button needs classes for styling
+			//edit button needs to be tied to "#newProject" modal
+			//edit button needs class .openEditProject
+			//edit button needs "data-key" attribute equal to myProject.key
 			editRow.append($("<button>").text("edit Details"));
+			
+
 			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
 		}
