@@ -180,6 +180,9 @@ function printAudio(user,index,showButtons = false,appender = ""){
 		button.addClass("removeAudio");
 		button.text("remove");
 		button.attr("data-index",index);
+		if(user.userKey != undefined){
+			button.attr("data-key", user.key);
+		}
 		audioDiv.append(button);
 	}
 	if (appender === ""){

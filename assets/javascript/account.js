@@ -45,8 +45,7 @@ firebase.auth().onAuthStateChanged(function(user){
 	}
 		
 });
-
-
+//remove edit
 //remove audio source from profile
 $("body").on("click",".removeAudio",function(){
 	var index = $(this).attr("data-index");
