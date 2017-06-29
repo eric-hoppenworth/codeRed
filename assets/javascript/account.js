@@ -235,6 +235,10 @@ function removeItem(key, type){
 		projectsEndPoint.child(key).remove();
 		//2. remove from the list
 		$("#sample"+key).remove();
+		//3. remove files from storage
+		firebase.storage().ref().child("Projects/"+key).delete().catch(function(error){
+			console.log(error);
+		});
 	}
 }
 
@@ -243,8 +247,8 @@ $("#modConfirmYes").on("click",function(){
 	var key = $(this).attr("data-key");
 	var type = $(this).attr("data-rmType");
 
-	
-
+	removeItem(key,type);
+	$("#modConfirm").modal("hide");
 });
 
 
