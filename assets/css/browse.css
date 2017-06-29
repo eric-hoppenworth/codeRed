@@ -13,20 +13,17 @@
 
 }
 
-
-.projectImage {
-  height: 150px;
-  width: auto;
-}
-
 .cover {
   border-radius: 100%;
 }
-
 .cover img {
   border-radius: 100%;
   width: 100%;
   height: 100%;
+}
+
+.cover p{
+  color: white;
 }
 
 #menu {

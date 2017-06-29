@@ -2,141 +2,98 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MC Browse Projects</title>
-    <link rel=icon href="assets/images/newmc.ico" sizes="any" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Browse Projects</title>
+	<link rel=icon href="assets/images/newmc.ico" sizes="any" type="image/svg+xml">
+	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/browse.css">
-
+	<link rel="stylesheet" type="text/css" href="assets/css/browse.css">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-        <div class="container-fluid" id="navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mcNavbar" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">New MC</a>
-                </div>
-                <div class="collapse navbar-collapse" id="mcNavbar" >                
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Welcome</a></li>                
-                    <li><a href="account.html">Account</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                </ul>
-                <form class="navbar-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" id="inputSearch">
-                    </div>
-                    <button id ="submitSearch" class="btn btn-default">Submit</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </nav>
+	<!--Navigation-->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid" id="navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mcNavbar" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">New MC</a>
+				</div>
+				<div class="collapse navbar-collapse" id="mcNavbar" >                
+					<ul class="nav navbar-nav">
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="account.html">Account</a></li>
+						<li><a href="profile.html">Profile</a></li>
+						<li><a href="browse.html">Browse Projects</a></li>
+						<li><a id = "signOut">Sign Out</a></li>
+					</ul>
+
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search" id="inputSearch">
+						</div>
+						<button class="btn btn-default" id ="submitSearch">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<!--<div class="panel-body">-->
+
+		<div class = "row">
+			<div class = "col-xs-12">
 				<div class="jumbotron">
-				<div class="col-lg-12">
-                 <div id="preview">
-                        <div id="preview-coverflow">
-                            <img src="demo/keyboard.jpg"/>
-                            <img class="cover" src="demo/attic.jpg"/>
-                            <img class="cover" src="demo/aurora.jpg"/>
-                            <img class="cover" src="demo/barbecue.jpg"/>
-                            <img class="cover" src="demo/blackswan.jpg"/>
-                            <img class="cover" src="demo/fire.jpg"/>
-                            <img class="cover" src="demo/chess.jpg"/>
-                            <img class="cover" src="demo/locomotive.jpg"/>
-                            <img class="cover" src="demo/diveevo.jpg"/>
-                            <img class="cover" src="demo/person.jpg"/>
-                            <img class="cover" src="demo/rose.jpg"/>
-                            <img class="cover" src="demo/seagull.jpg"/>
-                            <img class="cover" src="demo/solarpower.jpg"/>
+				    <div class="col-lg-12">
+                        <div id="preview">
+                            <div id="preview-coverflow">
+                                <img class="cover crop" src="assets/images/defaultProject.png">
+                            </div>
                         </div>
                     </div>
-            </div>
 				</div>
 			</div>
-			<br><br>
-			<!-- Adding train Info Panel -->
-			
-			<div class="col-lg-12">
+		</div>   <!-- End Main row -->
+
+		<div class = "row">
+			<div class = "col-xs-12">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">The Projects</h3>
+						<h2 class="panel-title">Project Results</h2>
 					</div>
-					<div class="panel-body projectSampleHolder">
-						
-					</div>
+					<div class="panel-body" id = "projectSampleHolder">
+					
+					</div>   <!-- End panel body-->
 				</div>
 			</div>
-			
-		</div>
+		</div>   <!-- End Main row -->
+
 	</div>
+	<footer>
+		<div class="container">
+			<p>&#9400; Copyright 2017 Code Red</p>
+		</div>
+	</footer>
+
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+	<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="0ot1htkfrv9jzeg"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	<script type="text/javascript" src="assets/javascript/browse.js"></script>
-	
-    <!-- the following is the script for the carousel -->
+
+	<!-- the following is the script for the carousel -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.js"></script>
      
         <!-- Markdown parser -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
-    <script src="assets/javascript/jquery.coverflow.js"></script>
-    <script src="assets/javascript/jquery.interpolate.min.js"></script>
-    <script src="assets/javascript/jquery.touchSwipe.min.js"></script>
-    <script src="assets/javascript/reflection.js"></script>
-    <script>
-            //For the Carousel on the Browser Page
-                $(function() {
-                    if ($.fn.reflect) {
-                        $('#preview-coverflow .cover').reflect();   // only possible in very specific situations
-                    }
-
-                    $('#preview-coverflow').coverflow({
-                        index:          6,
-                        density:        2,
-                        innerOffset:    50,
-                        innerScale:     .7,
-                        animateStep:    function(event, cover, offset, isVisible, isMiddle, sin, cos) {
-                            if (isVisible) {
-                                if (isMiddle) {
-                                    $(cover).css({
-                                        'filter':           'none',
-                                        '-webkit-filter':   'none'
-                                    });
-                                } else {
-                                    var brightness  = 1 + Math.abs(sin),
-                                        contrast    = 1 - Math.abs(sin),
-                                        filter      = 'contrast('+contrast+') brightness('+brightness+')';
-                                    $(cover).css({
-                                        'filter':           filter,
-                                        '-webkit-filter':   filter
-                                    });
-                                }
-                            }
-                        }
-                    });
-                    
-                });
-            </script>
-	<footer>
-		<div class="container">
-			<p>&#9400; Copyright 2017 New MC's</p>
-		</div>
-	</footer>
+	<script type="text/javascript" src="assets/javascript/carousel.js"></script>
+	
 </body>
 </html>
