@@ -10,3 +10,16 @@
 	font-size: 16px;
 	margin-left: 15px;
 }
+
+.barHolder{
+    width: 100%;
+    background: black;
+    padding: 2px;
+    height: 30px;
+}
+
+.progressBar{
+    width: 0%;
+    background: blue;
+    height: 100%;
+}

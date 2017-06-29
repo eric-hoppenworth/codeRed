@@ -294,7 +294,7 @@ function buildDropboxButton(user,fileType, objectType, $appender){
 	options = {
 	    success: function(files) {
 	    	downloadLink = files[0].link;
-			storeInServer(user,downloadLink,fileType,objectType);
+			storeInServer(user,downloadLink,fileType,objectType,$appender);
 	    },
 	    cancel: function() {},
 	    linkType: "preview",
@@ -304,13 +304,18 @@ function buildDropboxButton(user,fileType, objectType, $appender){
 	$appender.append(button);
 }
 
-function storeInServer(user,link, fileType = "audio",objectType = "User"){
+function storeInServer(user,link, fileType = "audio",objectType = "User",$appender){
 	userBox.sharingGetSharedLinkFile({url: link}).then(function(data) {
 		if (fileType === "audio"){
 			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/music/" + data.name);
 		}else if (fileType === "images"){
 			var endPoint = firebase.storage().ref(objectType+"s/" + user.key + "/profile");
 		}
+
+		var barHolder = $("<div>").addClass("barHolder");
+		var progressBar = $("<div>").addClass("progressBar");
+		barHolder.append(progressBar);
+		$appender.append(barHolder);
 		
 		var uploadTask = endPoint.put(data.fileBlob);
 		// Register three observers:
@@ -321,6 +326,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 		  // Observe state change events such as progress, pause, and resume
 		  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
 		  var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		  progressBar.css("width",progress+"%");
 		  console.log('Upload is ' + progress + '% done');
 		  switch (snapshot.state) {
 		    case firebase.storage.TaskState.PAUSED: // or 'paused'
@@ -350,6 +356,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User"){
 			} else if (objectType === "Project"){
 				projectsEndPoint.child(user.key).update(user);
 			}
+			barHolder.remove();
 		});
 
 
