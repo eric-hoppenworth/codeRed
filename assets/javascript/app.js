@@ -16,6 +16,7 @@ $("#signOut").on("click",function(event){
 	firebase.auth().signOut();
 })
 
+
 function Project(name ="default",email = "", desc = "Producer has not yet added a description.",genre = "none",needs= [""],wants = [""],key =""){
 	this.name = name;
 	this.email = email;
@@ -63,7 +64,7 @@ function printProjectSnippet(key,showButtons = false){
 			return false;
 		}
 		
-		var bigCol = $("<div>");
+		var bigCol = $("<div>".attr("id","sample"+myProject.key));
 		//projects will be wider if they have edit buttons attached
 		if (showButtons){
 			bigCol.addClass("col-xs-12");
@@ -136,7 +137,7 @@ function printProjectSnippet(key,showButtons = false){
 			//edit
 			var editRow = $("<div>").addClass("row");
 			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary openEditProject").attr("data-toggle", "modal").attr("data-target", "#newProject").attr("data-key", myProject.key).text("Edit Details"));
-			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
+			editRow.append($("<button>").attr("type", "button").addClass("btn btn-primary openModConfirm").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
 			buttonDiv.append(editRow);
 			bigRow.append(buttonDiv);
 		}

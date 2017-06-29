@@ -146,7 +146,6 @@ function createProject() {
 	$(".inputNewWant").each(function(index) {
 		wants.push($(this).text());
 	})
-
 	var newProject = new Project(name,email,description,genre,needs,wants)
 }
 
@@ -204,6 +203,7 @@ $("#submitProject").on("click", function() {
 		createProject();
 	} else{
 		editProject(myKey);
+		//after edit it does not refresh on the screen
 	}
 	
 	$(".projectInput").val("");
@@ -217,6 +217,34 @@ $("#closeProject").on("click", function(){
 	$(".projectInput").val("");
 	$(".inputNewNeed").parent().remove();
 	$(".inputNewWant").parent().remove();
+});
+
+/////////    Confirm Remove Modal /////////
+$("#projectSampleHolder").on("click",".openModConfirm",function(){
+	//add a data-key to the sumbit button
+	$("#modConfirmYes").attr("data-key",$(this).attr("data-key"));
+	//add type "project"
+	$("#modConfirmYes").attr("data-rmType","Project");
+	//then the modal will show
+});
+
+function removeItem(key, type){
+	if (type === "Project"){
+		//to remove a project, it needs to be removed in a few places
+		//1. remove from the projects endpoit
+		projectsEndPoint.child(key).remove();
+		//2. remove from the list
+		$("#sample"+key).remove();
+	}
+}
+
+
+$("#modConfirmYes").on("click",function(){
+	var key = $(this).attr("data-key");
+	var type = $(this).attr("data-rmType");
+
+	
+
 });
 
 
