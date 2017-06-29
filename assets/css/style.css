@@ -115,8 +115,8 @@ label {
 }
 .crop {
   display: inline-block;
-  width: 200px;
-  height: 200px;
+  width: 17vw;
+  height: 17vw;
   margin: 5px;
   background-position: center center;
   background-size: cover;
