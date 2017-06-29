@@ -23,6 +23,6 @@
     background: blue;
     height: 100%;
 }
-#userProfileLink{
+#userProfileLink, .projectLink{
 	word-wrap: break-word;
 }
