@@ -95,5 +95,5 @@ function showResults(resultArray){
 
 $("#preview-coverflow").on("click",".cover",function(event){
 	$("#projectSampleHolder").empty();
-	printProjectSnippet(this.attr("data-key"));
+	printProjectSnippet($(this).attr("data-key"));
 });
