@@ -73,7 +73,7 @@ function printAccountInfo(user){
 		}
 		
 	});
-	}
+}
 
 
 ////////////////////////////////
@@ -344,7 +344,7 @@ function storeInServer(user,link, fileType = "audio",objectType = "User",$append
 			} else if (fileType === "images"){
 				user.imageURL = downloadURL;
 				//cropped image edit
-				$("#img"+user.key).attr("src",user.imageURL);
+				$("#img"+user.key).attr("src",user.imageURL).attr("style", "background-image: url('"+user.imageURL+"');").addClass("crop");
 			}
 			if (objectType === "User"){
 				usersEndPoint.child(user.key).update(user);

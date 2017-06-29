@@ -142,7 +142,7 @@ function printProjectSnippet(key,showButtons = false){
 			editRemoveCol.append($("<button>").attr("type", "button").addClass("btn btn-primary openModConfirm").attr("data-toggle", "modal").attr("data-target", "#modConfirm").attr("data-key", myProject.key).text("Remove"));
 			var linkHolder = $("<div>").addClass("col-xs-6");
 			linkHolder.append($("<p>").text("Project Link For Sharing"));
-			linkHolder.append($("<p>").text(window.location.origin + "/codeRed/project.html#"+myProject.key));
+			linkHolder.append($("<p>").addClass("projectLink").text(window.location.origin + "/codeRed/project.html#"+myProject.key));
 			editRow.append(linkHolder);
 			//finish
 			buttonDiv.append(editRow);
