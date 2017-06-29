@@ -49,9 +49,15 @@ firebase.auth().onAuthStateChanged(function(user){
 //remove audio source from profile
 $("body").on("click",".removeAudio",function(){
 	var index = $(this).attr("data-index");
-	currentUser.audioURLs[index] = "";
-	usersEndPoint.child(currentUser.key).update(currentUser);
+	if ($(this).attr("data-key") !== undefined){
+		var key = $(this).attr("data-key");
+		projectsEndPoint.child(key).child("audioURLs").child(index).update("");
+	} else {
+		currentUser.audioURLs[index] = "";
+		usersEndPoint.child(currentUser.key).update(currentUser);
+	}
 	$(this).parent().remove();
+	
 })
 
 function printAccountInfo(user){
