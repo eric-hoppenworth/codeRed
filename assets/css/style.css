@@ -121,6 +121,6 @@ label {
   background-position: center center;
   background-size: cover;
 }
-#signout {
+a:hover {
   cursor: pointer;
 }
