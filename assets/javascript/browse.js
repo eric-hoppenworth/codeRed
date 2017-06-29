@@ -39,7 +39,7 @@ $("#submitSearch").on("click",function(event){
 function executeSearch(type= "need",searchTerm){
 	var index = 0;
 	searchResults = [];
-	projectsEndPoint.once("value",function(snapshot){
+	projectsEndPoint.orderByChild("name").once("value",function(snapshot){
 		snapshot.forEach(function(dataProject){
 			var myProject = dataProject.val();
 			//check to see if the project has a 'need'
@@ -80,12 +80,13 @@ function showResults(resultArray){
 		hodler.append($("<p>").text("i.e. 'vocals' or 'vocalist'"));
 	} else{
 		for (var i = 0; i < resultArray.length;i++){
-		var holder = $("<div>").addClass("cover").attr("data-key",resultArray[i].key);
-		var image = $("<img>").attr("src",resultArray[i].imageURL);
-		var paraName = $("<p>").addClass("coverName").text(resultArray[i].name);
-		var paraGenre = $("<p>").addClass("coverGenre").text(resultArray[i].genre);
-		holder.append(image).append(paraName).append(paraGenre);
-		appender.append(holder);
+			var holder = $("<div>").addClass("cover").attr("data-key",resultArray[i].key);
+			var image = $("<img>").attr("src",resultArray[i].imageURL);
+			var paraName = $("<p>").addClass("coverName").text(resultArray[i].name);
+			var paraGenre = $("<p>").addClass("coverGenre").text(resultArray[i].genre);
+			holder.append(image).append(paraName).append(paraGenre);
+			appender.append(holder);
+		}
 	}
 
 	
