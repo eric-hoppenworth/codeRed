@@ -60,6 +60,7 @@ function printProject(project){
 	$("#projectName").text(project.name);
 	$("#projectEmail").text(project.email);
 	$("#projectDescription").text(project.description);
+	$("#projectGenre").text(project.genre);
 	$("#projectNeedsHolder").text("");
 	$("#projectWantsHolder").text("");
 
