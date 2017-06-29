@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged(function(user){
 
 //search through the data base for a project with the provided searchTerm
 //at first, it will only search by need, but I can allow other queries as well.
-$("#submitSearch").on("click",function(event){
+$("#submitSearchBrowse").on("click",function(event){
 	event.preventDefault();
 	var searchTerm = $("#inputSearch").val().trim();
 	executeSearch("need",searchTerm);
