@@ -130,7 +130,7 @@ function printProjectSnippet(key,showButtons = false){
 			var audioDbDiv = $("<div>").addClass("col-xs-6").append($("<p>").text("Upload a Sample"));
 			audioRow.append(audioDbDiv);
 			buildDropboxButton(myProject,"audio","Project",audioDbDiv);
-			var audioHolder = $("<div>").addClass("col-xs-6");
+			var audioHolder = $("<div>").addClass("col-xs-6").attr("id","audio"+myProject.key);
 			audioRow.append(audioHolder);
 			printAllAudio(myProject,true,audioHolder);
 			buttonDiv.append(audioRow);
