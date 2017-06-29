@@ -116,7 +116,7 @@
 	<script>
 	  function login() {
 	    // Log the user in via Twitter
-	    var provider = new firebase.auth.GoogleAuthProvider();
+	    var provider = new firebase.auth.TwitterAuthProvider();
 	    firebase.auth().signInWithPopup(provider).catch(function(error) {
 	      console.log("Error authenticating user:", error);
 	    });
