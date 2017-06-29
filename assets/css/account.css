@@ -23,3 +23,6 @@
     background: blue;
     height: 100%;
 }
+#userProfileLink{
+	word-wrap: break-word;
+}
