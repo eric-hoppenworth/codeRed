@@ -215,7 +215,9 @@ $("#submitProject").on("click", function() {
 $("#closeProject").on("click", function(){
 	//clrear all fields on the modal
 	$(".projectInput").val("");
-}
+	$(".inputNewNeed").parent().remove();
+	$(".inputNewWant").parent().remove();
+});
 
 
 /////////   User Modal  ///////////////
