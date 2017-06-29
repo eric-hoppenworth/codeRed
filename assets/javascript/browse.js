@@ -93,7 +93,7 @@ function showResults(resultArray){
 	$("#preview-coverflow").coverflow("refresh");
 }
 
-$("#preview-coverflow").on("click",".cover",function(){
+$("#preview-coverflow").on("click",".cover",function(event){
 	$("#projectSampleHolder").empty();
 	printProjectSnippet(this.attr("data-key"));
 });
