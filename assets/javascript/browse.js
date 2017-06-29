@@ -96,4 +96,8 @@ function showResults(resultArray){
 $("#preview-coverflow").on("click",".cover",function(event){
 	$("#projectSampleHolder").empty();
 	printProjectSnippet($(this).attr("data-key"));
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> b36f3e67cb5c5523bcdc38758bb23bcf4be12b25
