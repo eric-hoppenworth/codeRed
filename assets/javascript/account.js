@@ -89,7 +89,7 @@ $("#openNewProject").on("click",function(){
 
 $("#newProject").on("click",".openEditProject",function(){
 	//change title
-	$("#modalTitle").text("Create New Project");
+	$("#modalTitle").text("Edit Project Details");
 	//add a data-key
 	$("#sumbitProject").attr("data-key",$(this).attr("data-key"));
 });
