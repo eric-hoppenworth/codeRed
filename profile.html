@@ -2,151 +2,113 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Profile: New MCs</title>
-
-	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile</title>
 	<link rel=icon href="assets/images/newmc.ico" sizes="any" type="image/svg+xml">
+	<link href="https://fonts.googleapis.com/css?family=Eater|Finger+Paint|Iceberg|Trade+Winds|Arimo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/profile.css">
-
 </head>
 <body>
+	<!--Navigation-->
 	<nav class="navbar navbar-inverse">
-        <div class="container-fluid" id="navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mcNavbar" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">New MC</a>
-                </div>
-                <div class="collapse navbar-collapse" id="mcNavbar" >                
-	                <ul class="nav navbar-nav">
-	                    <li><a href="index.html">Welcome</a></li>                
-	                    <li><a href="account.html">Account</a></li>
-	                    <li><a href="browse.html">Browse Projects</a></li>
-	                </ul>
-	                <form class="navbar-form">
-	                    <div class="form-group">
-	                        <input type="text" class="form-control" placeholder="Search" id="inputSearch">
-	                    </div>
-	                    <button type="submit" class="btn btn-default">Submit</button>
-	                </form>
-            	</div>
-            </div>
-        </div>
-    </nav>
-	<div class="container">
-		<div class="row">
-			<div class = "row">
-				<div class="col-xs-12">
-					<!--<div class="panel-body">-->
-					<div class="jumbotron">
-					
-					</div>
+		<div class="container-fluid" id="navbar">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mcNavbar" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">New MC</a>
 				</div>
-			</div>
-			<br><br>
-			<!-- Adding train Info Panel -->
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title" id="userName">Name</h3>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-xs-6">
-									<div src="" id="userImage" alt="A Picture of the user"></div>
-									<p id="userInfo">About The Producer - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-									<p id = "userContact">
-										Contact: email@fake.gov
-									</p>
-								</div>
-								<div class="col-xs-6">
-									<h5>Audio Samples</h5>
-									<div id="audioList" class="audioPlayer">
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title">Current Projects</h3>
-						</div>
+				<div class="collapse navbar-collapse" id="mcNavbar" >                
+					<ul class="nav navbar-nav">
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="account.html">Account</a></li>
+						<li><a href="profile.html">Profile</a></li>
+						<li><a href="browse.html">Browse Projects</a></li>
+						<li><a id = "signOut">Sign Out</a></li>
+					</ul>
 
-						<div class="panel-body" id = "projectSampleHolder">
-							<!-- projects will live here -->
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search" id="inputSearch">
 						</div>
-					</div>
+						<button class="btn btn-default" id ="submitSearch">Submit</button>
+					</form>
 				</div>
 			</div>
 		</div>
+	</nav>
+	<div class="container">
+
+		<!-- PROFILE INFORMATION ROW -->
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title"> Profile Details</h2>
+					</div>
+					<div class="panel-body">
+						<div class = "row">
+							<div class = "col-xs-6">
+                        		<h2 id="userName"></h2>
+                        		<h4>Description: </h4>
+                        		<p id="userInfo"></p>
+							
+							</div>
+							<div class = "col-xs-6">
+								<div id="userImageHolder">
+                            		<div id = "userImage"></div>
+                    			</div>
+                    			<h4>Contact Me:</h4>
+                    			<p id="userContact"></p>
+							</div>
+						</div>				
+					</div>   <!-- End panel body-->
+				</div>
+			</div>
+		</div>   <!-- End Main row -->
+
+		<!-- AUDIO SAMPLES ROW -->
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">Audio Samples</h2>
+					</div>
+					<div class="panel-body">
+						<div class = "row" id = "audioList">
+							<!-- dynamic audio here -->
+						</div>
+					</div>   <!-- End panel body-->
+				</div>
+			</div>
+		</div>   <!-- End Main row -->
+
+		<div class = "row">
+			<div class = "col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2 class="panel-title">My Account</h2>
+					</div>
+					<div class="panel-body" id = "projectSampleHolder">
+					
+					</div>   <!-- End panel body-->
+				</div>
+			</div>
+		</div>   <!-- End Main row -->
+
 	</div>
-	
+
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 	<script type="text/javascript" src="assets/javascript/profile.js"></script>
-
-	////////////////////////////////////
-	<!-- jQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-	<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-
-	<!-- Firechat -->
-	<link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
-	<script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
-
-	<script>
-	  function login() {
-	    // Log the user in via Twitter
-	    var provider = new firebase.auth.TwitterAuthProvider();
-	    firebase.auth().signInWithPopup(provider).catch(function(error) {
-	      console.log("Error authenticating user:", error);
-	    });
-	  }
-
-	  firebase.auth().onAuthStateChanged(function(user) {
-	    // Once authenticated, instantiate Firechat with the logged in user
-	    if (user) {
-	      initChat(user);
-	    }
-	  });
-	</script>
-
-	<button onclick="login()">Login</button>
-
-	<script>
-	  function initChat(user) {
-	    // Get a Firebase Database ref
-	    var chatRef = firebase.database().ref("chat");
-
-	    // Create a Firechat instance
-	    var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-
-	    // Set the Firechat user
-	    chat.setUser(user.uid, user.displayName);
-	  }
-	</script>
-
-	<div id="firechat-wrapper"></div>
-	//////////////////////////////////////
 
 	<footer>
 		<div class="container">

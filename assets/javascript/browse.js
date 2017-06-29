@@ -38,7 +38,8 @@ $("#submitSearch").on("click",function(event){
 
 function executeSearch(type= "need",searchTerm){
 	var index = 0;
-	projectsEndPoint.once("value",function(snapshot){
+	searchResults = [];
+	projectsEndPoint.orderByChild("name").once("value",function(snapshot){
 		snapshot.forEach(function(dataProject){
 			var myProject = dataProject.val();
 			//check to see if the project has a 'need'
@@ -60,8 +61,8 @@ function executeSearch(type= "need",searchTerm){
 					}
 				}
 			}
-			showResults(searchResults);
 		});
+		showResults(searchResults);
 	});
 }
 
@@ -69,12 +70,30 @@ function executeSearch(type= "need",searchTerm){
 function showResults(resultArray){
 	//add image to carousel
 	var appender = $("#preview-coverflow");
-	for (var i = 0; i < resultArray.length;i++){
+	appender.empty();
+
+	if (resultArray.length === 0){
+		//there are no results to show
 		var holder = $("<div>").addClass("cover");
-		var image = $("<img>").attr("src",resultArray[i].imageURL)
-		var paraName = $("<p>").addClass("coverName").text(resultArray[i].name);
-		var paraGenre = $("<p>").addClass("coverGenre").text(resultArray[i].genre);
-		holder.append(image).append(paraName).append(paraGenre);
-		appender.append(holder);
+		holder.append($("<p>").text("No Results Were Found"));
+		holder.append($("<p>").text("Try a seach for similar terms"));
+		hodler.append($("<p>").text("i.e. 'vocals' or 'vocalist'"));
+	} else{
+		for (var i = 0; i < resultArray.length;i++){
+			var holder = $("<div>").addClass("cover").attr("data-key",resultArray[i].key);
+			var image = $("<img>").attr("src",resultArray[i].imageURL);
+			var paraName = $("<p>").addClass("coverName").text(resultArray[i].name);
+			var paraGenre = $("<p>").addClass("coverGenre").text(resultArray[i].genre);
+			holder.append(image).append(paraName).append(paraGenre);
+			appender.append(holder);
+		}
 	}
+
+	
+	$("#preview-coverflow").coverflow("refresh");
 }
+
+$("#preview-coverflow").on("click",".cover",function(event){
+	$("#projectSampleHolder").empty();
+	printProjectSnippet(this.attr("data-key"));
+});

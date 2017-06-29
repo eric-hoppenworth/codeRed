@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +27,7 @@
 				<div class="collapse navbar-collapse" id="mcNavbar" >                
 					<ul class="nav navbar-nav">
 						<li><a href="index.html">Welcome</a></li>
+						<li><a href="account.html">Account</a></li>
 						<li><a href="profile.html">Profile</a></li>
 						<li><a href="browse.html">Browse Projects</a></li>
 						<li><a id = "signOut">Sign Out</a></li>
@@ -37,7 +37,7 @@
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Search" id="inputSearch">
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button class="btn btn-default" id ="submitSearch">Submit</button>
 					</form>
 				</div>
 			</div>
@@ -123,7 +123,7 @@
 							<div class = "col-xs-12">
 								<h2>Projects</h2>
 								<!-- Trigger the modal with a button -->
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
+								<button type="button" id = "openNewProject" class="btn btn-primary" data-toggle="modal" data-target="#newProject">Create New Project</button>
 								<hr>
 							</div>
 						</div>
@@ -187,11 +187,11 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Create New Project</h4>
+					<h4 id = "modalTitle" class="modal-title">Create New Project</h4>
 				</div>
 				<div class="modal-body">
 					<hr>
-					<div class="form-group">
+					<div id = "newProjectForm" class="form-group">
 						<label for="newProjectTitle" class="form-control-label">Project Name:</label>
 						<input type="text" class="form-control projectInput" id="newProjectTitle">
 						<br>
@@ -216,52 +216,9 @@
 					</div>
 					<div class="modal-body">
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="submitProject">Save</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button data-key = "new" type="button" class="btn btn-primary" id="submitProject">Save</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal" id = "closeProject">Close</button>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Edit Project Modal -->
-	<div class="modal fade" id="editProject" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">EditProject</h4>
-				</div>
-				<div class="modal-body">
-					<hr>
-					<div class="form-group">
-						<label for="editProjectName" class="form-control-label">Project Name:</label>
-						<input type="text" class="form-control projectInput" id="editProjectName">
-						<br>
-						<label for="editProjectDescription" class="form-control-label">Project Description:</label>
-						<textarea class="form-control projectInput" id="editProjectDescription"></textarea>
-						<br>
-						<label for="editProjectGenre" class="form-control-label">Genre:</label>
-						<input class="form-control projectInput" id="editProjectGenre"></input>
-						<br>
-						<label for="editProjectEmail" class="form-control-label">Contact Email:</label>
-						<input type="email" class="form-control projectInput" id="editProjectEmail">
-						<br>
-						<label for="newProjectNeeds" class="form-control-label" id = "needList"><p>Needs:<a href="#" class="tooltip-test" title="Type what you Need and select Add to enter it into the Project Needs.">?</a></p></label>
-						<input type="text" class="form-control projectInput" id="newProjectNeeds">
-						<button type="button" class="btn btn-primary" id="needsAdd">Add</button>
-						<br>
-						<br>
-						<label for="newProjectWants" class="form-control-label" id = "wantList">
-							<p>Wants:<a href="#" class="tooltip-test" title="Type what you Want and select Add to enter it into the Project Wants.">?</a></p>
-						</label>
-						<input type="text" class="form-control projectInput" id="newProjectWants"><button type="button" class="btn btn-primary" id="wantsAdd">Add</button>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="submitProject">Save</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
