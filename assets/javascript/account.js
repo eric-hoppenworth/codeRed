@@ -51,7 +51,7 @@ $("body").on("click",".removeAudio",function(){
 	var index = $(this).attr("data-index");
 	if ($(this).attr("data-key") !== undefined){
 		var key = $(this).attr("data-key");
-		projectsEndPoint.child(key).child("audioURLs").child(index).update("");
+		projectsEndPoint.child(key).child("audioURLs").child(index).set("");
 	} else {
 		currentUser.audioURLs[index] = "";
 		usersEndPoint.child(currentUser.key).update(currentUser);
